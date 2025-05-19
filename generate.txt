@@ -1,0 +1,2425 @@
+<Package id="_227a" name="Generate">
+        <Procedure id="_221W" name="GenerateInventoryReport">
+          <variable name="Name"/>
+          <variable name="reportType"/>
+          <variable name="Description"/>
+          <variable name="LevelOfDetail"/>
+          <variable name="RepComUseBySer"/>
+          <variable name="RepComNotUseBySer"/>
+          <comment>The procedure that fills in the values &#8203;&#8203;in the report genreator window for the Inventory report
+
+@Name -  The report name is filled in by default by MNC, but you can enter your own name - Can be left blank
+@reportType - Type of report to be generated
+@Description - Optional report description text field to be filled in in MNC, - Can be left blank
+@LevelOfDetail -MNC selection list, available options:
+Detailed Report &lt;--- Default If you leave the parameter empty
+Summary Report (Module Types)
+Summary Report (WDM Channels)
+Service Inventory Report,
+CustomReport
+Summary Report (Network Elements)
+@RepComUseBySer - Report components used by a service - True or False. In MNC True is the default, if you leave it blank it doesn't change the value
+@RepComNotUseBySer - Report components not used by a service - True or False. In MNC True is the default, if you leave it blank it doesn't change the value</comment>
+          <SetGlobalStep id="_221X" local="true" varname="ret">
+            <default>True</default>
+          </SetGlobalStep>
+          <ClientScriptStep client="FNM" id="_221x">
+            <code># Funkcja do sprawdzania warto&#347;ci zmiennej i przypisywania warto&#347;ci domy&#347;lnej, je&#347;li zmienna jest pusta lub nie istnieje
+def check_and_assign_basic(variable_name):
+    try:
+        value = rc.lookup(variable_name)
+        if not value or value.strip() == "":
+            rc.setLocal(variable_name, "Default")
+        else:
+            rc.setLocal(variable_name, value)
+    except:
+        rc.setLocal(variable_name, "Default")
+
+# Funkcja do sprawdzania warto&#347;ci zmiennej i przypisywania warto&#347;ci domy&#347;lnej, je&#347;li zmienna jest pusta, nie istnieje lub nie jest "True" ani "False"
+def check_and_assign(variable_name):
+    try:
+        value = rc.lookup(variable_name)
+        if not value or value.strip() == "" or value not in ["True", "False"]:
+            rc.setLocal(variable_name, "Default")
+        else:
+            rc.setLocal(variable_name, value)
+    except:
+        rc.setLocal(variable_name, "Default")
+
+# Lista zmiennych do sprawdzenia i przypisania warto&#347;ci za pomoc&#261; funkcji check_and_assign_basic
+basic_variables = [
+    "Name",
+    "LevelOfDetail",
+    "Description"
+]
+
+# Sprawdzenie i przypisanie warto&#347;ci dla ka&#380;dej zmiennej w li&#347;cie basic_variables
+for variable in basic_variables:
+    check_and_assign_basic(variable)
+
+# Lista zmiennych do sprawdzenia i przypisania warto&#347;ci za pomoc&#261; funkcji check_and_assign
+advanced_variables = [
+    "RepComUseBySer",
+    "RepComNotUseBySer"
+]
+
+# Sprawdzenie i przypisanie warto&#347;ci dla ka&#380;dej zmiennej w li&#347;cie advanced_variables
+for variable in advanced_variables:
+    check_and_assign(variable)
+</code>
+          </ClientScriptStep>
+          <ClientScriptStep client="FNM" id="_221m">
+            <code># Pobranie danych z QF-Test
+LevelOfDetail = rc.lookup("LevelOfDetail")  # Zmienna QF-Test
+
+# Zamiana spacji na "_"
+ModifiedLevelOfDetail = LevelOfDetail.replace(" ", "_")
+
+# Zapisanie zmodyfikowanej warto&#347;ci
+rc.setLocal('LevelOfDetail', ModifiedLevelOfDetail)</code>
+          </ClientScriptStep>
+          <TryStep id="_221Y">
+            <ProcedureCall id="_221e" procedure="combo.select">
+              <variable name="combo_id">report_type</variable>
+              <variable name="list_id">report_type@$(reportType)</variable>
+              <variable name="frame_title"/>
+              <variable name="title"/>
+              <variable name="modal">false</variable>
+              <variable name="feature">$(reportType)</variable>
+              <variable name="classindex">0</variable>
+              <variable name="classcount">1</variable>
+            </ProcedureCall>
+            <IfSequence id="_222J"
+                        test="not (&#34;$(Name)&#34; == &#34;Default&#34;)">
+              <ProcedureCall id="_221d" predelay="2000" procedure="text.set">
+                <variable name="id">panelReport_Details.textName</variable>
+                <variable name="classindex">0</variable>
+                <variable name="classcount">1</variable>
+                <variable name="text">$(Name)</variable>
+              </ProcedureCall>
+            </IfSequence>
+            <IfSequence id="_222K"
+                        test="not (&#34;$(Description)&#34; == &#34;Default&#34;)">
+              <ProcedureCall id="_221j" predelay="2000" procedure="text.set">
+                <variable name="id">panelReport_Details.textDescription</variable>
+                <variable name="classindex">0</variable>
+                <variable name="classcount">1</variable>
+                <variable name="text">$(Description)</variable>
+              </ProcedureCall>
+            </IfSequence>
+            <IfSequence id="_222M"
+                        test="not (&#34;$(LevelOfDetail)&#34; == &#34;Default&#34;)">
+              <ProcedureCall id="_221k" procedure="checkbox.select">
+                <variable name="id">radio$(LevelOfDetail)</variable>
+                <variable name="modal">false</variable>
+                <variable name="title"/>
+                <variable name="feature"/>
+                <variable name="classindex"/>
+                <variable name="classcount"/>
+              </ProcedureCall>
+            </IfSequence>
+            <IfSequence id="_221p"
+                        test="&#34;$(RepComUseBySer)&#34; == &#34;Default&#34;">
+              <ElseifSequence id="_221v" test="$(RepComUseBySer) == True">
+                <ProcedureCall id="_221n" procedure="checkbox.select">
+                  <variable name="id">list-view-form@Report components used by a service@#CheckBox:</variable>
+                  <variable name="modal">false</variable>
+                  <variable name="title"/>
+                  <variable name="feature"/>
+                  <variable name="classindex"/>
+                  <variable name="classcount"/>
+                </ProcedureCall>
+              </ElseifSequence>
+              <ElseSequence id="_221q">
+                <ProcedureCall id="_221r" local="true"
+                               procedure="checkbox.deselect">
+                  <variable name="id">list-view-form@Report components used by a service@#CheckBox:</variable>
+                  <variable name="title">false</variable>
+                  <variable name="feature"/>
+                  <variable name="classindex"/>
+                  <variable name="classcount"/>
+                </ProcedureCall>
+              </ElseSequence>
+            </IfSequence>
+            <IfSequence id="_221s"
+                        test="&#34;$(RepComNotUseBySer)&#34; == &#34;Default&#34;">
+              <ElseifSequence id="_221w" test="$(RepComNotUseBySer) == True">
+                <ProcedureCall id="_221o" procedure="checkbox.select">
+                  <variable name="id">list-view-form@Report components not used by a service@#CheckBox:</variable>
+                  <variable name="modal">false</variable>
+                  <variable name="title"/>
+                  <variable name="feature"/>
+                  <variable name="classindex"/>
+                  <variable name="classcount"/>
+                </ProcedureCall>
+              </ElseifSequence>
+              <ElseSequence id="_221t">
+                <ProcedureCall id="_221u" local="true"
+                               procedure="checkbox.deselect">
+                  <variable name="id">list-view-form@Report components not used by a service@#CheckBox:</variable>
+                  <variable name="title">false</variable>
+                  <variable name="feature"/>
+                  <variable name="classindex"/>
+                  <variable name="classcount"/>
+                </ProcedureCall>
+              </ElseSequence>
+            </IfSequence>
+            <CatchSequence exception="TestException" id="_221Z" maxerror="0">
+              <ProcedureCall id="_221a" procedure="log.print_ERROR_message">
+                <variable name="msg">GenerateInventoryReport failed</variable>
+              </ProcedureCall>
+              <SetGlobalStep id="_221b" local="true" varname="ret">
+                <default>False</default>
+              </SetGlobalStep>
+            </CatchSequence>
+          </TryStep>
+          <ReturnStep id="_221c" retval="$(ret)"/>
+        </Procedure>
+        <Procedure id="_221y" name="GenerateFaultReport">
+          <variable name="Name"/>
+          <variable name="reportType"/>
+          <variable name="Description"/>
+          <variable name="From"/>
+          <variable name="Until"/>
+          <variable name="LevelOfDetail"/>
+          <variable name="Grouping"/>
+          <variable name="SeverityCritical"/>
+          <variable name="SeverityMajor"/>
+          <variable name="SeverityMinor"/>
+          <variable name="SeverityWarning"/>
+          <variable name="SeverityInformational"/>
+          <comment>The procedure that fills in the values &#8203;&#8203;in the report genreator window for the Fault report
+
+@Name -  The report name is filled in by default by MNC, but you can enter your own name - Can be left blank
+@reportType - Type of report to be generated
+@Description - Optional report description text field to be filled in in MNC, - Can be left blank
+@From - Start time of the report to be filled in the form, In MNC, the default time is current minus 1 hour
+@Until - End time of the report to be filled in the form, In MNC, the default time is current
+@LevelOfDetail - MNC selection list, available options:
+Compact Report &lt;--- Default If you leave the parameter empty
+Full Report
+Custom Report
+@Grouping - MNC selection list, available options:
+Overview &lt;--- Default If you leave the parameter empty
+Module Location
+@SeverityCritical - Severity Checkbox - True or False. In MNC True is the default, if you leave it blank it doesn't change the value
+@SeverityMajor - Severity Checkbox - True or False. In MNC True is the default, if you leave it blank it doesn't change the value
+@SeverityMinor - Severity Checkbox - True or False. In MNC True is the default, if you leave it blank it doesn't change the value
+@SeverityWarning - Severity Checkbox - True or False. In MNC True is the default, if you leave it blank it doesn't change the value
+@SeverityInformational - Severity Checkbox - True or False. In MNC True is the default, if you leave it blank it doesn't change the value</comment>
+          <SetGlobalStep id="_221z" local="true" varname="ret">
+            <default>True</default>
+          </SetGlobalStep>
+          <ClientScriptStep client="FNM" id="_221-">
+            <code># Funkcja do sprawdzania warto&#347;ci zmiennej i przypisywania warto&#347;ci domy&#347;lnej, je&#347;li zmienna jest pusta lub nie istnieje
+def check_and_assign_basic(variable_name):
+    try:
+        value = rc.lookup(variable_name)
+        if not value or value.strip() == "":
+            rc.setLocal(variable_name, "Default")
+        else:
+            rc.setLocal(variable_name, value)
+    except:
+        rc.setLocal(variable_name, "Default")
+
+# Funkcja do sprawdzania warto&#347;ci zmiennej i przypisywania warto&#347;ci domy&#347;lnej, je&#347;li zmienna jest pusta, nie istnieje lub nie jest "True" ani "False"
+def check_and_assign(variable_name):
+    try:
+        value = rc.lookup(variable_name)
+        if not value or value.strip() == "" or value not in ["True", "False"]:
+            rc.setLocal(variable_name, "Default")
+        else:
+            rc.setLocal(variable_name, value)
+    except:
+        rc.setLocal(variable_name, "Default")
+
+# Lista zmiennych do sprawdzenia i przypisania warto&#347;ci za pomoc&#261; funkcji check_and_assign_basic
+basic_variables = [
+    "Name",
+    "LevelOfDetail",
+    "Grouping",
+    "Description",
+    "From",
+    "Until"
+]
+
+# Sprawdzenie i przypisanie warto&#347;ci dla ka&#380;dej zmiennej w li&#347;cie basic_variables
+for variable in basic_variables:
+    check_and_assign_basic(variable)
+
+# Lista zmiennych do sprawdzenia i przypisania warto&#347;ci za pomoc&#261; funkcji check_and_assign
+advanced_variables = [
+    "SeverityCritical",
+    "SeverityMajor",
+    "SeverityWarning",
+    "SeverityInformational",
+    "SeverityMinor"
+]
+
+# Sprawdzenie i przypisanie warto&#347;ci dla ka&#380;dej zmiennej w li&#347;cie advanced_variables
+for variable in advanced_variables:
+    check_and_assign(variable)
+</code>
+          </ClientScriptStep>
+          <ClientScriptStep client="FNM" id="_221+">
+            <code># Lista zmiennych do przetworzenia
+variables = ["LevelOfDetail", "Grouping"]
+
+# Przetwarzanie ka&#380;dej zmiennej w li&#347;cie
+for variable in variables:
+    try:
+        value = rc.lookup(variable)
+        modified_value = value.replace(" ", "_")
+        rc.setLocal(variable, modified_value)
+    except Exception as e:
+        print("An error occurred while processing", variable, ":", e)
+        rc.setLocal(variable, "Error")</code>
+          </ClientScriptStep>
+          <TryStep id="_2220">
+            <ProcedureCall id="_2221" procedure="combo.select">
+              <variable name="combo_id">report_type</variable>
+              <variable name="list_id">report_type@$(reportType)</variable>
+              <variable name="frame_title"/>
+              <variable name="title"/>
+              <variable name="modal">false</variable>
+              <variable name="feature">$(reportType)</variable>
+              <variable name="classindex">0</variable>
+              <variable name="classcount">1</variable>
+            </ProcedureCall>
+            <IfSequence id="_222O"
+                        test="not (&#34;$(Name)&#34; == &#34;Default&#34;)">
+              <ProcedureCall id="_222P" predelay="2000" procedure="text.set">
+                <variable name="id">panelReport_Details.textName</variable>
+                <variable name="classindex">0</variable>
+                <variable name="classcount">1</variable>
+                <variable name="text">$(Name)</variable>
+              </ProcedureCall>
+            </IfSequence>
+            <IfSequence id="_222Q"
+                        test="not (&#34;$(Description)&#34; == &#34;Default&#34;)">
+              <ProcedureCall id="_222R" predelay="2000" procedure="text.set">
+                <variable name="id">panelReport_Details.textDescription</variable>
+                <variable name="classindex">0</variable>
+                <variable name="classcount">1</variable>
+                <variable name="text">$(Description)</variable>
+              </ProcedureCall>
+            </IfSequence>
+            <IfSequence id="_222u"
+                        test="not (&#34;$(From)&#34; == &#34;Default&#34;)">
+              <ClientScriptStep client="FNM" id="_222v">
+                <code>def check_and_assign_time(variable_name):
+    try:
+        value = rc.lookup(variable_name)
+        if value and value.strip() != "":
+            # Sprawdzenie poprawno&#347;ci formatu YYYY-MM-DD HH:MM:SS
+            parts = value.split(' ')
+            if len(parts) == 2:
+                date_part, time_part = parts
+                date_elements = date_part.split('-')
+                time_elements = time_part.split(':')
+                if (len(date_elements) == 3 and len(time_elements) == 3 and
+                    all(element.isdigit() for element in date_elements + time_elements)):
+                    year, month, day = date_elements
+                    hours, minutes, seconds = time_elements
+                    if (len(year) == 4 and len(month) == 2 and len(day) == 2 and
+                        len(hours) == 2 and len(minutes) == 2 and len(seconds) == 2):
+                        # Rozbicie na zmienne Date, Hours, Minutes, Seconds
+                        rc.setLocal("Date", date_part)
+                        rc.setLocal("Hours", hours)
+                        rc.setLocal("Minutes", minutes)
+                        rc.setLocal("Seconds", seconds)
+                    else:
+                        print("Invalid Format: Incorrect length of date or time elements")
+                        rc.setLocal(variable_name, "Invalid Format")
+                else:
+                    print("Invalid Format: Non-numeric date or time elements")
+                    rc.setLocal(variable_name, "Invalid Format")
+            else:
+                print("Invalid Format: Incorrect number of parts")
+                rc.setLocal(variable_name, "Invalid Format")
+    except:
+        print("Error: Exception occurred during validation of Time")
+
+
+check_and_assign_time("From")
+</code>
+              </ClientScriptStep>
+              <ProcedureCall id="_2230" predelay="2000" procedure="text.set">
+                <variable name="id">textClick_the_calendar</variable>
+                <variable name="classindex"/>
+                <variable name="classcount"/>
+                <variable name="text">$(Date)</variable>
+              </ProcedureCall>
+              <ProcedureCall id="_223B" procedure="combo.select">
+                <variable name="combo_id">panelReport_Details.comboGeneric</variable>
+                <variable name="modal">true</variable>
+                <variable name="frame_title"/>
+                <variable name="list_id">panelReport_Details.comboGeneric@$(Hours)</variable>
+                <variable name="title"/>
+                <variable name="feature"/>
+                <variable name="classindex">1</variable>
+                <variable name="classcount">7</variable>
+                <variable name="label">Hours</variable>
+              </ProcedureCall>
+              <ProcedureCall id="_223C" procedure="combo.select">
+                <variable name="combo_id">panelReport_Details.comboGeneric</variable>
+                <variable name="modal">true</variable>
+                <variable name="frame_title"/>
+                <variable name="list_id">panelReport_Details.comboGeneric@$(Minutes)</variable>
+                <variable name="title"/>
+                <variable name="feature"/>
+                <variable name="classindex">2</variable>
+                <variable name="classcount">7</variable>
+                <variable name="label">Minutes</variable>
+              </ProcedureCall>
+              <ProcedureCall id="_223D" procedure="combo.select">
+                <variable name="combo_id">panelReport_Details.comboGeneric</variable>
+                <variable name="modal">true</variable>
+                <variable name="frame_title"/>
+                <variable name="list_id">panelReport_Details.comboGeneric@$(Seconds)</variable>
+                <variable name="title"/>
+                <variable name="feature"/>
+                <variable name="classindex">3</variable>
+                <variable name="classcount">7</variable>
+                <variable name="label">Seconds</variable>
+              </ProcedureCall>
+            </IfSequence>
+            <IfSequence id="_2231"
+                        test="not (&#34;$(Until)&#34; == &#34;Default&#34;)">
+              <ClientScriptStep client="FNM" id="_2232">
+                <code>def check_and_assign_time(variable_name):
+    try:
+        value = rc.lookup(variable_name)
+        if value and value.strip() != "":
+            # Sprawdzenie poprawno&#347;ci formatu YYYY-MM-DD HH:MM:SS
+            parts = value.split(' ')
+            if len(parts) == 2:
+                date_part, time_part = parts
+                date_elements = date_part.split('-')
+                time_elements = time_part.split(':')
+                if (len(date_elements) == 3 and len(time_elements) == 3 and
+                    all(element.isdigit() for element in date_elements + time_elements)):
+                    year, month, day = date_elements
+                    hours, minutes, seconds = time_elements
+                    if (len(year) == 4 and len(month) == 2 and len(day) == 2 and
+                        len(hours) == 2 and len(minutes) == 2 and len(seconds) == 2):
+                        # Rozbicie na zmienne Date, Hours, Minutes, Seconds
+                        rc.setLocal("Date", date_part)
+                        rc.setLocal("Hours", hours)
+                        rc.setLocal("Minutes", minutes)
+                        rc.setLocal("Seconds", seconds)
+                    else:
+                        print("Invalid Format: Incorrect length of date or time elements")
+                        rc.setLocal(variable_name, "Invalid Format")
+                else:
+                    print("Invalid Format: Non-numeric date or time elements")
+                    rc.setLocal(variable_name, "Invalid Format")
+            else:
+                print("Invalid Format: Incorrect number of parts")
+                rc.setLocal(variable_name, "Invalid Format")
+    except:
+        print("Error: Exception occurred during validation of Time")
+
+
+check_and_assign_time("Until")
+</code>
+              </ClientScriptStep>
+              <ProcedureCall id="_2233" predelay="2000" procedure="text.set">
+                <variable name="id">textClick_the_calendar2</variable>
+                <variable name="classindex"/>
+                <variable name="classcount"/>
+                <variable name="text">$(Date)</variable>
+              </ProcedureCall>
+              <ProcedureCall id="_2237" procedure="combo.select">
+                <variable name="combo_id">panelReport_Details.comboGeneric</variable>
+                <variable name="modal">true</variable>
+                <variable name="frame_title"/>
+                <variable name="list_id">panelReport_Details.comboGeneric@$(Hours)</variable>
+                <variable name="title"/>
+                <variable name="feature"/>
+                <variable name="classindex">4</variable>
+                <variable name="classcount">7</variable>
+                <variable name="label">Hours</variable>
+              </ProcedureCall>
+              <ProcedureCall id="_2235" procedure="combo.select">
+                <variable name="combo_id">panelReport_Details.comboGeneric</variable>
+                <variable name="modal">true</variable>
+                <variable name="frame_title"/>
+                <variable name="list_id">panelReport_Details.comboGeneric@$(Minutes)</variable>
+                <variable name="title"/>
+                <variable name="feature"/>
+                <variable name="classindex">5</variable>
+                <variable name="classcount">7</variable>
+                <variable name="label">Minutes</variable>
+              </ProcedureCall>
+              <ProcedureCall id="_2236" procedure="combo.select">
+                <variable name="combo_id">panelReport_Details.comboGeneric</variable>
+                <variable name="modal">true</variable>
+                <variable name="frame_title"/>
+                <variable name="list_id">panelReport_Details.comboGeneric@$(Seconds)</variable>
+                <variable name="title"/>
+                <variable name="feature"/>
+                <variable name="classindex">6</variable>
+                <variable name="classcount">7</variable>
+                <variable name="label">Seconds</variable>
+              </ProcedureCall>
+            </IfSequence>
+            <IfSequence id="_222S"
+                        test="not (&#34;$(LevelOfDetail)&#34; == &#34;Default&#34;)">
+              <ProcedureCall id="_222T" procedure="checkbox.select">
+                <variable name="id">radio$(LevelOfDetail)2</variable>
+                <variable name="modal">false</variable>
+                <variable name="title"/>
+                <variable name="feature"/>
+                <variable name="classindex"/>
+                <variable name="classcount"/>
+              </ProcedureCall>
+            </IfSequence>
+            <IfSequence id="_222s"
+                        test="not (&#34;$(Grouping)&#34; == &#34;Default&#34;)">
+              <ProcedureCall id="_222t" procedure="checkbox.select">
+                <variable name="id">radio$(Grouping)2</variable>
+                <variable name="modal">false</variable>
+                <variable name="title"/>
+                <variable name="feature"/>
+                <variable name="classindex"/>
+                <variable name="classcount"/>
+              </ProcedureCall>
+            </IfSequence>
+            <RepeatSequence count="5" id="_222o" name="Severity" var="i">
+              <ClientScriptStep client="FNM" id="_222p">
+                <code>i = int(rc.lookup("i"))
+try:
+    severities = [
+        "Critical",
+        "Major",
+        "Minor",
+        "Warning",
+        "Informational"
+    ]
+    
+    # Sprawdzenie warto&#347;ci "i" i przypisanie odpowiedniej warto&#347;ci do zmiennej "severity"
+    if 0 &lt;= i &lt; len(severities):
+        rc.setLocal("severity", severities[i])
+    else:
+        rc.setLocal("severity", "Invalid index")
+except Exception as e:
+    print("An error occurred:", e)
+    rc.setLocal("severity", "Error")
+
+try:
+    severity_names = [
+        "SeverityCritical",
+        "SeverityMajor",
+        "SeverityMinor",
+        "SeverityWarning",
+        "SeverityInformational"
+    ]
+    
+    # Sprawdzenie warto&#347;ci "i" i przypisanie odpowiedniej warto&#347;ci do zmiennej "SeverityValue"
+    if 0 &lt;= i &lt; len(severity_names):
+        severity_value = rc.lookup(severity_names[i])
+        rc.setLocal("SeverityValue", severity_value)
+    else:
+        rc.setLocal("SeverityValue", "Invalid index")
+except Exception as e:
+    print("An error occurred:", e)
+    rc.setLocal("SeverityValue", "Error")
+</code>
+              </ClientScriptStep>
+              <IfSequence id="_2225"
+                          test="&#34;$(SeverityValue)&#34; == &#34;Default&#34;">
+                <ElseifSequence id="_2226" test="$(SeverityValue) == True">
+                  <ProcedureCall id="_2227" procedure="checkbox.select">
+                    <variable name="id">list-view-form@$(severity)@#CheckBox:</variable>
+                    <variable name="modal">false</variable>
+                    <variable name="title"/>
+                    <variable name="feature"/>
+                    <variable name="classindex"/>
+                    <variable name="classcount"/>
+                  </ProcedureCall>
+                </ElseifSequence>
+                <ElseSequence id="_2228">
+                  <ProcedureCall id="_2229" local="true"
+                                 procedure="checkbox.deselect">
+                    <variable name="id">list-view-form@$(severity)@#CheckBox:</variable>
+                    <variable name="title">false</variable>
+                    <variable name="feature"/>
+                    <variable name="classindex"/>
+                    <variable name="classcount"/>
+                  </ProcedureCall>
+                </ElseSequence>
+              </IfSequence>
+            </RepeatSequence>
+            <CatchSequence exception="TestException" id="_222F" maxerror="0">
+              <ProcedureCall id="_222G" procedure="log.print_ERROR_message">
+                <variable name="msg">GenerateFaultReport failed</variable>
+              </ProcedureCall>
+              <SetGlobalStep id="_222H" local="true" varname="ret">
+                <default>False</default>
+              </SetGlobalStep>
+            </CatchSequence>
+          </TryStep>
+          <ReturnStep id="_222I" retval="$(ret)"/>
+        </Procedure>
+        <Procedure id="_223F" name="GeneratePerformanceReport">
+          <variable name="Name"/>
+          <variable name="reportType"/>
+          <variable name="Description"/>
+          <variable name="From"/>
+          <variable name="Until"/>
+          <variable name="SortBy"/>
+          <comment>The procedure that fills in the values &#8203;&#8203;in the report genreator window for the Performance report
+
+@Name -  The report name is filled in by default by MNC, but you can enter your own name - Can be left blank
+@reportType - Type of report to be generated
+@Description - Optional report description text field to be filled in in MNC, - Can be left blank
+@From - Monitoring Start Date: - Start time of the report to be filled in the form, In MNC, the default time is current minus 1 hour
+@Until - Monitoring End Date: - End time of the report to be filled in the form, In MNC, the default time is current
+@SortBy - MNC selection list, available options:
+Module Location &lt;--- Default If you leave the parameter empty</comment>
+          <SetGlobalStep id="_223G" local="true" varname="ret">
+            <default>True</default>
+          </SetGlobalStep>
+          <ClientScriptStep client="FNM" id="_223H">
+            <code># Funkcja do sprawdzania warto&#347;ci zmiennej i przypisywania warto&#347;ci domy&#347;lnej, je&#347;li zmienna jest pusta lub nie istnieje
+def check_and_assign_basic(variable_name):
+    try:
+        value = rc.lookup(variable_name)
+        if not value or value.strip() == "":
+            rc.setLocal(variable_name, "Default")
+        else:
+            rc.setLocal(variable_name, value)
+    except:
+        rc.setLocal(variable_name, "Default")
+
+# Lista zmiennych do sprawdzenia i przypisania warto&#347;ci za pomoc&#261; funkcji check_and_assign_basic
+basic_variables = [
+    "Name",
+    "SortBy",
+    "Description",
+    "From",
+    "Until"
+]
+
+# Sprawdzenie i przypisanie warto&#347;ci dla ka&#380;dej zmiennej w li&#347;cie basic_variables
+for variable in basic_variables:
+    check_and_assign_basic(variable)</code>
+          </ClientScriptStep>
+          <ClientScriptStep client="FNM" id="_223I">
+            <code># Lista zmiennych do przetworzenia
+variables = ["SortBy"]
+
+# Przetwarzanie ka&#380;dej zmiennej w li&#347;cie
+for variable in variables:
+    try:
+        value = rc.lookup(variable)
+        modified_value = value.replace(" ", "_")
+        rc.setLocal(variable, modified_value)
+    except Exception as e:
+        print("An error occurred while processing", variable, ":", e)
+        rc.setLocal(variable, "Error")</code>
+          </ClientScriptStep>
+          <TryStep id="_223J">
+            <ProcedureCall id="_223K" procedure="combo.select">
+              <variable name="combo_id">report_type</variable>
+              <variable name="list_id">report_type@$(reportType)</variable>
+              <variable name="frame_title"/>
+              <variable name="title"/>
+              <variable name="modal">false</variable>
+              <variable name="feature">$(reportType)</variable>
+              <variable name="classindex">0</variable>
+              <variable name="classcount">1</variable>
+            </ProcedureCall>
+            <IfSequence id="_223X"
+                        test="not (&#34;$(Name)&#34; == &#34;Default&#34;)">
+              <ProcedureCall id="_223Y" predelay="2000" procedure="text.set">
+                <variable name="id">panelReport_Details.textName</variable>
+                <variable name="classindex">0</variable>
+                <variable name="classcount">1</variable>
+                <variable name="text">$(Name)</variable>
+              </ProcedureCall>
+            </IfSequence>
+            <IfSequence id="_223Z"
+                        test="not (&#34;$(Description)&#34; == &#34;Default&#34;)">
+              <ProcedureCall id="_223a" predelay="2000" procedure="text.set">
+                <variable name="id">panelReport_Details.textDescription</variable>
+                <variable name="classindex">0</variable>
+                <variable name="classcount">1</variable>
+                <variable name="text">$(Description)</variable>
+              </ProcedureCall>
+            </IfSequence>
+            <IfSequence id="_223L"
+                        test="not (&#34;$(From)&#34; == &#34;Default&#34;)">
+              <ClientScriptStep client="FNM" id="_223M">
+                <code>def check_and_assign_time(variable_name):
+    try:
+        value = rc.lookup(variable_name)
+        if value and value.strip() != "":
+            # Sprawdzenie poprawno&#347;ci formatu YYYY-MM-DD HH:MM:SS
+            parts = value.split(' ')
+            if len(parts) == 2:
+                date_part, time_part = parts
+                date_elements = date_part.split('-')
+                time_elements = time_part.split(':')
+                if (len(date_elements) == 3 and len(time_elements) == 3 and
+                    all(element.isdigit() for element in date_elements + time_elements)):
+                    year, month, day = date_elements
+                    hours, minutes, seconds = time_elements
+                    if (len(year) == 4 and len(month) == 2 and len(day) == 2 and
+                        len(hours) == 2 and len(minutes) == 2 and len(seconds) == 2):
+                        # Rozbicie na zmienne Date, Hours, Minutes, Seconds
+                        rc.setLocal("Date", date_part)
+                        rc.setLocal("Hours", hours)
+                        rc.setLocal("Minutes", minutes)
+                        rc.setLocal("Seconds", seconds)
+                    else:
+                        print("Invalid Format: Incorrect length of date or time elements")
+                        rc.setLocal(variable_name, "Invalid Format")
+                else:
+                    print("Invalid Format: Non-numeric date or time elements")
+                    rc.setLocal(variable_name, "Invalid Format")
+            else:
+                print("Invalid Format: Incorrect number of parts")
+                rc.setLocal(variable_name, "Invalid Format")
+    except:
+        print("Error: Exception occurred during validation of Time")
+
+
+check_and_assign_time("From")
+</code>
+              </ClientScriptStep>
+              <ProcedureCall id="_223N" predelay="2000" procedure="text.set">
+                <variable name="id">textClick_the_calendar</variable>
+                <variable name="classindex"/>
+                <variable name="classcount"/>
+                <variable name="text">$(Date)</variable>
+              </ProcedureCall>
+              <ProcedureCall id="_223O" procedure="combo.select">
+                <variable name="combo_id">panelReport_Details.comboGeneric</variable>
+                <variable name="modal">true</variable>
+                <variable name="frame_title"/>
+                <variable name="list_id">panelReport_Details.comboGeneric@$(Hours)</variable>
+                <variable name="title"/>
+                <variable name="feature"/>
+                <variable name="classindex">1</variable>
+                <variable name="classcount">7</variable>
+                <variable name="label">Hours</variable>
+              </ProcedureCall>
+              <ProcedureCall id="_223P" procedure="combo.select">
+                <variable name="combo_id">panelReport_Details.comboGeneric</variable>
+                <variable name="modal">true</variable>
+                <variable name="frame_title"/>
+                <variable name="list_id">panelReport_Details.comboGeneric@$(Minutes)</variable>
+                <variable name="title"/>
+                <variable name="feature"/>
+                <variable name="classindex">2</variable>
+                <variable name="classcount">7</variable>
+                <variable name="label">Minutes</variable>
+              </ProcedureCall>
+              <ProcedureCall id="_223Q" procedure="combo.select">
+                <variable name="combo_id">panelReport_Details.comboGeneric</variable>
+                <variable name="modal">true</variable>
+                <variable name="frame_title"/>
+                <variable name="list_id">panelReport_Details.comboGeneric@$(Seconds)</variable>
+                <variable name="title"/>
+                <variable name="feature"/>
+                <variable name="classindex">3</variable>
+                <variable name="classcount">7</variable>
+                <variable name="label">Seconds</variable>
+              </ProcedureCall>
+            </IfSequence>
+            <IfSequence id="_223R"
+                        test="not (&#34;$(Until)&#34; == &#34;Default&#34;)">
+              <ClientScriptStep client="FNM" id="_223S">
+                <code>def check_and_assign_time(variable_name):
+    try:
+        value = rc.lookup(variable_name)
+        if value and value.strip() != "":
+            # Sprawdzenie poprawno&#347;ci formatu YYYY-MM-DD HH:MM:SS
+            parts = value.split(' ')
+            if len(parts) == 2:
+                date_part, time_part = parts
+                date_elements = date_part.split('-')
+                time_elements = time_part.split(':')
+                if (len(date_elements) == 3 and len(time_elements) == 3 and
+                    all(element.isdigit() for element in date_elements + time_elements)):
+                    year, month, day = date_elements
+                    hours, minutes, seconds = time_elements
+                    if (len(year) == 4 and len(month) == 2 and len(day) == 2 and
+                        len(hours) == 2 and len(minutes) == 2 and len(seconds) == 2):
+                        # Rozbicie na zmienne Date, Hours, Minutes, Seconds
+                        rc.setLocal("Date", date_part)
+                        rc.setLocal("Hours", hours)
+                        rc.setLocal("Minutes", minutes)
+                        rc.setLocal("Seconds", seconds)
+                    else:
+                        print("Invalid Format: Incorrect length of date or time elements")
+                        rc.setLocal(variable_name, "Invalid Format")
+                else:
+                    print("Invalid Format: Non-numeric date or time elements")
+                    rc.setLocal(variable_name, "Invalid Format")
+            else:
+                print("Invalid Format: Incorrect number of parts")
+                rc.setLocal(variable_name, "Invalid Format")
+    except:
+        print("Error: Exception occurred during validation of Time")
+
+
+check_and_assign_time("Until")
+</code>
+              </ClientScriptStep>
+              <ProcedureCall id="_223T" predelay="2000" procedure="text.set">
+                <variable name="id">textClick_the_calendar2</variable>
+                <variable name="classindex"/>
+                <variable name="classcount"/>
+                <variable name="text">$(Date)</variable>
+              </ProcedureCall>
+              <ProcedureCall id="_223U" procedure="combo.select">
+                <variable name="combo_id">panelReport_Details.comboGeneric</variable>
+                <variable name="modal">true</variable>
+                <variable name="frame_title"/>
+                <variable name="list_id">panelReport_Details.comboGeneric@$(Hours)</variable>
+                <variable name="title"/>
+                <variable name="feature"/>
+                <variable name="classindex">4</variable>
+                <variable name="classcount">7</variable>
+                <variable name="label">Hours</variable>
+              </ProcedureCall>
+              <ProcedureCall id="_223V" procedure="combo.select">
+                <variable name="combo_id">panelReport_Details.comboGeneric</variable>
+                <variable name="modal">true</variable>
+                <variable name="frame_title"/>
+                <variable name="list_id">panelReport_Details.comboGeneric@$(Minutes)</variable>
+                <variable name="title"/>
+                <variable name="feature"/>
+                <variable name="classindex">5</variable>
+                <variable name="classcount">7</variable>
+                <variable name="label">Minutes</variable>
+              </ProcedureCall>
+              <ProcedureCall id="_223W" procedure="combo.select">
+                <variable name="combo_id">panelReport_Details.comboGeneric</variable>
+                <variable name="modal">true</variable>
+                <variable name="frame_title"/>
+                <variable name="list_id">panelReport_Details.comboGeneric@$(Seconds)</variable>
+                <variable name="title"/>
+                <variable name="feature"/>
+                <variable name="classindex">6</variable>
+                <variable name="classcount">7</variable>
+                <variable name="label">Seconds</variable>
+              </ProcedureCall>
+            </IfSequence>
+            <IfSequence id="_223b"
+                        test="not (&#34;$(SortBy)&#34; == &#34;Default&#34;)">
+              <ProcedureCall id="_223c" procedure="checkbox.select">
+                <variable name="id">radio$(SortBy)2</variable>
+                <variable name="modal">false</variable>
+                <variable name="title"/>
+                <variable name="feature"/>
+                <variable name="classindex"/>
+                <variable name="classcount"/>
+              </ProcedureCall>
+            </IfSequence>
+            <CatchSequence exception="TestException" id="_223m" maxerror="0">
+              <ProcedureCall id="_223n" procedure="log.print_ERROR_message">
+                <variable name="msg">GeneratePerformanceReport failed</variable>
+              </ProcedureCall>
+              <SetGlobalStep id="_223o" local="true" varname="ret">
+                <default>False</default>
+              </SetGlobalStep>
+            </CatchSequence>
+          </TryStep>
+          <ReturnStep id="_223p" retval="$(ret)"/>
+        </Procedure>
+        <Procedure id="_223q" name="GenerateSecurityReport">
+          <variable name="Name"/>
+          <variable name="reportType"/>
+          <variable name="Description"/>
+          <variable name="From"/>
+          <variable name="Until"/>
+          <variable name="SeverityCritical"/>
+          <variable name="SeverityMajor"/>
+          <variable name="SeverityMinor"/>
+          <variable name="SeverityWarning"/>
+          <variable name="SeverityInformational"/>
+          <comment>The procedure that fills in the values &#8203;&#8203;in the report genreator window for the Security report
+
+@Name -  The report name is filled in by default by MNC, but you can enter your own name - Can be left blank
+@reportType - Type of report to be generated
+@Description - Optional report description text field to be filled in in MNC, - Can be left blank
+@From - Start time of the report to be filled in the form, In MNC, the default time is current minus 1 hour
+@Until - End time of the report to be filled in the form, In MNC, the default time is current
+@SeverityCritical - Severity Checkbox - True or False. In MNC True is the default, if you leave it blank it doesn't change the value
+@SeverityMajor - Severity Checkbox - True or False. In MNC True is the default, if you leave it blank it doesn't change the value
+@SeverityMinor - Severity Checkbox - True or False. In MNC True is the default, if you leave it blank it doesn't change the value
+@SeverityWarning - Severity Checkbox - True or False. In MNC True is the default, if you leave it blank it doesn't change the value
+@SeverityInformational - Severity Checkbox - True or False. In MNC True is the default, if you leave it blank it doesn't change the value</comment>
+          <SetGlobalStep id="_223r" local="true" varname="ret">
+            <default>True</default>
+          </SetGlobalStep>
+          <ClientScriptStep client="FNM" id="_223s">
+            <code># Funkcja do sprawdzania warto&#347;ci zmiennej i przypisywania warto&#347;ci domy&#347;lnej, je&#347;li zmienna jest pusta lub nie istnieje
+def check_and_assign_basic(variable_name):
+    try:
+        value = rc.lookup(variable_name)
+        if not value or value.strip() == "":
+            rc.setLocal(variable_name, "Default")
+        else:
+            rc.setLocal(variable_name, value)
+    except:
+        rc.setLocal(variable_name, "Default")
+
+# Funkcja do sprawdzania warto&#347;ci zmiennej i przypisywania warto&#347;ci domy&#347;lnej, je&#347;li zmienna jest pusta, nie istnieje lub nie jest "True" ani "False"
+def check_and_assign(variable_name):
+    try:
+        value = rc.lookup(variable_name)
+        if not value or value.strip() == "" or value not in ["True", "False"]:
+            rc.setLocal(variable_name, "Default")
+        else:
+            rc.setLocal(variable_name, value)
+    except:
+        rc.setLocal(variable_name, "Default")
+
+# Lista zmiennych do sprawdzenia i przypisania warto&#347;ci za pomoc&#261; funkcji check_and_assign_basic
+basic_variables = [
+    "Name",
+    "Description",
+    "From",
+    "Until"
+]
+
+# Sprawdzenie i przypisanie warto&#347;ci dla ka&#380;dej zmiennej w li&#347;cie basic_variables
+for variable in basic_variables:
+    check_and_assign_basic(variable)
+    
+# Lista zmiennych do sprawdzenia i przypisania warto&#347;ci za pomoc&#261; funkcji check_and_assign
+advanced_variables = [
+    "SeverityCritical",
+    "SeverityMajor",
+    "SeverityWarning",
+    "SeverityInformational",
+    "SeverityMinor"
+]
+
+# Sprawdzenie i przypisanie warto&#347;ci dla ka&#380;dej zmiennej w li&#347;cie advanced_variables
+for variable in advanced_variables:
+    check_and_assign(variable)</code>
+          </ClientScriptStep>
+          <TryStep id="_223u">
+            <ProcedureCall id="_223v" procedure="combo.select">
+              <variable name="combo_id">report_type</variable>
+              <variable name="list_id">report_type@$(reportType)</variable>
+              <variable name="frame_title"/>
+              <variable name="title"/>
+              <variable name="modal">false</variable>
+              <variable name="feature">$(reportType)</variable>
+              <variable name="classindex">0</variable>
+              <variable name="classcount">1</variable>
+            </ProcedureCall>
+            <IfSequence id="_223w"
+                        test="not (&#34;$(Name)&#34; == &#34;Default&#34;)">
+              <ProcedureCall id="_223x" predelay="2000" procedure="text.set">
+                <variable name="id">panelReport_Details.textName</variable>
+                <variable name="classindex">0</variable>
+                <variable name="classcount">1</variable>
+                <variable name="text">$(Name)</variable>
+              </ProcedureCall>
+            </IfSequence>
+            <IfSequence id="_223y"
+                        test="not (&#34;$(Description)&#34; == &#34;Default&#34;)">
+              <ProcedureCall id="_223z" predelay="2000" procedure="text.set">
+                <variable name="id">panelReport_Details.textDescription</variable>
+                <variable name="classindex">0</variable>
+                <variable name="classcount">1</variable>
+                <variable name="text">$(Description)</variable>
+              </ProcedureCall>
+            </IfSequence>
+            <IfSequence id="_223+"
+                        test="not (&#34;$(From)&#34; == &#34;Default&#34;)">
+              <ClientScriptStep client="FNM" id="_223-">
+                <code>def check_and_assign_time(variable_name):
+    try:
+        value = rc.lookup(variable_name)
+        if value and value.strip() != "":
+            # Sprawdzenie poprawno&#347;ci formatu YYYY-MM-DD HH:MM:SS
+            parts = value.split(' ')
+            if len(parts) == 2:
+                date_part, time_part = parts
+                date_elements = date_part.split('-')
+                time_elements = time_part.split(':')
+                if (len(date_elements) == 3 and len(time_elements) == 3 and
+                    all(element.isdigit() for element in date_elements + time_elements)):
+                    year, month, day = date_elements
+                    hours, minutes, seconds = time_elements
+                    if (len(year) == 4 and len(month) == 2 and len(day) == 2 and
+                        len(hours) == 2 and len(minutes) == 2 and len(seconds) == 2):
+                        # Rozbicie na zmienne Date, Hours, Minutes, Seconds
+                        rc.setLocal("Date", date_part)
+                        rc.setLocal("Hours", hours)
+                        rc.setLocal("Minutes", minutes)
+                        rc.setLocal("Seconds", seconds)
+                    else:
+                        print("Invalid Format: Incorrect length of date or time elements")
+                        rc.setLocal(variable_name, "Invalid Format")
+                else:
+                    print("Invalid Format: Non-numeric date or time elements")
+                    rc.setLocal(variable_name, "Invalid Format")
+            else:
+                print("Invalid Format: Incorrect number of parts")
+                rc.setLocal(variable_name, "Invalid Format")
+    except:
+        print("Error: Exception occurred during validation of Time")
+
+
+check_and_assign_time("From")
+</code>
+              </ClientScriptStep>
+              <ProcedureCall id="_2240" predelay="2000" procedure="text.set">
+                <variable name="id">textClick_the_calendar</variable>
+                <variable name="classindex"/>
+                <variable name="classcount"/>
+                <variable name="text">$(Date)</variable>
+              </ProcedureCall>
+              <ProcedureCall id="_2241" procedure="combo.select">
+                <variable name="combo_id">panelReport_Details.comboGeneric</variable>
+                <variable name="modal">true</variable>
+                <variable name="frame_title"/>
+                <variable name="list_id">panelReport_Details.comboGeneric@$(Hours)</variable>
+                <variable name="title"/>
+                <variable name="feature"/>
+                <variable name="classindex">1</variable>
+                <variable name="classcount">7</variable>
+                <variable name="label">Hours</variable>
+              </ProcedureCall>
+              <ProcedureCall id="_2242" procedure="combo.select">
+                <variable name="combo_id">panelReport_Details.comboGeneric</variable>
+                <variable name="modal">true</variable>
+                <variable name="frame_title"/>
+                <variable name="list_id">panelReport_Details.comboGeneric@$(Minutes)</variable>
+                <variable name="title"/>
+                <variable name="feature"/>
+                <variable name="classindex">2</variable>
+                <variable name="classcount">7</variable>
+                <variable name="label">Minutes</variable>
+              </ProcedureCall>
+              <ProcedureCall id="_2243" procedure="combo.select">
+                <variable name="combo_id">panelReport_Details.comboGeneric</variable>
+                <variable name="modal">true</variable>
+                <variable name="frame_title"/>
+                <variable name="list_id">panelReport_Details.comboGeneric@$(Seconds)</variable>
+                <variable name="title"/>
+                <variable name="feature"/>
+                <variable name="classindex">3</variable>
+                <variable name="classcount">7</variable>
+                <variable name="label">Seconds</variable>
+              </ProcedureCall>
+            </IfSequence>
+            <IfSequence id="_2244"
+                        test="not (&#34;$(Until)&#34; == &#34;Default&#34;)">
+              <ClientScriptStep client="FNM" id="_2245">
+                <code>def check_and_assign_time(variable_name):
+    try:
+        value = rc.lookup(variable_name)
+        if value and value.strip() != "":
+            # Sprawdzenie poprawno&#347;ci formatu YYYY-MM-DD HH:MM:SS
+            parts = value.split(' ')
+            if len(parts) == 2:
+                date_part, time_part = parts
+                date_elements = date_part.split('-')
+                time_elements = time_part.split(':')
+                if (len(date_elements) == 3 and len(time_elements) == 3 and
+                    all(element.isdigit() for element in date_elements + time_elements)):
+                    year, month, day = date_elements
+                    hours, minutes, seconds = time_elements
+                    if (len(year) == 4 and len(month) == 2 and len(day) == 2 and
+                        len(hours) == 2 and len(minutes) == 2 and len(seconds) == 2):
+                        # Rozbicie na zmienne Date, Hours, Minutes, Seconds
+                        rc.setLocal("Date", date_part)
+                        rc.setLocal("Hours", hours)
+                        rc.setLocal("Minutes", minutes)
+                        rc.setLocal("Seconds", seconds)
+                    else:
+                        print("Invalid Format: Incorrect length of date or time elements")
+                        rc.setLocal(variable_name, "Invalid Format")
+                else:
+                    print("Invalid Format: Non-numeric date or time elements")
+                    rc.setLocal(variable_name, "Invalid Format")
+            else:
+                print("Invalid Format: Incorrect number of parts")
+                rc.setLocal(variable_name, "Invalid Format")
+    except:
+        print("Error: Exception occurred during validation of Time")
+
+
+check_and_assign_time("Until")
+</code>
+              </ClientScriptStep>
+              <ProcedureCall id="_2246" predelay="2000" procedure="text.set">
+                <variable name="id">textClick_the_calendar2</variable>
+                <variable name="classindex"/>
+                <variable name="classcount"/>
+                <variable name="text">$(Date)</variable>
+              </ProcedureCall>
+              <ProcedureCall id="_2247" procedure="combo.select">
+                <variable name="combo_id">panelReport_Details.comboGeneric</variable>
+                <variable name="modal">true</variable>
+                <variable name="frame_title"/>
+                <variable name="list_id">panelReport_Details.comboGeneric@$(Hours)</variable>
+                <variable name="title"/>
+                <variable name="feature"/>
+                <variable name="classindex">4</variable>
+                <variable name="classcount">7</variable>
+                <variable name="label">Hours</variable>
+              </ProcedureCall>
+              <ProcedureCall id="_2248" procedure="combo.select">
+                <variable name="combo_id">panelReport_Details.comboGeneric</variable>
+                <variable name="modal">true</variable>
+                <variable name="frame_title"/>
+                <variable name="list_id">panelReport_Details.comboGeneric@$(Minutes)</variable>
+                <variable name="title"/>
+                <variable name="feature"/>
+                <variable name="classindex">5</variable>
+                <variable name="classcount">7</variable>
+                <variable name="label">Minutes</variable>
+              </ProcedureCall>
+              <ProcedureCall id="_2249" procedure="combo.select">
+                <variable name="combo_id">panelReport_Details.comboGeneric</variable>
+                <variable name="modal">true</variable>
+                <variable name="frame_title"/>
+                <variable name="list_id">panelReport_Details.comboGeneric@$(Seconds)</variable>
+                <variable name="title"/>
+                <variable name="feature"/>
+                <variable name="classindex">6</variable>
+                <variable name="classcount">7</variable>
+                <variable name="label">Seconds</variable>
+              </ProcedureCall>
+            </IfSequence>
+            <RepeatSequence count="5" id="_224G" name="Severity" var="i">
+              <ClientScriptStep client="FNM" id="_224H">
+                <code>i = int(rc.lookup("i"))
+try:
+    severities = [
+        "Critical",
+        "Major",
+        "Minor",
+        "Warning",
+        "Informational"
+    ]
+    
+    # Sprawdzenie warto&#347;ci "i" i przypisanie odpowiedniej warto&#347;ci do zmiennej "severity"
+    if 0 &lt;= i &lt; len(severities):
+        rc.setLocal("severity", severities[i])
+    else:
+        rc.setLocal("severity", "Invalid index")
+except Exception as e:
+    print("An error occurred:", e)
+    rc.setLocal("severity", "Error")
+
+try:
+    severity_names = [
+        "SeverityCritical",
+        "SeverityMajor",
+        "SeverityMinor",
+        "SeverityWarning",
+        "SeverityInformational"
+    ]
+    
+    # Sprawdzenie warto&#347;ci "i" i przypisanie odpowiedniej warto&#347;ci do zmiennej "SeverityValue"
+    if 0 &lt;= i &lt; len(severity_names):
+        severity_value = rc.lookup(severity_names[i])
+        rc.setLocal("SeverityValue", severity_value)
+    else:
+        rc.setLocal("SeverityValue", "Invalid index")
+except Exception as e:
+    print("An error occurred:", e)
+    rc.setLocal("SeverityValue", "Error")
+</code>
+              </ClientScriptStep>
+              <IfSequence id="_224I"
+                          test="&#34;$(SeverityValue)&#34; == &#34;Default&#34;">
+                <ElseifSequence id="_224J" test="$(SeverityValue) == True">
+                  <ProcedureCall id="_224K" procedure="checkbox.select">
+                    <variable name="id">list-view-form@$(severity)@#CheckBox:</variable>
+                    <variable name="modal">false</variable>
+                    <variable name="title"/>
+                    <variable name="feature"/>
+                    <variable name="classindex"/>
+                    <variable name="classcount"/>
+                  </ProcedureCall>
+                </ElseifSequence>
+                <ElseSequence id="_224L">
+                  <ProcedureCall id="_224M" local="true"
+                                 procedure="checkbox.deselect">
+                    <variable name="id">list-view-form@$(severity)@#CheckBox:</variable>
+                    <variable name="title">false</variable>
+                    <variable name="feature"/>
+                    <variable name="classindex"/>
+                    <variable name="classcount"/>
+                  </ProcedureCall>
+                </ElseSequence>
+              </IfSequence>
+            </RepeatSequence>
+            <CatchSequence exception="TestException" id="_224C" maxerror="0">
+              <ProcedureCall id="_224D" procedure="log.print_ERROR_message">
+                <variable name="msg">GenerateSecurityReport failed</variable>
+              </ProcedureCall>
+              <SetGlobalStep id="_224E" local="true" varname="ret">
+                <default>False</default>
+              </SetGlobalStep>
+            </CatchSequence>
+          </TryStep>
+          <ReturnStep id="_224F" retval="$(ret)"/>
+        </Procedure>
+        <Procedure id="_224N" name="GenerateLinkLossReport">
+          <variable name="Name"/>
+          <variable name="reportType"/>
+          <variable name="Description"/>
+          <comment>The procedure that fills in the values &#8203;&#8203;in the report genreator window for the Link Loss Report
+
+@Name -  The report name is filled in by default by MNC, but you can enter your own name - Can be left blank
+@reportType - Type of report to be generated
+@Description - Optional report description text field to be filled in in MNC, - Can be left blank</comment>
+          <SetGlobalStep id="_224O" local="true" varname="ret">
+            <default>True</default>
+          </SetGlobalStep>
+          <ClientScriptStep client="FNM" id="_224P">
+            <code># Funkcja do sprawdzania warto&#347;ci zmiennej i przypisywania warto&#347;ci domy&#347;lnej, je&#347;li zmienna jest pusta lub nie istnieje
+def check_and_assign_basic(variable_name):
+    try:
+        value = rc.lookup(variable_name)
+        if not value or value.strip() == "":
+            rc.setLocal(variable_name, "Default")
+        else:
+            rc.setLocal(variable_name, value)
+    except:
+        rc.setLocal(variable_name, "Default")
+
+# Lista zmiennych do sprawdzenia i przypisania warto&#347;ci za pomoc&#261; funkcji check_and_assign_basic
+basic_variables = [
+    "Name",
+    "Description"
+]
+
+# Sprawdzenie i przypisanie warto&#347;ci dla ka&#380;dej zmiennej w li&#347;cie basic_variables
+for variable in basic_variables:
+    check_and_assign_basic(variable)</code>
+          </ClientScriptStep>
+          <TryStep id="_224Q">
+            <ProcedureCall id="_224R" procedure="combo.select">
+              <variable name="combo_id">report_type</variable>
+              <variable name="list_id">report_type@$(reportType)</variable>
+              <variable name="frame_title"/>
+              <variable name="title"/>
+              <variable name="modal">false</variable>
+              <variable name="feature">$(reportType)</variable>
+              <variable name="classindex">0</variable>
+              <variable name="classcount">1</variable>
+            </ProcedureCall>
+            <IfSequence id="_224S"
+                        test="not (&#34;$(Name)&#34; == &#34;Default&#34;)">
+              <ProcedureCall id="_224T" predelay="2000" procedure="text.set">
+                <variable name="id">panelReport_Details.textName</variable>
+                <variable name="classindex">0</variable>
+                <variable name="classcount">1</variable>
+                <variable name="text">$(Name)</variable>
+              </ProcedureCall>
+            </IfSequence>
+            <IfSequence id="_224U"
+                        test="not (&#34;$(Description)&#34; == &#34;Default&#34;)">
+              <ProcedureCall id="_224V" predelay="2000" procedure="text.set">
+                <variable name="id">panelReport_Details.textDescription</variable>
+                <variable name="classindex">0</variable>
+                <variable name="classcount">1</variable>
+                <variable name="text">$(Description)</variable>
+              </ProcedureCall>
+            </IfSequence>
+            <CatchSequence exception="TestException" id="_224p" maxerror="0">
+              <ProcedureCall id="_224q" procedure="log.print_ERROR_message">
+                <variable name="msg">GenerateLinkLossReport failed</variable>
+              </ProcedureCall>
+              <SetGlobalStep id="_224r" local="true" varname="ret">
+                <default>False</default>
+              </SetGlobalStep>
+            </CatchSequence>
+          </TryStep>
+          <ReturnStep id="_224s" retval="$(ret)"/>
+        </Procedure>
+        <Procedure id="_225X" name="GeneratePTPRemoteSlavesReport">
+          <variable name="Name"/>
+          <variable name="reportType"/>
+          <variable name="Description"/>
+          <comment>The procedure that fills in the values &#8203;&#8203;in the report genreator window for the PTP Remote Slaves Report
+
+@Name -  The report name is filled in by default by MNC, but you can enter your own name - Can be left blank
+@reportType - Type of report to be generated
+@Description - Optional report description text field to be filled in in MNC, - Can be left blank</comment>
+          <SetGlobalStep id="_225Y" local="true" varname="ret">
+            <default>True</default>
+          </SetGlobalStep>
+          <ClientScriptStep client="FNM" id="_225Z">
+            <code># Funkcja do sprawdzania warto&#347;ci zmiennej i przypisywania warto&#347;ci domy&#347;lnej, je&#347;li zmienna jest pusta lub nie istnieje
+def check_and_assign_basic(variable_name):
+    try:
+        value = rc.lookup(variable_name)
+        if not value or value.strip() == "":
+            rc.setLocal(variable_name, "Default")
+        else:
+            rc.setLocal(variable_name, value)
+    except:
+        rc.setLocal(variable_name, "Default")
+
+# Lista zmiennych do sprawdzenia i przypisania warto&#347;ci za pomoc&#261; funkcji check_and_assign_basic
+basic_variables = [
+    "Name",
+    "Description"
+]
+
+# Sprawdzenie i przypisanie warto&#347;ci dla ka&#380;dej zmiennej w li&#347;cie basic_variables
+for variable in basic_variables:
+    check_and_assign_basic(variable)</code>
+          </ClientScriptStep>
+          <TryStep id="_225a">
+            <ProcedureCall id="_225b" procedure="combo.select">
+              <variable name="combo_id">report_type</variable>
+              <variable name="list_id">report_type@$(reportType)</variable>
+              <variable name="frame_title"/>
+              <variable name="title"/>
+              <variable name="modal">false</variable>
+              <variable name="feature">$(reportType)</variable>
+              <variable name="classindex">0</variable>
+              <variable name="classcount">1</variable>
+            </ProcedureCall>
+            <IfSequence id="_225c"
+                        test="not (&#34;$(Name)&#34; == &#34;Default&#34;)">
+              <ProcedureCall id="_225d" predelay="2000" procedure="text.set">
+                <variable name="id">panelReport_Details.textName</variable>
+                <variable name="classindex">0</variable>
+                <variable name="classcount">1</variable>
+                <variable name="text">$(Name)</variable>
+              </ProcedureCall>
+            </IfSequence>
+            <IfSequence id="_225e"
+                        test="not (&#34;$(Description)&#34; == &#34;Default&#34;)">
+              <ProcedureCall id="_225f" predelay="2000" procedure="text.set">
+                <variable name="id">panelReport_Details.textDescription</variable>
+                <variable name="classindex">0</variable>
+                <variable name="classcount">1</variable>
+                <variable name="text">$(Description)</variable>
+              </ProcedureCall>
+            </IfSequence>
+            <CatchSequence exception="TestException" id="_225g" maxerror="0">
+              <ProcedureCall id="_225h" procedure="log.print_ERROR_message">
+                <variable name="msg">GeneratePTPRemoteSlavesReport failed</variable>
+              </ProcedureCall>
+              <SetGlobalStep id="_225i" local="true" varname="ret">
+                <default>False</default>
+              </SetGlobalStep>
+            </CatchSequence>
+          </TryStep>
+          <ReturnStep id="_225j" retval="$(ret)"/>
+        </Procedure>
+        <Procedure id="_224t" name="GenerateBandwidthUtilizationReport">
+          <variable name="Name"/>
+          <variable name="reportType"/>
+          <variable name="Description"/>
+          <variable name="GridResolution"/>
+          <comment>The procedure that fills in the values &#8203;&#8203;in the report genreator window for the Bandwidth Utilization Report
+
+@Name -  The report name is filled in by default by MNC, but you can enter your own name - Can be left blank
+@reportType - Type of report to be generated
+@Description - Optional report description text field to be filled in in MNC, - Can be left blank
+@GridResolution - Grid Resolution parameter, possible values:
+50GHz  &lt;--- Default If you leave the parameter empty
+6.25GHz
+12.5GHz
+25GHz
+100GHz
+</comment>
+          <SetGlobalStep id="_224u" local="true" varname="ret">
+            <default>True</default>
+          </SetGlobalStep>
+          <ClientScriptStep client="FNM" id="_224v">
+            <code># Funkcja do sprawdzania warto&#347;ci zmiennej i przypisywania warto&#347;ci domy&#347;lnej, je&#347;li zmienna jest pusta lub nie istnieje
+def check_and_assign_basic(variable_name):
+    try:
+        value = rc.lookup(variable_name)
+        if not value or value.strip() == "":
+            rc.setLocal(variable_name, "Default")
+        else:
+            rc.setLocal(variable_name, value)
+    except:
+        rc.setLocal(variable_name, "Default")
+
+# Lista zmiennych do sprawdzenia i przypisania warto&#347;ci za pomoc&#261; funkcji check_and_assign_basic
+basic_variables = [
+    "Name",
+    "Description",
+    
+]
+
+# Sprawdzenie i przypisanie warto&#347;ci dla ka&#380;dej zmiennej w li&#347;cie basic_variables
+for variable in basic_variables:
+    check_and_assign_basic(variable)</code>
+          </ClientScriptStep>
+          <TryStep id="_224w">
+            <ProcedureCall id="_224x" procedure="combo.select">
+              <variable name="combo_id">report_type</variable>
+              <variable name="list_id">report_type@$(reportType)</variable>
+              <variable name="frame_title"/>
+              <variable name="title"/>
+              <variable name="modal">false</variable>
+              <variable name="feature">$(reportType)</variable>
+              <variable name="classindex">0</variable>
+              <variable name="classcount">1</variable>
+            </ProcedureCall>
+            <IfSequence id="_224y"
+                        test="not (&#34;$(Name)&#34; == &#34;Default&#34;)">
+              <ProcedureCall id="_224z" predelay="2000" procedure="text.set">
+                <variable name="id">panelReport_Details.textName</variable>
+                <variable name="classindex">0</variable>
+                <variable name="classcount">1</variable>
+                <variable name="text">$(Name)</variable>
+              </ProcedureCall>
+            </IfSequence>
+            <IfSequence id="_224+"
+                        test="not (&#34;$(Description)&#34; == &#34;Default&#34;)">
+              <ProcedureCall id="_224-" predelay="2000" procedure="text.set">
+                <variable name="id">panelReport_Details.textDescription</variable>
+                <variable name="classindex">0</variable>
+                <variable name="classcount">1</variable>
+                <variable name="text">$(Description)</variable>
+              </ProcedureCall>
+            </IfSequence>
+            <IfSequence id="_2254"
+                        test="not (&#34;$(GridResolution)&#34; == &#34;Default&#34;)">
+              <ProcedureCall id="_2256" procedure="combo.select">
+                <variable name="combo_id">panelReport_Details.comboGeneric</variable>
+                <variable name="modal">true</variable>
+                <variable name="frame_title"/>
+                <variable name="list_id">panelReport_Details.comboGeneric@$(GridResolution)</variable>
+                <variable name="title"/>
+                <variable name="feature"/>
+                <variable name="classindex">1</variable>
+                <variable name="classcount">2</variable>
+                <variable name="label"/>
+              </ProcedureCall>
+            </IfSequence>
+            <CatchSequence exception="TestException" id="_2250" maxerror="0">
+              <ProcedureCall id="_2251" procedure="log.print_ERROR_message">
+                <variable name="msg">GenerateBandwidthUtilizationReport failed</variable>
+              </ProcedureCall>
+              <SetGlobalStep id="_2252" local="true" varname="ret">
+                <default>False</default>
+              </SetGlobalStep>
+            </CatchSequence>
+          </TryStep>
+          <ReturnStep id="_2253" retval="$(ret)"/>
+        </Procedure>
+        <Procedure id="_2257" name="GenerateNEBackupReport">
+          <variable name="Name"/>
+          <variable name="reportType"/>
+          <variable name="Description"/>
+          <comment>The procedure that fills in the values &#8203;&#8203;in the report genreator window for the NE Backup Report
+
+@Name -  The report name is filled in by default by MNC, but you can enter your own name - Can be left blank
+@reportType - Type of report to be generated
+@Description - Optional report description text field to be filled in in MNC, - Can be left blank</comment>
+          <SetGlobalStep id="_2258" local="true" varname="ret">
+            <default>True</default>
+          </SetGlobalStep>
+          <ClientScriptStep client="FNM" id="_2259">
+            <code># Funkcja do sprawdzania warto&#347;ci zmiennej i przypisywania warto&#347;ci domy&#347;lnej, je&#347;li zmienna jest pusta lub nie istnieje
+def check_and_assign_basic(variable_name):
+    try:
+        value = rc.lookup(variable_name)
+        if not value or value.strip() == "":
+            rc.setLocal(variable_name, "Default")
+        else:
+            rc.setLocal(variable_name, value)
+    except:
+        rc.setLocal(variable_name, "Default")
+
+# Lista zmiennych do sprawdzenia i przypisania warto&#347;ci za pomoc&#261; funkcji check_and_assign_basic
+basic_variables = [
+    "Name",
+    "Description"
+]
+
+# Sprawdzenie i przypisanie warto&#347;ci dla ka&#380;dej zmiennej w li&#347;cie basic_variables
+for variable in basic_variables:
+    check_and_assign_basic(variable)</code>
+          </ClientScriptStep>
+          <TryStep id="_225A">
+            <ProcedureCall id="_225B" procedure="combo.select">
+              <variable name="combo_id">report_type</variable>
+              <variable name="list_id">report_type@$(reportType)</variable>
+              <variable name="frame_title"/>
+              <variable name="title"/>
+              <variable name="modal">false</variable>
+              <variable name="feature">$(reportType)</variable>
+              <variable name="classindex">0</variable>
+              <variable name="classcount">1</variable>
+            </ProcedureCall>
+            <IfSequence id="_225C"
+                        test="not (&#34;$(Name)&#34; == &#34;Default&#34;)">
+              <ProcedureCall id="_225D" predelay="2000" procedure="text.set">
+                <variable name="id">panelReport_Details.textName</variable>
+                <variable name="classindex">0</variable>
+                <variable name="classcount">1</variable>
+                <variable name="text">$(Name)</variable>
+              </ProcedureCall>
+            </IfSequence>
+            <IfSequence id="_225E"
+                        test="not (&#34;$(Description)&#34; == &#34;Default&#34;)">
+              <ProcedureCall id="_225F" predelay="2000" procedure="text.set">
+                <variable name="id">panelReport_Details.textDescription</variable>
+                <variable name="classindex">0</variable>
+                <variable name="classcount">1</variable>
+                <variable name="text">$(Description)</variable>
+              </ProcedureCall>
+            </IfSequence>
+            <CatchSequence exception="TestException" id="_225G" maxerror="0">
+              <ProcedureCall id="_225H" procedure="log.print_ERROR_message">
+                <variable name="msg">GenerateNEBackupReport failed</variable>
+              </ProcedureCall>
+              <SetGlobalStep id="_225I" local="true" varname="ret">
+                <default>False</default>
+              </SetGlobalStep>
+            </CatchSequence>
+          </TryStep>
+          <ReturnStep id="_225J" retval="$(ret)"/>
+        </Procedure>
+        <Procedure id="_225K" name="GenerateTopologyReport">
+          <variable name="Name"/>
+          <variable name="reportType"/>
+          <variable name="Description"/>
+          <comment>The procedure that fills in the values &#8203;&#8203;in the report genreator window for the Topology Report
+
+@Name -  The report name is filled in by default by MNC, but you can enter your own name - Can be left blank
+@reportType - Type of report to be generated
+@Description - Optional report description text field to be filled in in MNC, - Can be left blank</comment>
+          <SetGlobalStep id="_225L" local="true" varname="ret">
+            <default>True</default>
+          </SetGlobalStep>
+          <ClientScriptStep client="FNM" id="_225M">
+            <code># Funkcja do sprawdzania warto&#347;ci zmiennej i przypisywania warto&#347;ci domy&#347;lnej, je&#347;li zmienna jest pusta lub nie istnieje
+def check_and_assign_basic(variable_name):
+    try:
+        value = rc.lookup(variable_name)
+        if not value or value.strip() == "":
+            rc.setLocal(variable_name, "Default")
+        else:
+            rc.setLocal(variable_name, value)
+    except:
+        rc.setLocal(variable_name, "Default")
+
+# Lista zmiennych do sprawdzenia i przypisania warto&#347;ci za pomoc&#261; funkcji check_and_assign_basic
+basic_variables = [
+    "Name",
+    "Description"
+]
+
+# Sprawdzenie i przypisanie warto&#347;ci dla ka&#380;dej zmiennej w li&#347;cie basic_variables
+for variable in basic_variables:
+    check_and_assign_basic(variable)</code>
+          </ClientScriptStep>
+          <TryStep id="_225N">
+            <ProcedureCall id="_225O" procedure="combo.select">
+              <variable name="combo_id">report_type</variable>
+              <variable name="list_id">report_type@$(reportType)</variable>
+              <variable name="frame_title"/>
+              <variable name="title"/>
+              <variable name="modal">false</variable>
+              <variable name="feature">$(reportType)</variable>
+              <variable name="classindex">0</variable>
+              <variable name="classcount">1</variable>
+            </ProcedureCall>
+            <IfSequence id="_225P"
+                        test="not (&#34;$(Name)&#34; == &#34;Default&#34;)">
+              <ProcedureCall id="_225Q" predelay="2000" procedure="text.set">
+                <variable name="id">panelReport_Details.textName</variable>
+                <variable name="classindex">0</variable>
+                <variable name="classcount">1</variable>
+                <variable name="text">$(Name)</variable>
+              </ProcedureCall>
+            </IfSequence>
+            <IfSequence id="_225R"
+                        test="not (&#34;$(Description)&#34; == &#34;Default&#34;)">
+              <ProcedureCall id="_225S" predelay="2000" procedure="text.set">
+                <variable name="id">panelReport_Details.textDescription</variable>
+                <variable name="classindex">0</variable>
+                <variable name="classcount">1</variable>
+                <variable name="text">$(Description)</variable>
+              </ProcedureCall>
+            </IfSequence>
+            <CatchSequence exception="TestException" id="_225T" maxerror="0">
+              <ProcedureCall id="_225U" procedure="log.print_ERROR_message">
+                <variable name="msg">GenerateTopologyReport failed</variable>
+              </ProcedureCall>
+              <SetGlobalStep id="_225V" local="true" varname="ret">
+                <default>False</default>
+              </SetGlobalStep>
+            </CatchSequence>
+          </TryStep>
+          <ReturnStep id="_225W" retval="$(ret)"/>
+        </Procedure>
+        <Procedure id="_225k"
+                   name="GenerateFiberAssurancePerformanceSummaryReport">
+          <variable name="Name"/>
+          <variable name="reportType"/>
+          <variable name="Description"/>
+          <comment>The procedure that fills in the values &#8203;&#8203;in the report genreator window for the Fiber Assurance Performance Summary Report
+
+@Name -  The report name is filled in by default by MNC, but you can enter your own name - Can be left blank
+@reportType - Type of report to be generated
+@Description - Optional report description text field to be filled in in MNC, - Can be left blank</comment>
+          <SetGlobalStep id="_225l" local="true" varname="ret">
+            <default>True</default>
+          </SetGlobalStep>
+          <ClientScriptStep client="FNM" id="_225m">
+            <code># Funkcja do sprawdzania warto&#347;ci zmiennej i przypisywania warto&#347;ci domy&#347;lnej, je&#347;li zmienna jest pusta lub nie istnieje
+def check_and_assign_basic(variable_name):
+    try:
+        value = rc.lookup(variable_name)
+        if not value or value.strip() == "":
+            rc.setLocal(variable_name, "Default")
+        else:
+            rc.setLocal(variable_name, value)
+    except:
+        rc.setLocal(variable_name, "Default")
+
+# Lista zmiennych do sprawdzenia i przypisania warto&#347;ci za pomoc&#261; funkcji check_and_assign_basic
+basic_variables = [
+    "Name",
+    "Description"
+]
+
+# Sprawdzenie i przypisanie warto&#347;ci dla ka&#380;dej zmiennej w li&#347;cie basic_variables
+for variable in basic_variables:
+    check_and_assign_basic(variable)</code>
+          </ClientScriptStep>
+          <TryStep id="_225n">
+            <ProcedureCall id="_225o" procedure="combo.select">
+              <variable name="combo_id">report_type</variable>
+              <variable name="list_id">report_type@$(reportType)</variable>
+              <variable name="frame_title"/>
+              <variable name="title"/>
+              <variable name="modal">false</variable>
+              <variable name="feature">$(reportType)</variable>
+              <variable name="classindex">0</variable>
+              <variable name="classcount">1</variable>
+            </ProcedureCall>
+            <IfSequence id="_225p"
+                        test="not (&#34;$(Name)&#34; == &#34;Default&#34;)">
+              <ProcedureCall id="_225q" predelay="2000" procedure="text.set">
+                <variable name="id">panelReport_Details.textName</variable>
+                <variable name="classindex">0</variable>
+                <variable name="classcount">1</variable>
+                <variable name="text">$(Name)</variable>
+              </ProcedureCall>
+            </IfSequence>
+            <IfSequence id="_225r"
+                        test="not (&#34;$(Description)&#34; == &#34;Default&#34;)">
+              <ProcedureCall id="_225s" predelay="2000" procedure="text.set">
+                <variable name="id">panelReport_Details.textDescription</variable>
+                <variable name="classindex">0</variable>
+                <variable name="classcount">1</variable>
+                <variable name="text">$(Description)</variable>
+              </ProcedureCall>
+            </IfSequence>
+            <CatchSequence exception="TestException" id="_225t" maxerror="0">
+              <ProcedureCall id="_225u" procedure="log.print_ERROR_message">
+                <variable name="msg">GenerateFiberAssurancePerformanceSummaryReport failed</variable>
+              </ProcedureCall>
+              <SetGlobalStep id="_225v" local="true" varname="ret">
+                <default>False</default>
+              </SetGlobalStep>
+            </CatchSequence>
+          </TryStep>
+          <ReturnStep id="_225w" retval="$(ret)"/>
+        </Procedure>
+        <Procedure id="_226n" name="GenerateServiceFaultReport">
+          <variable name="Name"/>
+          <variable name="reportType"/>
+          <variable name="Description"/>
+          <variable name="From"/>
+          <variable name="Until"/>
+          <variable name="LevelOfDetail"/>
+          <variable name="SeverityCritical"/>
+          <variable name="SeverityMajor"/>
+          <variable name="SeverityMinor"/>
+          <variable name="SeverityWarning"/>
+          <variable name="SeverityInformational"/>
+          <comment>The procedure that fills in the values &#8203;&#8203;in the report genreator window for the Fault report
+
+@Name -  The report name is filled in by default by MNC, but you can enter your own name - Can be left blank
+@reportType - Type of report to be generated
+@Description - Optional report description text field to be filled in in MNC, - Can be left blank
+@From - Start time of the report to be filled in the form, In MNC, the default time is current minus 1 hour
+@Until - End time of the report to be filled in the form, In MNC, the default time is current
+@LevelOfDetail - MNC selection list, available options:
+Compact Report &lt;--- Default If you leave the parameter empty
+Full Report
+Custom Report
+@SeverityCritical - Severity Checkbox - True or False. In MNC True is the default, if you leave it blank it doesn't change the value
+@SeverityMajor - Severity Checkbox - True or False. In MNC True is the default, if you leave it blank it doesn't change the value
+@SeverityMinor - Severity Checkbox - True or False. In MNC True is the default, if you leave it blank it doesn't change the value
+@SeverityWarning - Severity Checkbox - True or False. In MNC True is the default, if you leave it blank it doesn't change the value
+@SeverityInformational - Severity Checkbox - True or False. In MNC True is the default, if you leave it blank it doesn't change the value
+@SA - Service Affecting Checkbox - True or False. In MNC True is the default, if you leave it blank it doesn't change the value
+@NSA - Non Service AffectingCheckbox - True or False. In MNC True is the default, if you leave it blank it doesn't change the value</comment>
+          <SetGlobalStep id="_226o" local="true" varname="ret">
+            <default>True</default>
+          </SetGlobalStep>
+          <ClientScriptStep client="FNM" id="_226p">
+            <code># Funkcja do sprawdzania warto&#347;ci zmiennej i przypisywania warto&#347;ci domy&#347;lnej, je&#347;li zmienna jest pusta lub nie istnieje
+def check_and_assign_basic(variable_name):
+    try:
+        value = rc.lookup(variable_name)
+        if not value or value.strip() == "":
+            rc.setLocal(variable_name, "Default")
+        else:
+            rc.setLocal(variable_name, value)
+    except:
+        rc.setLocal(variable_name, "Default")
+
+# Funkcja do sprawdzania warto&#347;ci zmiennej i przypisywania warto&#347;ci domy&#347;lnej, je&#347;li zmienna jest pusta, nie istnieje lub nie jest "True" ani "False"
+def check_and_assign(variable_name):
+    try:
+        value = rc.lookup(variable_name)
+        if not value or value.strip() == "" or value not in ["True", "False"]:
+            rc.setLocal(variable_name, "Default")
+        else:
+            rc.setLocal(variable_name, value)
+    except:
+        rc.setLocal(variable_name, "Default")
+
+# Lista zmiennych do sprawdzenia i przypisania warto&#347;ci za pomoc&#261; funkcji check_and_assign_basic
+basic_variables = [
+    "Name",
+    "LevelOfDetail",
+    "Grouping",
+    "Description",
+    "From",
+    "Until"
+]
+
+# Sprawdzenie i przypisanie warto&#347;ci dla ka&#380;dej zmiennej w li&#347;cie basic_variables
+for variable in basic_variables:
+    check_and_assign_basic(variable)
+
+# Lista zmiennych do sprawdzenia i przypisania warto&#347;ci za pomoc&#261; funkcji check_and_assign
+advanced_variables = [
+    "SeverityCritical",
+    "SeverityMajor",
+    "SeverityWarning",
+    "SeverityInformational",
+    "SeverityMinor",
+    "SA",
+    "NSA"
+]
+
+# Sprawdzenie i przypisanie warto&#347;ci dla ka&#380;dej zmiennej w li&#347;cie advanced_variables
+for variable in advanced_variables:
+    check_and_assign(variable)
+</code>
+          </ClientScriptStep>
+          <ClientScriptStep client="FNM" id="_226q">
+            <code># Lista zmiennych do przetworzenia
+variables = ["LevelOfDetail", "Grouping"]
+
+# Przetwarzanie ka&#380;dej zmiennej w li&#347;cie
+for variable in variables:
+    try:
+        value = rc.lookup(variable)
+        modified_value = value.replace(" ", "_")
+        rc.setLocal(variable, modified_value)
+    except Exception as e:
+        print("An error occurred while processing", variable, ":", e)
+        rc.setLocal(variable, "Error")</code>
+          </ClientScriptStep>
+          <TryStep id="_226r">
+            <ProcedureCall id="_226s" procedure="combo.select">
+              <variable name="combo_id">report_type</variable>
+              <variable name="list_id">report_type@$(reportType)</variable>
+              <variable name="frame_title"/>
+              <variable name="title"/>
+              <variable name="modal">false</variable>
+              <variable name="feature">$(reportType)</variable>
+              <variable name="classindex">0</variable>
+              <variable name="classcount">1</variable>
+            </ProcedureCall>
+            <IfSequence id="_226t"
+                        test="not (&#34;$(Name)&#34; == &#34;Default&#34;)">
+              <ProcedureCall id="_226u" predelay="2000" procedure="text.set">
+                <variable name="id">panelReport_Details.textName</variable>
+                <variable name="classindex">0</variable>
+                <variable name="classcount">1</variable>
+                <variable name="text">$(Name)</variable>
+              </ProcedureCall>
+            </IfSequence>
+            <IfSequence id="_226v"
+                        test="not (&#34;$(Description)&#34; == &#34;Default&#34;)">
+              <ProcedureCall id="_226w" predelay="2000" procedure="text.set">
+                <variable name="id">panelReport_Details.textDescription</variable>
+                <variable name="classindex">0</variable>
+                <variable name="classcount">1</variable>
+                <variable name="text">$(Description)</variable>
+              </ProcedureCall>
+            </IfSequence>
+            <IfSequence id="_226x"
+                        test="not (&#34;$(From)&#34; == &#34;Default&#34;)">
+              <ClientScriptStep client="FNM" id="_226y">
+                <code>def check_and_assign_time(variable_name):
+    try:
+        value = rc.lookup(variable_name)
+        if value and value.strip() != "":
+            # Sprawdzenie poprawno&#347;ci formatu YYYY-MM-DD HH:MM:SS
+            parts = value.split(' ')
+            if len(parts) == 2:
+                date_part, time_part = parts
+                date_elements = date_part.split('-')
+                time_elements = time_part.split(':')
+                if (len(date_elements) == 3 and len(time_elements) == 3 and
+                    all(element.isdigit() for element in date_elements + time_elements)):
+                    year, month, day = date_elements
+                    hours, minutes, seconds = time_elements
+                    if (len(year) == 4 and len(month) == 2 and len(day) == 2 and
+                        len(hours) == 2 and len(minutes) == 2 and len(seconds) == 2):
+                        # Rozbicie na zmienne Date, Hours, Minutes, Seconds
+                        rc.setLocal("Date", date_part)
+                        rc.setLocal("Hours", hours)
+                        rc.setLocal("Minutes", minutes)
+                        rc.setLocal("Seconds", seconds)
+                    else:
+                        print("Invalid Format: Incorrect length of date or time elements")
+                        rc.setLocal(variable_name, "Invalid Format")
+                else:
+                    print("Invalid Format: Non-numeric date or time elements")
+                    rc.setLocal(variable_name, "Invalid Format")
+            else:
+                print("Invalid Format: Incorrect number of parts")
+                rc.setLocal(variable_name, "Invalid Format")
+    except:
+        print("Error: Exception occurred during validation of Time")
+
+
+check_and_assign_time("From")
+</code>
+              </ClientScriptStep>
+              <ProcedureCall id="_226z" predelay="2000" procedure="text.set">
+                <variable name="id">textClick_the_calendar</variable>
+                <variable name="classindex"/>
+                <variable name="classcount"/>
+                <variable name="text">$(Date)</variable>
+              </ProcedureCall>
+              <ProcedureCall id="_226+" procedure="combo.select">
+                <variable name="combo_id">panelReport_Details.comboGeneric</variable>
+                <variable name="modal">true</variable>
+                <variable name="frame_title"/>
+                <variable name="list_id">panelReport_Details.comboGeneric@$(Hours)</variable>
+                <variable name="title"/>
+                <variable name="feature"/>
+                <variable name="classindex">1</variable>
+                <variable name="classcount">7</variable>
+                <variable name="label">Hours</variable>
+              </ProcedureCall>
+              <ProcedureCall id="_226-" procedure="combo.select">
+                <variable name="combo_id">panelReport_Details.comboGeneric</variable>
+                <variable name="modal">true</variable>
+                <variable name="frame_title"/>
+                <variable name="list_id">panelReport_Details.comboGeneric@$(Minutes)</variable>
+                <variable name="title"/>
+                <variable name="feature"/>
+                <variable name="classindex">2</variable>
+                <variable name="classcount">7</variable>
+                <variable name="label">Minutes</variable>
+              </ProcedureCall>
+              <ProcedureCall id="_2270" procedure="combo.select">
+                <variable name="combo_id">panelReport_Details.comboGeneric</variable>
+                <variable name="modal">true</variable>
+                <variable name="frame_title"/>
+                <variable name="list_id">panelReport_Details.comboGeneric@$(Seconds)</variable>
+                <variable name="title"/>
+                <variable name="feature"/>
+                <variable name="classindex">3</variable>
+                <variable name="classcount">7</variable>
+                <variable name="label">Seconds</variable>
+              </ProcedureCall>
+            </IfSequence>
+            <IfSequence id="_2271"
+                        test="not (&#34;$(Until)&#34; == &#34;Default&#34;)">
+              <ClientScriptStep client="FNM" id="_2272">
+                <code>def check_and_assign_time(variable_name):
+    try:
+        value = rc.lookup(variable_name)
+        if value and value.strip() != "":
+            # Sprawdzenie poprawno&#347;ci formatu YYYY-MM-DD HH:MM:SS
+            parts = value.split(' ')
+            if len(parts) == 2:
+                date_part, time_part = parts
+                date_elements = date_part.split('-')
+                time_elements = time_part.split(':')
+                if (len(date_elements) == 3 and len(time_elements) == 3 and
+                    all(element.isdigit() for element in date_elements + time_elements)):
+                    year, month, day = date_elements
+                    hours, minutes, seconds = time_elements
+                    if (len(year) == 4 and len(month) == 2 and len(day) == 2 and
+                        len(hours) == 2 and len(minutes) == 2 and len(seconds) == 2):
+                        # Rozbicie na zmienne Date, Hours, Minutes, Seconds
+                        rc.setLocal("Date", date_part)
+                        rc.setLocal("Hours", hours)
+                        rc.setLocal("Minutes", minutes)
+                        rc.setLocal("Seconds", seconds)
+                    else:
+                        print("Invalid Format: Incorrect length of date or time elements")
+                        rc.setLocal(variable_name, "Invalid Format")
+                else:
+                    print("Invalid Format: Non-numeric date or time elements")
+                    rc.setLocal(variable_name, "Invalid Format")
+            else:
+                print("Invalid Format: Incorrect number of parts")
+                rc.setLocal(variable_name, "Invalid Format")
+    except:
+        print("Error: Exception occurred during validation of Time")
+
+
+check_and_assign_time("Until")
+</code>
+              </ClientScriptStep>
+              <ProcedureCall id="_2273" predelay="2000" procedure="text.set">
+                <variable name="id">textClick_the_calendar2</variable>
+                <variable name="classindex"/>
+                <variable name="classcount"/>
+                <variable name="text">$(Date)</variable>
+              </ProcedureCall>
+              <ProcedureCall id="_2274" procedure="combo.select">
+                <variable name="combo_id">panelReport_Details.comboGeneric</variable>
+                <variable name="modal">true</variable>
+                <variable name="frame_title"/>
+                <variable name="list_id">panelReport_Details.comboGeneric@$(Hours)</variable>
+                <variable name="title"/>
+                <variable name="feature"/>
+                <variable name="classindex">4</variable>
+                <variable name="classcount">7</variable>
+                <variable name="label">Hours</variable>
+              </ProcedureCall>
+              <ProcedureCall id="_2275" procedure="combo.select">
+                <variable name="combo_id">panelReport_Details.comboGeneric</variable>
+                <variable name="modal">true</variable>
+                <variable name="frame_title"/>
+                <variable name="list_id">panelReport_Details.comboGeneric@$(Minutes)</variable>
+                <variable name="title"/>
+                <variable name="feature"/>
+                <variable name="classindex">5</variable>
+                <variable name="classcount">7</variable>
+                <variable name="label">Minutes</variable>
+              </ProcedureCall>
+              <ProcedureCall id="_2276" procedure="combo.select">
+                <variable name="combo_id">panelReport_Details.comboGeneric</variable>
+                <variable name="modal">true</variable>
+                <variable name="frame_title"/>
+                <variable name="list_id">panelReport_Details.comboGeneric@$(Seconds)</variable>
+                <variable name="title"/>
+                <variable name="feature"/>
+                <variable name="classindex">6</variable>
+                <variable name="classcount">7</variable>
+                <variable name="label">Seconds</variable>
+              </ProcedureCall>
+            </IfSequence>
+            <IfSequence id="_2277"
+                        test="not (&#34;$(LevelOfDetail)&#34; == &#34;Default&#34;)">
+              <ProcedureCall id="_2278" procedure="checkbox.select">
+                <variable name="id">radio$(LevelOfDetail)2</variable>
+                <variable name="modal">false</variable>
+                <variable name="title"/>
+                <variable name="feature"/>
+                <variable name="classindex"/>
+                <variable name="classcount"/>
+              </ProcedureCall>
+            </IfSequence>
+            <RepeatSequence count="5" id="_227B" name="Severity" var="i">
+              <ClientScriptStep client="FNM" id="_227C">
+                <code>i = int(rc.lookup("i"))
+try:
+    severities = [
+        "Critical",
+        "Major",
+        "Minor",
+        "Warning",
+        "Informational"
+    ]
+    
+    # Sprawdzenie warto&#347;ci "i" i przypisanie odpowiedniej warto&#347;ci do zmiennej "severity"
+    if 0 &lt;= i &lt; len(severities):
+        rc.setLocal("severity", severities[i])
+    else:
+        rc.setLocal("severity", "Invalid index")
+except Exception as e:
+    print("An error occurred:", e)
+    rc.setLocal("severity", "Error")
+
+try:
+    severity_names = [
+        "SeverityCritical",
+        "SeverityMajor",
+        "SeverityMinor",
+        "SeverityWarning",
+        "SeverityInformational"
+    ]
+    
+    # Sprawdzenie warto&#347;ci "i" i przypisanie odpowiedniej warto&#347;ci do zmiennej "SeverityValue"
+    if 0 &lt;= i &lt; len(severity_names):
+        severity_value = rc.lookup(severity_names[i])
+        rc.setLocal("SeverityValue", severity_value)
+    else:
+        rc.setLocal("SeverityValue", "Invalid index")
+except Exception as e:
+    print("An error occurred:", e)
+    rc.setLocal("SeverityValue", "Error")
+</code>
+              </ClientScriptStep>
+              <IfSequence id="_227D"
+                          test="&#34;$(SeverityValue)&#34; == &#34;Default&#34;">
+                <ElseifSequence id="_227E" test="$(SeverityValue) == True">
+                  <ProcedureCall id="_227F" procedure="checkbox.select">
+                    <variable name="id">list-view-form@$(severity)@#CheckBox:</variable>
+                    <variable name="modal">false</variable>
+                    <variable name="title"/>
+                    <variable name="feature"/>
+                    <variable name="classindex"/>
+                    <variable name="classcount"/>
+                  </ProcedureCall>
+                </ElseifSequence>
+                <ElseSequence id="_227G">
+                  <ProcedureCall id="_227H" local="true"
+                                 procedure="checkbox.deselect">
+                    <variable name="id">list-view-form@$(severity)@#CheckBox:</variable>
+                    <variable name="title">false</variable>
+                    <variable name="feature"/>
+                    <variable name="classindex"/>
+                    <variable name="classcount"/>
+                  </ProcedureCall>
+                </ElseSequence>
+              </IfSequence>
+            </RepeatSequence>
+            <IfSequence id="_227M"
+                        test="&#34;$(SA)&#34; == &#34;Default&#34;">
+              <ElseifSequence id="_227N" test="$(SA) == True">
+                <ProcedureCall id="_227O" procedure="checkbox.select">
+                  <variable name="id">list-view-form2@SA@#CheckBox:</variable>
+                  <variable name="modal">false</variable>
+                  <variable name="title"/>
+                  <variable name="feature"/>
+                  <variable name="matchindex">1</variable>
+                  <variable name="classindex"/>
+                  <variable name="classcount"/>
+                </ProcedureCall>
+              </ElseifSequence>
+              <ElseSequence id="_227P">
+                <ProcedureCall id="_227Q" local="true"
+                               procedure="checkbox.deselect">
+                  <variable name="id">list-view-form2@SA@#CheckBox:</variable>
+                  <variable name="title">false</variable>
+                  <variable name="feature"/>
+                  <variable name="classindex"/>
+                  <variable name="classcount"/>
+                  <variable name="matchindex">1</variable>
+                </ProcedureCall>
+              </ElseSequence>
+            </IfSequence>
+            <IfSequence id="_227R"
+                        test="&#34;$(NSA)&#34; == &#34;Default&#34;">
+              <ElseifSequence id="_227S" test="$(NSA) == True">
+                <ProcedureCall id="_227T" procedure="checkbox.select">
+                  <variable name="id">list-view-form2@NSA@#CheckBox:</variable>
+                  <variable name="modal">false</variable>
+                  <variable name="title"/>
+                  <variable name="feature"/>
+                  <variable name="matchindex">1</variable>
+                  <variable name="classindex"/>
+                  <variable name="classcount"/>
+                </ProcedureCall>
+              </ElseifSequence>
+              <ElseSequence id="_227U">
+                <ProcedureCall id="_227V" local="true"
+                               procedure="checkbox.deselect">
+                  <variable name="id">list-view-form2@NSA@#CheckBox:</variable>
+                  <variable name="title">false</variable>
+                  <variable name="feature"/>
+                  <variable name="classindex"/>
+                  <variable name="classcount"/>
+                  <variable name="matchindex">1</variable>
+                </ProcedureCall>
+              </ElseSequence>
+            </IfSequence>
+            <CatchSequence exception="TestException" id="_227I" maxerror="0">
+              <ProcedureCall id="_227J" procedure="log.print_ERROR_message">
+                <variable name="msg">GenerateServiceFaultReport failed</variable>
+              </ProcedureCall>
+              <SetGlobalStep id="_227K" local="true" varname="ret">
+                <default>False</default>
+              </SetGlobalStep>
+            </CatchSequence>
+          </TryStep>
+          <ReturnStep id="_227L" retval="$(ret)"/>
+        </Procedure>
+        <Procedure id="_225x" name="GenerateServicePerformanceReport">
+          <variable name="Name"/>
+          <variable name="reportType"/>
+          <variable name="Description"/>
+          <variable name="From"/>
+          <variable name="Until"/>
+          <comment>The procedure that fills in the values &#8203;&#8203;in the report genreator window for the Service Performance report
+
+@Name -  The report name is filled in by default by MNC, but you can enter your own name - Can be left blank
+@reportType - Type of report to be generated
+@Description - Optional report description text field to be filled in in MNC, - Can be left blank
+@From - Monitoring Start Date: - Start time of the report to be filled in the form, In MNC, the default time is current minus 1 hour
+@Until - Monitoring End Date: - End time of the report to be filled in the form, In MNC, the default time is current</comment>
+          <SetGlobalStep id="_225y" local="true" varname="ret">
+            <default>True</default>
+          </SetGlobalStep>
+          <ClientScriptStep client="FNM" id="_225z">
+            <code># Funkcja do sprawdzania warto&#347;ci zmiennej i przypisywania warto&#347;ci domy&#347;lnej, je&#347;li zmienna jest pusta lub nie istnieje
+def check_and_assign_basic(variable_name):
+    try:
+        value = rc.lookup(variable_name)
+        if not value or value.strip() == "":
+            rc.setLocal(variable_name, "Default")
+        else:
+            rc.setLocal(variable_name, value)
+    except:
+        rc.setLocal(variable_name, "Default")
+
+# Lista zmiennych do sprawdzenia i przypisania warto&#347;ci za pomoc&#261; funkcji check_and_assign_basic
+basic_variables = [
+    "Name",
+    "SortBy",
+    "Description",
+    "From",
+    "Until"
+]
+
+# Sprawdzenie i przypisanie warto&#347;ci dla ka&#380;dej zmiennej w li&#347;cie basic_variables
+for variable in basic_variables:
+    check_and_assign_basic(variable)</code>
+          </ClientScriptStep>
+          <ClientScriptStep client="FNM" id="_225+">
+            <code># Lista zmiennych do przetworzenia
+variables = ["SortBy"]
+
+# Przetwarzanie ka&#380;dej zmiennej w li&#347;cie
+for variable in variables:
+    try:
+        value = rc.lookup(variable)
+        modified_value = value.replace(" ", "_")
+        rc.setLocal(variable, modified_value)
+    except Exception as e:
+        print("An error occurred while processing", variable, ":", e)
+        rc.setLocal(variable, "Error")</code>
+          </ClientScriptStep>
+          <TryStep id="_225-">
+            <ProcedureCall id="_2260" procedure="combo.select">
+              <variable name="combo_id">report_type</variable>
+              <variable name="list_id">report_type@$(reportType)</variable>
+              <variable name="frame_title"/>
+              <variable name="title"/>
+              <variable name="modal">false</variable>
+              <variable name="feature">$(reportType)</variable>
+              <variable name="classindex">0</variable>
+              <variable name="classcount">1</variable>
+            </ProcedureCall>
+            <IfSequence id="_2261"
+                        test="not (&#34;$(Name)&#34; == &#34;Default&#34;)">
+              <ProcedureCall id="_2262" predelay="2000" procedure="text.set">
+                <variable name="id">panelReport_Details.textName</variable>
+                <variable name="classindex">0</variable>
+                <variable name="classcount">1</variable>
+                <variable name="text">$(Name)</variable>
+              </ProcedureCall>
+            </IfSequence>
+            <IfSequence id="_2263"
+                        test="not (&#34;$(Description)&#34; == &#34;Default&#34;)">
+              <ProcedureCall id="_2264" predelay="2000" procedure="text.set">
+                <variable name="id">panelReport_Details.textDescription</variable>
+                <variable name="classindex">0</variable>
+                <variable name="classcount">1</variable>
+                <variable name="text">$(Description)</variable>
+              </ProcedureCall>
+            </IfSequence>
+            <IfSequence id="_2265"
+                        test="not (&#34;$(From)&#34; == &#34;Default&#34;)">
+              <ClientScriptStep client="FNM" id="_2266">
+                <code>def check_and_assign_time(variable_name):
+    try:
+        value = rc.lookup(variable_name)
+        if value and value.strip() != "":
+            # Sprawdzenie poprawno&#347;ci formatu YYYY-MM-DD HH:MM:SS
+            parts = value.split(' ')
+            if len(parts) == 2:
+                date_part, time_part = parts
+                date_elements = date_part.split('-')
+                time_elements = time_part.split(':')
+                if (len(date_elements) == 3 and len(time_elements) == 3 and
+                    all(element.isdigit() for element in date_elements + time_elements)):
+                    year, month, day = date_elements
+                    hours, minutes, seconds = time_elements
+                    if (len(year) == 4 and len(month) == 2 and len(day) == 2 and
+                        len(hours) == 2 and len(minutes) == 2 and len(seconds) == 2):
+                        # Rozbicie na zmienne Date, Hours, Minutes, Seconds
+                        rc.setLocal("Date", date_part)
+                        rc.setLocal("Hours", hours)
+                        rc.setLocal("Minutes", minutes)
+                        rc.setLocal("Seconds", seconds)
+                    else:
+                        print("Invalid Format: Incorrect length of date or time elements")
+                        rc.setLocal(variable_name, "Invalid Format")
+                else:
+                    print("Invalid Format: Non-numeric date or time elements")
+                    rc.setLocal(variable_name, "Invalid Format")
+            else:
+                print("Invalid Format: Incorrect number of parts")
+                rc.setLocal(variable_name, "Invalid Format")
+    except:
+        print("Error: Exception occurred during validation of Time")
+
+
+check_and_assign_time("From")
+</code>
+              </ClientScriptStep>
+              <ProcedureCall id="_2267" predelay="2000" procedure="text.set">
+                <variable name="id">textClick_the_calendar</variable>
+                <variable name="classindex"/>
+                <variable name="classcount"/>
+                <variable name="text">$(Date)</variable>
+              </ProcedureCall>
+              <ProcedureCall id="_2268" procedure="combo.select">
+                <variable name="combo_id">panelReport_Details.comboGeneric</variable>
+                <variable name="modal">true</variable>
+                <variable name="frame_title"/>
+                <variable name="list_id">panelReport_Details.comboGeneric@$(Hours)</variable>
+                <variable name="title"/>
+                <variable name="feature"/>
+                <variable name="classindex">1</variable>
+                <variable name="classcount">7</variable>
+                <variable name="label">Hours</variable>
+              </ProcedureCall>
+              <ProcedureCall id="_2269" procedure="combo.select">
+                <variable name="combo_id">panelReport_Details.comboGeneric</variable>
+                <variable name="modal">true</variable>
+                <variable name="frame_title"/>
+                <variable name="list_id">panelReport_Details.comboGeneric@$(Minutes)</variable>
+                <variable name="title"/>
+                <variable name="feature"/>
+                <variable name="classindex">2</variable>
+                <variable name="classcount">7</variable>
+                <variable name="label">Minutes</variable>
+              </ProcedureCall>
+              <ProcedureCall id="_226A" procedure="combo.select">
+                <variable name="combo_id">panelReport_Details.comboGeneric</variable>
+                <variable name="modal">true</variable>
+                <variable name="frame_title"/>
+                <variable name="list_id">panelReport_Details.comboGeneric@$(Seconds)</variable>
+                <variable name="title"/>
+                <variable name="feature"/>
+                <variable name="classindex">3</variable>
+                <variable name="classcount">7</variable>
+                <variable name="label">Seconds</variable>
+              </ProcedureCall>
+            </IfSequence>
+            <IfSequence id="_226B"
+                        test="not (&#34;$(Until)&#34; == &#34;Default&#34;)">
+              <ClientScriptStep client="FNM" id="_226C">
+                <code>def check_and_assign_time(variable_name):
+    try:
+        value = rc.lookup(variable_name)
+        if value and value.strip() != "":
+            # Sprawdzenie poprawno&#347;ci formatu YYYY-MM-DD HH:MM:SS
+            parts = value.split(' ')
+            if len(parts) == 2:
+                date_part, time_part = parts
+                date_elements = date_part.split('-')
+                time_elements = time_part.split(':')
+                if (len(date_elements) == 3 and len(time_elements) == 3 and
+                    all(element.isdigit() for element in date_elements + time_elements)):
+                    year, month, day = date_elements
+                    hours, minutes, seconds = time_elements
+                    if (len(year) == 4 and len(month) == 2 and len(day) == 2 and
+                        len(hours) == 2 and len(minutes) == 2 and len(seconds) == 2):
+                        # Rozbicie na zmienne Date, Hours, Minutes, Seconds
+                        rc.setLocal("Date", date_part)
+                        rc.setLocal("Hours", hours)
+                        rc.setLocal("Minutes", minutes)
+                        rc.setLocal("Seconds", seconds)
+                    else:
+                        print("Invalid Format: Incorrect length of date or time elements")
+                        rc.setLocal(variable_name, "Invalid Format")
+                else:
+                    print("Invalid Format: Non-numeric date or time elements")
+                    rc.setLocal(variable_name, "Invalid Format")
+            else:
+                print("Invalid Format: Incorrect number of parts")
+                rc.setLocal(variable_name, "Invalid Format")
+    except:
+        print("Error: Exception occurred during validation of Time")
+
+
+check_and_assign_time("Until")
+</code>
+              </ClientScriptStep>
+              <ProcedureCall id="_226D" predelay="2000" procedure="text.set">
+                <variable name="id">textClick_the_calendar2</variable>
+                <variable name="classindex"/>
+                <variable name="classcount"/>
+                <variable name="text">$(Date)</variable>
+              </ProcedureCall>
+              <ProcedureCall id="_226E" procedure="combo.select">
+                <variable name="combo_id">panelReport_Details.comboGeneric</variable>
+                <variable name="modal">true</variable>
+                <variable name="frame_title"/>
+                <variable name="list_id">panelReport_Details.comboGeneric@$(Hours)</variable>
+                <variable name="title"/>
+                <variable name="feature"/>
+                <variable name="classindex">4</variable>
+                <variable name="classcount">7</variable>
+                <variable name="label">Hours</variable>
+              </ProcedureCall>
+              <ProcedureCall id="_226F" procedure="combo.select">
+                <variable name="combo_id">panelReport_Details.comboGeneric</variable>
+                <variable name="modal">true</variable>
+                <variable name="frame_title"/>
+                <variable name="list_id">panelReport_Details.comboGeneric@$(Minutes)</variable>
+                <variable name="title"/>
+                <variable name="feature"/>
+                <variable name="classindex">5</variable>
+                <variable name="classcount">7</variable>
+                <variable name="label">Minutes</variable>
+              </ProcedureCall>
+              <ProcedureCall id="_226G" procedure="combo.select">
+                <variable name="combo_id">panelReport_Details.comboGeneric</variable>
+                <variable name="modal">true</variable>
+                <variable name="frame_title"/>
+                <variable name="list_id">panelReport_Details.comboGeneric@$(Seconds)</variable>
+                <variable name="title"/>
+                <variable name="feature"/>
+                <variable name="classindex">6</variable>
+                <variable name="classcount">7</variable>
+                <variable name="label">Seconds</variable>
+              </ProcedureCall>
+            </IfSequence>
+            <CatchSequence exception="TestException" id="_226J" maxerror="0">
+              <ProcedureCall id="_226K" procedure="log.print_ERROR_message">
+                <variable name="msg">GenerateServicePerformanceReport failed</variable>
+              </ProcedureCall>
+              <SetGlobalStep id="_226L" local="true" varname="ret">
+                <default>False</default>
+              </SetGlobalStep>
+            </CatchSequence>
+          </TryStep>
+          <ReturnStep id="_226M" retval="$(ret)"/>
+        </Procedure>
+        <Procedure id="_226N" name="GenerateServiceInventoryReport">
+          <variable name="Name"/>
+          <variable name="reportType"/>
+          <variable name="Description"/>
+          <variable name="LevelOfDetail"/>
+          <comment>The procedure that fills in the values &#8203;&#8203;in the report genreator window for the Service Inventory report
+
+@Name -  The report name is filled in by default by MNC, but you can enter your own name - Can be left blank
+@reportType - Type of report to be generated
+@Description - Optional report description text field to be filled in in MNC, - Can be left blank
+@LevelOfDetail -MNC selection list, available options:
+Short Report &lt;--- Default If you leave the parameter empty
+Full Report
+Custom Report</comment>
+          <SetGlobalStep id="_226O" local="true" varname="ret">
+            <default>True</default>
+          </SetGlobalStep>
+          <ClientScriptStep client="FNM" id="_226P">
+            <code># Funkcja do sprawdzania warto&#347;ci zmiennej i przypisywania warto&#347;ci domy&#347;lnej, je&#347;li zmienna jest pusta lub nie istnieje
+def check_and_assign_basic(variable_name):
+    try:
+        value = rc.lookup(variable_name)
+        if not value or value.strip() == "":
+            rc.setLocal(variable_name, "Default")
+        else:
+            rc.setLocal(variable_name, value)
+    except:
+        rc.setLocal(variable_name, "Default")
+
+# Lista zmiennych do sprawdzenia i przypisania warto&#347;ci za pomoc&#261; funkcji check_and_assign_basic
+basic_variables = [
+    "Name",
+    "LevelOfDetail",
+    "Description"
+]
+
+# Sprawdzenie i przypisanie warto&#347;ci dla ka&#380;dej zmiennej w li&#347;cie basic_variables
+for variable in basic_variables:
+    check_and_assign_basic(variable)
+</code>
+          </ClientScriptStep>
+          <ClientScriptStep client="FNM" id="_226Q">
+            <code># Pobranie danych z QF-Test
+LevelOfDetail = rc.lookup("LevelOfDetail")  # Zmienna QF-Test
+
+# Zamiana spacji na "_"
+ModifiedLevelOfDetail = LevelOfDetail.replace(" ", "_")
+
+# Zapisanie zmodyfikowanej warto&#347;ci
+rc.setLocal('LevelOfDetail', ModifiedLevelOfDetail)</code>
+          </ClientScriptStep>
+          <TryStep id="_226R">
+            <ProcedureCall id="_226S" procedure="combo.select">
+              <variable name="combo_id">report_type</variable>
+              <variable name="list_id">report_type@$(reportType)</variable>
+              <variable name="frame_title"/>
+              <variable name="title"/>
+              <variable name="modal">false</variable>
+              <variable name="feature">$(reportType)</variable>
+              <variable name="classindex">0</variable>
+              <variable name="classcount">1</variable>
+            </ProcedureCall>
+            <IfSequence id="_226T"
+                        test="not (&#34;$(Name)&#34; == &#34;Default&#34;)">
+              <ProcedureCall id="_226U" predelay="2000" procedure="text.set">
+                <variable name="id">panelReport_Details.textName</variable>
+                <variable name="classindex">0</variable>
+                <variable name="classcount">1</variable>
+                <variable name="text">$(Name)</variable>
+              </ProcedureCall>
+            </IfSequence>
+            <IfSequence id="_226V"
+                        test="not (&#34;$(Description)&#34; == &#34;Default&#34;)">
+              <ProcedureCall id="_226W" predelay="2000" procedure="text.set">
+                <variable name="id">panelReport_Details.textDescription</variable>
+                <variable name="classindex">0</variable>
+                <variable name="classcount">1</variable>
+                <variable name="text">$(Description)</variable>
+              </ProcedureCall>
+            </IfSequence>
+            <IfSequence id="_226X"
+                        test="not (&#34;$(LevelOfDetail)&#34; == &#34;Default&#34;)">
+              <ProcedureCall id="_226Y" procedure="checkbox.select">
+                <variable name="id">radio$(LevelOfDetail)2</variable>
+                <variable name="modal">false</variable>
+                <variable name="title"/>
+                <variable name="feature"/>
+                <variable name="classindex"/>
+                <variable name="classcount"/>
+              </ProcedureCall>
+            </IfSequence>
+            <CatchSequence exception="TestException" id="_226j" maxerror="0">
+              <ProcedureCall id="_226k" procedure="log.print_ERROR_message">
+                <variable name="msg">GenerateServiceInventoryReport failed</variable>
+              </ProcedureCall>
+              <SetGlobalStep id="_226l" local="true" varname="ret">
+                <default>False</default>
+              </SetGlobalStep>
+            </CatchSequence>
+          </TryStep>
+          <ReturnStep id="_226m" retval="$(ret)"/>
+        </Procedure>
+      </Package>
+    </Package>
