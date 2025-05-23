@@ -1,0 +1,54 @@
+Step Name;Step Report Name;Step Data;Data Object id;Previous Step Passed;Step Result;Clear Previous Step Result;Data Map
+utils.PrintUseCase;Starting testing Reports;test_cases_reports.json;message_reports;FALSE;TRUE;FALSE;
+sm.CreateProvisionNFC;Create service 9TCE-PCN-NFC;test_cases_encryption.json;createNFC;FALSE;TRUE;FALSE;
+sm.CreateProvisionODS;Create service 9TCE-PCN-CFC;test_cases_encryption.json;createCFC;FALSE;TRUE;FALSE;
+sm.CreateProvisionNFC;Create 4WCC NFC service;test_cases_restoration.json;createNFC;FALSE;TRUE;FALSE;
+sm.CreateProvisionODS;Create unprotected CFC ETH-10G on 4WCC;test_cases_restoration.json;createCFC;FALSE;TRUE;FALSE;
+sm.CreateProvisionNFC;Create 16TCC NFC service on port NE;test_cases.json;Create_16TCC_NFC;FALSE;TRUE;FALSE;
+sm.CreateProvisionNFC;Create 16TCC NFC service on port NW;test_cases.json;Create_16TCC_NFC_NW;FALSE;TRUE;FALSE;
+sm.CreateProvisionODS;Create protected CFC ETH-10G on 16TCC;test_cases.json;Create_16TCC_CFC_protected;FALSE;TRUE;FALSE;
+Reports.PrepareFolder;Preparing a folder on desktop to download reports;;;FALSE;TRUE;FALSE;
+Reports.TestGenerateReport;Create Service Inventory Short;test_cases_reports.json;Service Inventory Report Short;FALSE;TRUE;FALSE;
+Reports.TestShortInventoryContent;Compare Service Inventory Short with Connections tab;test_cases_reports.json;Service Inventory Report Short;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestDeleteReport;Delete Service Inventory Short;test_cases_reports.json;Service Inventory Report Short;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestGenerateReport;Create Inventory Report Detailed Report RepComUseBySer RepComNotUseBySer;test_cases_reports.json;Inventory Report Detailed Report RepComUseBySer RepComNotUseBySer;FALSE;TRUE;FALSE;
+Reports.TestReportFormat;Check Inventory Report Detailed Report RepComUseBySer RepComNotUseBySer;test_cases_reports.json;Inventory Report Detailed Report RepComUseBySer RepComNotUseBySer;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestDeleteReport;Delete Inventory Report Detailed Report RepComUseBySer RepComNotUseBySer;test_cases_reports.json;Inventory Report Detailed Report RepComUseBySer RepComNotUseBySer;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestGenerateReport;Create Inventory Report Detailed Report RepComUseBySer;test_cases_reports.json;Inventory Report Detailed Report RepComUseBySer;FALSE;TRUE;FALSE;
+Reports.TestReportFormat;Check Inventory Report Detailed Report RepComUseBySer;test_cases_reports.json;Inventory Report Detailed Report RepComUseBySer;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestDeleteReport;Delete Inventory Report Detailed Report RepComUseBySer;test_cases_reports.json;Inventory Report Detailed Report RepComUseBySer;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestGenerateReport;Create Inventory Report Detailed Report RepComNotUseBySer;test_cases_reports.json;Inventory Report Detailed Report RepComNotUseBySer;FALSE;TRUE;FALSE;
+Reports.TestReportFormat;Check Inventory Report Detailed Report RepComNotUseBySer;test_cases_reports.json;Inventory Report Detailed Report RepComNotUseBySer;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestDeleteReport;Delete Inventory Report Detailed Report RepComNotUseBySer;test_cases_reports.json;Inventory Report Detailed Report RepComNotUseBySer;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestGenerateReport;Create Inventory Report Detailed Report;test_cases_reports.json;Inventory Report Detailed Report;FALSE;TRUE;FALSE;
+Reports.TestReportFormat;Check Inventory Report Detailed Report;test_cases_reports.json;Inventory Report Detailed Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestDeleteReport;Delete Inventory Report Detailed Report;test_cases_reports.json;Inventory Report Detailed Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestGenerateReport;Create Inventory Report Summary Report (Module Types);test_cases_reports.json;Inventory Report Summary Report (Module Types);FALSE;TRUE;FALSE;
+Reports.TestReportFormat;Check Inventory Report Summary Report (Module Types);test_cases_reports.json;Inventory Report Summary Report (Module Types);FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestDeleteReport;Delete Inventory Report Summary Report (Module Types);test_cases_reports.json;Inventory Report Summary Report (Module Types);FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestGenerateReport;Create Inventory Report Summary Report (WDM Channels);test_cases_reports.json;Inventory Report Summary Report (WDM Channels);FALSE;TRUE;FALSE;
+Reports.TestReportFormat;Check Inventory Report Summary Report (WDM Channels);test_cases_reports.json;Inventory Report Summary Report (WDM Channels);FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestDeleteReport;Delete Inventory Report Summary Report (WDM Channels);test_cases_reports.json;Inventory Report Summary Report (WDM Channels);FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestGenerateReport;Create Inventory Report Service Inventory Report;test_cases_reports.json;Inventory Report Service Inventory Report;FALSE;TRUE;FALSE;
+Reports.TestReportFormat;Check Inventory Report Service Inventory Report;test_cases_reports.json;Inventory Report Service Inventory Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestDeleteReport;Delete Inventory Report Service Inventory Report;test_cases_reports.json;Inventory Report Service Inventory Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestGenerateReport;Create Inventory Report Custom Report;test_cases_reports.json;Inventory Report Custom Report;FALSE;TRUE;FALSE;
+Reports.TestReportFormat;Check Inventory Report Custom Report;test_cases_reports.json;Inventory Report Custom Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestDeleteReport;Delete Inventory Report Custom Report;test_cases_reports.json;Inventory Report Custom Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestGenerateReport;Create Inventory Report Summary Report (Network Elements);test_cases_reports.json;Inventory Report Summary Report (Network Elements);FALSE;TRUE;FALSE;
+Reports.TestReportFormat;Check Inventory Report Summary Report (Network Elements);test_cases_reports.json;Inventory Report Summary Report (Network Elements);FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestDeleteReport;Delete Inventory Report Summary Report (Network Elements);test_cases_reports.json;Inventory Report Summary Report (Network Elements);FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+TAPI.GetCfCServiceAfterCreationENC;Getting information about unprotected 9TCE-PCN-CFC;test_cases_encryption.json;createCFC;FALSE;TRUE;FALSE;
+sm.DeleteCfCCompletely;Delete service 9TCE-PCN-CFC;test_cases_encryption.json;createCFC;FALSE;TRUE;FALSE;"{""service_name"":""created_service_name"",""service_object_name"":""created_service_object_name""}"
+TAPI.GetCfCServiceAfterCreationENC;Getting information about unprotected 9TCE-PCN-NFC;test_cases_encryption.json;createNFC;FALSE;TRUE;FALSE;
+sm.DeleteCfCCompletely;Delete service 9TCE-PCN-CNFC;test_cases_encryption.json;createNFC;FALSE;TRUE;FALSE;"{""service_name"":""created_service_name"",""service_object_name"":""created_service_object_name""}"
+TAPI.GetCfCServiceAfterCreationENC;Getting information about unprotected CFC 4WCC;test_cases_restoration.json;createCFC;FALSE;TRUE;FALSE;
+sm.DeleteCfCCompletely;Delete CFC 4WCC service;test_cases_restoration.json;createCFC;FALSE;TRUE;FALSE;"{""service_name"":""created_service_name"",""service_object_name"":""created_service_object_name""}"
+TAPI.GetCfCServiceAfterCreationENC;Getting information about unprotected NFC ETH-10G on 4WCC;test_cases_restoration.json;createNFC;FALSE;TRUE;FALSE;
+sm.DeleteCfCCompletely;Delete  NFC 4WCC service;test_cases_restoration.json;createNFC;FALSE;TRUE;FALSE;"{""service_name"":""created_service_name"",""service_object_name"":""created_service_object_name""}"
+TAPI.GetCfCServiceAfterCreationENC;Getting information about unprotected CFC 16TCC;test_cases.json;Create_16TCC_CFC_protected;FALSE;TRUE;FALSE;
+sm.DeleteCfCCompletely;Delete CFC 16TCC service;test_cases.json;Create_16TCC_CFC_protected;FALSE;TRUE;FALSE;"{""service_name"":""created_service_name"",""service_object_name"":""created_service_object_name""}"
+TAPI.GetCfCServiceAfterCreationENC;Getting information about unprotected NFC on 16TCC, port NW;test_cases.json;Create_16TCC_NFC_NW;FALSE;TRUE;FALSE;
+sm.DeleteCfCCompletely;Delete  NFC 16TCC service, port NW;test_cases.json;Create_16TCC_NFC_NW;FALSE;TRUE;FALSE;"{""service_name"":""created_service_name"",""service_object_name"":""created_service_object_name""}"
+TAPI.GetCfCServiceAfterCreationENC;Getting information about unprotected NFC on 16TCC, port NE;test_cases.json;Create_16TCC_NFC;FALSE;TRUE;FALSE;
+sm.DeleteCfCCompletely;Delete  NFC 16TCC service, port NE;test_cases.json;Create_16TCC_NFC;FALSE;TRUE;FALSE;"{""service_name"":""created_service_name"",""service_object_name"":""created_service_object_name""}"
