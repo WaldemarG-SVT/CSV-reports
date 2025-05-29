@@ -1,0 +1,939 @@
+
+Skip to content
+Szukaj...
+Waldermar Gołuński
+Wyloguj
+Tablica
+Reports 17.1.1 Dev
+17459
+
+Powrót do projektu
+
+Status
+
+Rejestr zmian
+
+Logi konsoli
+
+Jako niesformatowany tekst
+
+View Build Information
+
+Parameters
+
+Git Build Data
+
+HTML Report
+
+Test Result
+
+Parameters
+
+Open Blue Ocean
+
+Poprzednie zadanie
+Timestamps
+View as plain text
+System clock time
+Use browser timezone
+Elapsed time
+None
+Logi konsoli
+15:42:52 Started by user Waldermar Go?u?ski
+15:42:52 Running as SYSTEM
+15:42:52 Building remotely on QFT_W10_7 172.27.7.10 in workspace C:\jenkins\workspace\Reports 17.1.1 Dev
+15:42:52 The recommended git tool is: NONE
+15:42:52 using credential 00f1abf4-29b8-4240-a87e-508d19b6d4be
+15:42:52 Wiping out workspace first.
+15:42:54 Cloning the remote Git repository
+15:42:54 Cloning repository http://muc-gerrit.rd.advaoptical.com/enc-svt-ta
+15:42:54  > git init C:\jenkins\workspace\Reports 17.1.1 Dev # timeout=10
+15:42:54 Fetching upstream changes from http://muc-gerrit.rd.advaoptical.com/enc-svt-ta
+15:42:54  > git --version # timeout=10
+15:42:54  > git --version # 'git version 2.39.1.windows.1'
+15:42:54 using GIT_ASKPASS to set credentials 
+15:42:54  > git fetch --tags --force --progress -- http://muc-gerrit.rd.advaoptical.com/enc-svt-ta +refs/heads/*:refs/remotes/origin/* # timeout=10
+15:43:18  > git config remote.origin.url http://muc-gerrit.rd.advaoptical.com/enc-svt-ta # timeout=10
+15:43:18  > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+15:43:18 Avoid second fetch
+15:43:18  > git rev-parse "refs/remotes/origin/ReportsWG^{commit}" # timeout=10
+15:43:18 Checking out Revision 6a9886a9f8a02708ae2df13cc28c799cc79a6037 (refs/remotes/origin/ReportsWG)
+15:43:18  > git config core.sparsecheckout # timeout=10
+15:43:18  > git checkout -f 6a9886a9f8a02708ae2df13cc28c799cc79a6037 # timeout=10
+15:43:24 Commit message: "naprawa procedury testu usuwania raportów dodanie kolejnych raportów do csv"
+15:43:24  > git rev-list --no-walk 00481d26a9fb26a62e04e204220fc7f19ce10405 # timeout=10
+15:43:24 New run name is '17459'
+15:43:24 [Reports 17.1.1 Dev] $ cmd /c call C:\Users\svt_nms\AppData\Local\Temp\jenkins4387359572591733556.bat
+15:43:25 Environment variable server_setup_function_list not defined
+15:43:25 
+15:43:25 C:\jenkins\workspace\Reports 17.1.1 Dev>echo Setup functions selected for test: 
+15:43:25 Setup functions selected for test:
+15:43:25 
+15:43:25 C:\jenkins\workspace\Reports 17.1.1 Dev>"C:\Program Files\QFS\QF-Test\qftest-7.0.7\bin\qftest.exe" -batch -runlogdir .\runlog -report.html .\runlog -report.junit .\runlog -test "Root test" -variable server_setup_function_list=""  -variable Target_NMS_Version="17.1.1" -variable tapi_container_name="enc-tapi_enc-tapi_1" -variable enc_host_type="remote" -variable fnm_server="10.12.23.84" -variable Target_NMS_Build="17459"  -variable F7_NE_Software="23.5.2" -variable remote_host_password="4netMGMT"  -variable remote_host_user="root"  -variable test_steps_file="Reports" -variable test_steps_folder="Reports"  -variable  topology_name="Sandbox_dir_CPc" -variable  test_report_name="Reports 17.1.1"  -run "C:\jenkins\workspace\Reports 17.1.1 Dev\QF-Test\ENC_Test_Engine.qft" 
+15:43:44 INFO    Client already installed skipping instalation
+15:43:44 server stup: 
+15:43:44 INFO  ----->  Starting ENC : C:/ProgramData/clientupdater/nmclients/17.1.1-17459
+15:44:39  Start changing admin password to: ChgMeNOW1
+15:44:40  
+15:44:40 Changing admin password to: ChgMeNOW1 is done.
+15:45:25 INFO    Start AWT engine via opening Network Properties window
+15:45:33 ERROR    Window: Network Properties do not opened
+15:45:38 INFO    Opened window: Network Properties
+15:45:45 INFO    AWT Engine started using Network Properties window
+15:45:45 INFO    Closing Network Properties window
+15:46:15 INFO    Network Properties window has been closed
+15:46:23 INFO    Opened window: Server Preferences
+15:46:24 INFO  ----->  Configuring Auto Lock.. 
+15:46:24 
+15:46:24 INFO  ----->  Previous Auto Lock is set to.. : 10 
+15:46:24 
+15:46:25 INFO    Auto Lock is set to.. : 0 
+15:46:33 INFO    Opened window: Server Preferences
+15:46:34 INFO    Auto Lock is set to.. : 0 
+15:46:46 INFO  ----->  Starting ENC : C:/ProgramData/clientupdater/nmclients/17.1.1-17459
+15:48:01 INFO    Start AWT engine via opening Network Properties window
+15:48:06 ERROR    Window: Network Properties do not opened
+15:48:10 INFO    Opened window: Network Properties
+15:48:17 INFO    AWT Engine started using Network Properties window
+15:48:17 INFO    Closing Network Properties window
+15:48:46 INFO    Network Properties window has been closed
+15:48:50 INFO    Opened window: Server Preferences
+15:48:50 INFO  ----->  Configuring Auto Lock.. 
+15:48:50 
+15:48:50 INFO  ----->  Previous Auto Lock is set to.. : 0 
+15:48:50 
+15:48:51 INFO    Auto Lock is set to.. : 0 
+15:49:05 INFO    Opened window: Server Preferences
+15:49:06 INFO    Auto Lock is set to.. : 0 
+15:49:17 INFO    Adding Customers
+15:49:17 INFO    Adding Customer: Provision
+15:50:55 INFO    DONE
+15:50:55 INFO    Adding nodes
+15:50:55 INFO    Adding NE: N211
+15:52:38 INFO    NE is responding closing subnet editor and continue discovery
+15:53:23 INFO    DONE
+15:53:23 INFO    Adding NE: N212
+15:54:51 INFO    NE is responding closing subnet editor and continue discovery
+15:55:17 INFO    DONE
+15:55:17 INFO    Adding NE: N213
+15:56:46 INFO    NE is responding closing subnet editor and continue discovery
+15:57:30 INFO    DONE
+15:57:31 INFO    Adding links
+15:58:01 INFO    Adding link N211[OL-3] --- N213[OL-3]
+15:59:20 INFO    Button OK pressed link should be created
+15:59:20 INFO    DONE
+15:59:50 INFO    Adding link N211[OL-2] --- N213[OL-2]
+16:00:55 INFO    Button OK pressed link should be created
+16:00:55 INFO    DONE
+16:01:26 INFO    Adding link N211[OL-1] --- N212[OL-1]
+16:02:32 INFO    Button OK pressed link should be created
+16:02:32 INFO    DONE
+16:03:02 INFO    Adding link N212[OL-2] --- N213[OL-1]
+16:04:21 INFO    Button OK pressed link should be created
+16:04:21 INFO    DONE
+16:04:21 INFO    Adding SNMP profiles...
+16:04:21 INFO    Adding SNMP profile: snmpv3
+16:04:33 INFO    Opened window: SNMP Profiles Manager
+16:04:36 WARNING    Profile name: snmpv3
+16:04:54 INFO    SNMP profile doesn't exist. Starting profile creation.
+16:05:02 INFO    Setting SNMP version
+16:05:03 INFO    Setting SNMP timeout
+16:05:07 INFO    Setting SNMP retries
+16:05:11 INFO    Setting SNMP user
+16:05:12 INFO    Setting SNMP security level
+16:05:12 INFO    Setting SNMP privacy protocol
+16:05:13 INFO    Setting SNMP passwords
+16:05:28 INFO    SNMP profile creation completed.
+16:05:28 INFO    DONE
+16:05:28 INFO    Applying SNMP profiles to NEs
+16:05:28 INFO    Applying SNMP profile: snmpv3 to NE N211
+16:05:54 INFO    Trying to apply SNMP profile to N211 - loop 0 of 4
+16:05:54 INFO    Opening tab Overview
+16:06:00 INFO    Selected tab: Overview
+16:06:08 INFO    Successfully applied SNMP profile to N211
+16:06:08 INFO    DONE
+16:06:08 INFO    Applying SNMP profile: snmpv3 to NE N213
+16:06:36 INFO    Trying to apply SNMP profile to N213 - loop 0 of 4
+16:06:36 INFO    Opening tab Overview
+16:06:41 INFO    Selected tab: Overview
+16:06:49 INFO    Successfully applied SNMP profile to N213
+16:06:49 INFO    DONE
+16:06:49 INFO    Applying SNMP profile: snmpv3 to NE N212
+16:07:16 INFO    Trying to apply SNMP profile to N212 - loop 0 of 4
+16:07:16 INFO    Opening tab Overview
+16:07:22 INFO    Selected tab: Overview
+16:07:29 INFO    Successfully applied SNMP profile to N212
+16:07:29 INFO    DONE
+16:07:30 INFO    Configuring CPc Controller...
+16:07:30 INFO    Configuring CPc Controller 127.0.0.1 
+16:07:42 INFO    Opened window: Centralized CP Configuration
+16:08:46 INFO    CPc Controller version is correct
+16:08:46 INFO    CPc Controller is running
+16:08:46 INFO    WebSocket is connected
+16:08:47 INFO    DONE
+16:08:47 INFO    Adding NEs to CPc Controller
+16:08:47 INFO    Adding NE N211 to CPc Controller
+16:09:13 INFO    Opening tab Overview
+16:09:19 INFO    Selected tab: Overview
+16:09:25 INFO    EOD-CL button selection: False
+16:09:28 INFO    NE N211 added to CPc Controller.
+16:09:28 INFO    DONE
+16:09:28 INFO    Adding NE N212 to CPc Controller
+16:09:56 INFO    Opening tab Overview
+16:10:01 INFO    Selected tab: Overview
+16:10:08 INFO    EOD-CL button selection: False
+16:10:12 INFO    NE N212 added to CPc Controller.
+16:10:12 INFO    DONE
+16:10:12 INFO    Adding NE N213 to CPc Controller
+16:10:39 INFO    Opening tab Overview
+16:10:45 INFO    Selected tab: Overview
+16:10:51 INFO    EOD-CL button selection: False
+16:10:54 INFO    NE N213 added to CPc Controller.
+16:10:54 INFO    DONE
+16:10:54 INFO    Starting NE's polling
+16:10:55 INFO    Applying polling for NE: N211
+16:11:21 INFO    Start polling for N211
+16:11:45 INFO    Polling for N211 is done
+16:11:45 INFO    Polling for NE: N211 is DONE.
+16:11:45 INFO    Applying polling for NE: N212
+16:12:11 INFO    Start polling for N212
+16:12:29 INFO    Polling for N212 is done
+16:12:29 INFO    Polling for NE: N212 is DONE.
+16:12:29 INFO    Applying polling for NE: N213
+16:12:56 INFO    Start polling for N213
+16:13:27 INFO    Polling for N213 is done
+16:13:27 INFO    Polling for NE: N213 is DONE.
+16:13:58 INFO    Starting NE's polling
+16:13:59 INFO    Applying polling for NE: N211
+16:14:25 INFO    Start polling for N211
+16:14:49 INFO    Polling for N211 is done
+16:14:49 INFO    Polling for NE: N211 is DONE.
+16:14:49 INFO    Applying polling for NE: N212
+16:15:15 INFO    Start polling for N212
+16:15:34 INFO    Polling for N212 is done
+16:15:34 INFO    Polling for NE: N212 is DONE.
+16:15:34 INFO    Applying polling for NE: N213
+16:16:01 INFO    Start polling for N213
+16:16:33 INFO    Polling for N213 is done
+16:16:33 INFO    Polling for NE: N213 is DONE.
+16:17:03 
+16:17:03 [INFO] Starting test step Starting testing Reports
+16:17:03 
+16:17:03 ============================== Starting testing Reports ==============================
+16:17:03 
+16:17:04 [PASSED] Test  Starting testing Reports result is as expected in test set
+16:17:34 
+16:17:34 [INFO] Starting test step Create service 9TCE-PCN-NFC
+16:18:27 INFO    Handling Definition Page
+16:18:31 INFO    Selected layer protocol match with data driver 'OTN  OTU2E (11.0957)'
+16:18:35 INFO    Handling Node Page
+16:18:46 INFO    Handling Modules Page Provision
+16:19:02 INFO    Handling NFC Definition
+16:19:05 INFO    Handling Intermediate Module Page
+16:19:08 INFO    Handling Equipment Parameter
+16:19:11 INFO    Handling Summary Page
+16:19:29 INFO    Service definition in SM wizard completed waiting for creation
+16:19:29 INFO    Searching service in tree loop 0 of 19
+16:21:13 INFO    CfC service object detected in tree
+16:21:13 INFO    Service visible in tree ending search.
+16:22:10 INFO    Service should be in ML Model.
+16:22:10 INFO    Service was created service name: OTN(ODU2E): N213/CH-2-6-N3 --- N211/CH-2-6-N3
+16:22:10 [PASSED] Test  Create service 9TCE-PCN-NFC result is as expected in test set
+16:22:40 
+16:22:40 [INFO] Starting test step Create service 9TCE-PCN-CFC
+16:23:32 INFO    Handling Definition Page
+16:23:35 INFO    Selected layer protocol match with data driver 'Digital Signal  Ethernet 10G  FSR (10.3125)'
+16:23:39 INFO    Handling Node Page
+16:23:47 INFO    Handling Modules Page Provision
+16:24:05 INFO    Handling Equipment Parameter
+16:24:08 INFO    Handling Summary Page
+16:24:26 INFO    Service definition in SM wizard completed waiting for creation
+16:24:26 INFO    Searching service in tree loop 0 of 19
+16:26:12 INFO    CfC service object detected in tree
+16:26:12 INFO    Service visible in tree ending search.
+16:27:08 INFO    Service should be in ML Model.
+16:27:08 INFO    Service was created service name: DS(ETH-10G-FSR): N213/CH-2-6-C3 --- N211/CH-2-6-C3
+16:27:08 [PASSED] Test  Create service 9TCE-PCN-CFC result is as expected in test set
+16:27:38 
+16:27:38 [INFO] Starting test step Preparing a folder on desktop to download reports
+16:27:39 Existing 'Reports' folder deleted.
+16:27:39 New 'Reports' folder created.
+16:27:39 [PASSED] Test  Preparing a folder on desktop to download reports result is as expected in test set
+16:28:09 
+16:28:09 [INFO] Starting test step Create Service Inventory Short
+16:28:36 INFO    Opening tab Reports
+16:28:42 INFO    Selected tab: Reports
+16:29:30 INFO    Opening tab Reports
+16:29:38 INFO    Selected tab: Reports
+16:30:49 INFO    Opening tab Reports
+16:30:54 INFO    Selected tab: Reports
+16:31:29 INFO    Opening tab Reports
+16:31:34 INFO    Selected tab: Reports
+16:32:27 INFO    Opening tab Reports
+16:32:32 INFO    Selected tab: Reports
+16:32:38 [PASSED] Test  Create Service Inventory Short result is as expected in test set
+16:33:08 
+16:33:08 [INFO] Starting test step Compare Service Inventory Short with Connections tab
+16:33:08 Updating previous step variable: ReportID wiht value: 53289
+16:33:22 INFO    Opening tab Reports
+16:33:27 INFO    Selected tab: Reports
+16:34:15 INFO    Opening tab Reports
+16:34:20 INFO    Selected tab: Reports
+16:35:09 INFO    Opening tab Services
+16:35:15 INFO    Selected tab: Services
+16:35:40 [Pass] Successfully loaded file: Test Name For Service Inventory Short.csv
+16:35:40 [Pass] Detected correct delimiter '|' in file.
+16:35:40 [Pass] Total rows read: 1 data rows  + Header as Expected
+16:35:40 [Pass] Header columns found: 48 (all headers match expected structure)
+16:35:40 CSV format is VALID.
+16:35:40 ERROR    ValidShortInventoryCSV failed
+16:35:40 [ERROR] Test  Compare Service Inventory Short with Connections tab failed
+16:35:41 Collecting DB and logs due to test fault
+16:35:41 Collecting database, logs and screenshot under directory: C:/jenkins/workspace/Reports 17.1.1 Dev/QF-Test/tests/Reports/logs/log_20250528_154344/1748442941690
+16:43:13 INFO    Artefacts colleted at: C:/jenkins/workspace/Reports 17.1.1 Dev/QF-Test/tests/Reports/logs/log_20250528_154344/1748442941690
+16:43:44 
+16:43:44 [INFO] Starting test step Check PDF Service Inventory Report Short
+16:43:44 Updating previous step variable: ReportID wiht value: 53289
+16:44:10 INFO    Opening tab Reports
+16:44:16 INFO    Selected tab: Reports
+16:45:03 INFO    Opening tab Reports
+16:45:09 INFO    Selected tab: Reports
+16:45:49 Files are the same (timestamps ignored).
+16:45:50 [PASSED] Test  Check PDF Service Inventory Report Short result is as expected in test set
+16:46:20 
+16:46:20 [INFO] Starting test step Delete Service Inventory Short
+16:46:20 Updating previous step variable: ReportID wiht value: 53289
+16:46:27 INFO    Opening tab Reports
+16:46:35 INFO    Selected tab: Reports
+16:47:10 INFO    Opening tab Reports
+16:47:15 INFO    Selected tab: Reports
+16:47:50 INFO    Opening tab Reports
+16:47:56 INFO    Selected tab: Reports
+16:48:36 INFO    Opening tab Reports
+16:48:41 INFO    Selected tab: Reports
+16:49:03 No matching value found in any field.
+16:49:09 INFO    Opening tab Reports
+16:49:15 INFO    Selected tab: Reports
+16:49:50 INFO    Opening tab Reports
+16:49:55 INFO    Selected tab: Reports
+16:50:17 REMOVED ROW: Inventory | 53289 | Test Name For Service Inventory Short | 2025-05-28 16:29:52 CEST | 1.53 KB | Provision | admin
+16:50:17 [PASSED] Test  Delete Service Inventory Short result is as expected in test set
+16:50:47 
+16:50:47 [INFO] Starting test step Create Inventory Report Detailed Report RepComUseBySer RepComNotUseBySer
+16:50:54 INFO    Opening tab Reports
+16:50:59 INFO    Selected tab: Reports
+16:51:23 INFO    Opening tab Reports
+16:51:29 INFO    Selected tab: Reports
+16:52:12 INFO    Opening tab Reports
+16:52:18 INFO    Selected tab: Reports
+16:52:41 INFO    Opening tab Reports
+16:52:47 INFO    Selected tab: Reports
+16:53:28 INFO    Opening tab Reports
+16:53:34 INFO    Selected tab: Reports
+16:53:39 [PASSED] Test  Create Inventory Report Detailed Report RepComUseBySer RepComNotUseBySer result is as expected in test set
+16:54:09 
+16:54:09 [INFO] Starting test step Check CSV Inventory Report Detailed Report RepComUseBySer RepComNotUseBySer
+16:54:09 Updating previous step variable: ReportID wiht value: 53291
+16:54:12 INFO    Opening tab Reports
+16:54:17 INFO    Selected tab: Reports
+16:54:54 INFO    Opening tab Reports
+16:54:59 INFO    Selected tab: Reports
+16:55:21 [Pass] Successfully loaded file: Inventory Report_2025-05-28 16.51.33.csv
+16:55:21 [Pass] Detected correct delimiter '|' in file.
+16:55:21 [Pass] Total rows read: 137 data rows  + Header as Expected
+16:55:21 [Failed] Header columns found: 49
+16:55:21 [Failed] Headers do not match expected structure.
+16:55:21 [Failed] Expected headers:
+16:55:21 [u'Customer', u'ServiceGroup', u'ConnectivityService', u'TopLevelService', u'ServiceName', u'ServiceAlternateName', u'LayerProtocol', u'SupportingNFCs', u'StartTPNE', u'EndTPNE', u'StartTPModuleWorking', u'StartTPPortWorking', u'EndTPModuleWorking', u'EndTPPortWorking', u'StartTPModuleProtected', u'StartTPPortProtected', u'EndTPModuleProtected', u'EndTPPortProtected', u'IntermModulesWorking', u'IntermModulesProtected', u'Type', u'AdminState', u'SetupMode', u'ProtectionType', u'Restoration', u'Remarks', u'Channel', u'OpticalChannel', u'ImpairmentCalculation', u'ServiceLayer', u'Reversion', u'Handover', u'NICPObject', u'RingType', u'RingId', u'VLANTag', u'InterconnectedRings', u'ESATCAStatus', u'SupervisionEntities', u'SupportedService', u'SecureState', u'StartVLANTag', u'EndVLANTag', u'StartTagControl', u'EndTagControl', u'IntermVLANIds', u'StartTermination', u'EndTermination']
+16:55:21 [Failed] Actual headers:
+16:55:21 ['Subnet', 'NE', 'ProductType', 'NEMI_SW_Version', 'ModuleName', 'ModuleType', 'OrderInfo', 'Channel', 'Protection', 'Name', 'Clock', 'InstalledAt', 'HWRevision', 'FWRevision', 'SWRevision', 'SerialNumber', 'Assignment', 'ServiceName', 'CustomField', 'CustomSubnetField', 'Location', 'Rack', 'Shelf', 'ShelfHWRevision', 'ShelfSerialNumber', 'ShelfModuleName', 'ShelfModuleType', 'ShelfName', 'ShelfInstalledAt', 'ShelfAssignment', 'ShelfOrderInfo', 'AdminState', 'OperState', 'SecondaryState', 'UserText', 'UserDescr', 'IdentificationKey', 'IdentificationValue', 'ProvisionedModuleType', 'EquippedModuleType', 'SI2_ShelfIndex', 'SI3_SlotIndex', 'SI4_SubSlotIndex', 'Alias', 'NELocation', 'CountryOfOrigin', 'VendorCode', 'CLEI_Code', 'UniqueSerialIdentifier']
+16:55:21 [Failed] Missing headers: [u'Customer', u'ServiceGroup', u'ConnectivityService', u'TopLevelService', u'ServiceAlternateName', u'LayerProtocol', u'SupportingNFCs', u'StartTPNE', u'EndTPNE', u'StartTPModuleWorking', u'StartTPPortWorking', u'EndTPModuleWorking', u'EndTPPortWorking', u'StartTPModuleProtected', u'StartTPPortProtected', u'EndTPModuleProtected', u'EndTPPortProtected', u'IntermModulesWorking', u'IntermModulesProtected', u'Type', u'SetupMode', u'ProtectionType', u'Restoration', u'Remarks', u'OpticalChannel', u'ImpairmentCalculation', u'ServiceLayer', u'Reversion', u'Handover', u'NICPObject', u'RingType', u'RingId', u'VLANTag', u'InterconnectedRings', u'ESATCAStatus', u'SupervisionEntities', u'SupportedService', u'SecureState', u'StartVLANTag', u'EndVLANTag', u'StartTagControl', u'EndTagControl', u'IntermVLANIds', u'StartTermination', u'EndTermination']
+16:55:21 [Failed] Unexpected headers: ['Subnet', 'NE', 'ProductType', 'NEMI_SW_Version', 'ModuleName', 'ModuleType', 'OrderInfo', 'Protection', 'Name', 'Clock', 'InstalledAt', 'HWRevision', 'FWRevision', 'SWRevision', 'SerialNumber', 'Assignment', 'CustomField', 'CustomSubnetField', 'Location', 'Rack', 'Shelf', 'ShelfHWRevision', 'ShelfSerialNumber', 'ShelfModuleName', 'ShelfModuleType', 'ShelfName', 'ShelfInstalledAt', 'ShelfAssignment', 'ShelfOrderInfo', 'OperState', 'SecondaryState', 'UserText', 'UserDescr', 'IdentificationKey', 'IdentificationValue', 'ProvisionedModuleType', 'EquippedModuleType', 'SI2_ShelfIndex', 'SI3_SlotIndex', 'SI4_SubSlotIndex', 'Alias', 'NELocation', 'CountryOfOrigin', 'VendorCode', 'CLEI_Code', 'UniqueSerialIdentifier']
+16:55:21 CSV format is NOT valid.
+16:55:23 [Pass] Successfully loaded both CSV files.
+16:55:23 [Pass] Files are the same (timestamps ignored).
+16:55:23 [PASSED] Test  Check CSV Inventory Report Detailed Report RepComUseBySer RepComNotUseBySer result is as expected in test set
+16:55:53 
+16:55:53 [INFO] Starting test step Check PDF Inventory Report Detailed Report RepComUseBySer RepComNotUseBySer
+16:55:53 Updating previous step variable: ReportID wiht value: 53291
+16:55:56 INFO    Opening tab Reports
+16:56:01 INFO    Selected tab: Reports
+16:56:38 INFO    Opening tab Reports
+16:56:43 INFO    Selected tab: Reports
+16:57:25 Files are the same (timestamps ignored).
+16:57:25 [PASSED] Test  Check PDF Inventory Report Detailed Report RepComUseBySer RepComNotUseBySer result is as expected in test set
+16:57:56 
+16:57:56 [INFO] Starting test step Delete Inventory Report Detailed Report RepComUseBySer RepComNotUseBySer
+16:57:56 Updating previous step variable: ReportID wiht value: 53291
+16:57:58 INFO    Opening tab Reports
+16:58:03 INFO    Selected tab: Reports
+16:58:38 INFO    Opening tab Reports
+16:58:44 INFO    Selected tab: Reports
+16:59:12 INFO    Opening tab Reports
+16:59:17 INFO    Selected tab: Reports
+16:59:46 INFO    Opening tab Reports
+16:59:52 INFO    Selected tab: Reports
+17:00:13 No matching value found in any field.
+17:00:16 INFO    Opening tab Reports
+17:00:21 INFO    Selected tab: Reports
+17:00:56 INFO    Opening tab Reports
+17:01:02 INFO    Selected tab: Reports
+17:01:23 REMOVED ROW: Inventory | 53291 | Inventory Report_2025-05-28 16.51.33 | 2025-05-28 16:51:40 CEST | 46.11 KB | Network | admin
+17:01:23 [PASSED] Test  Delete Inventory Report Detailed Report RepComUseBySer RepComNotUseBySer result is as expected in test set
+17:01:53 
+17:01:53 [INFO] Starting test step Create Inventory Report Detailed Report RepComUseBySer
+17:02:00 INFO    Opening tab Reports
+17:02:06 INFO    Selected tab: Reports
+17:02:30 INFO    Opening tab Reports
+17:02:35 INFO    Selected tab: Reports
+17:03:19 INFO    Opening tab Reports
+17:03:24 INFO    Selected tab: Reports
+17:03:48 INFO    Opening tab Reports
+17:03:53 INFO    Selected tab: Reports
+17:04:35 INFO    Opening tab Reports
+17:04:40 INFO    Selected tab: Reports
+17:04:45 [PASSED] Test  Create Inventory Report Detailed Report RepComUseBySer result is as expected in test set
+17:05:15 
+17:05:15 [INFO] Starting test step Check CSV Inventory Report Detailed Report RepComUseBySer
+17:05:15 Updating previous step variable: ReportID wiht value: 53293
+17:05:17 INFO    Opening tab Reports
+17:05:23 INFO    Selected tab: Reports
+17:05:59 INFO    Opening tab Reports
+17:06:05 INFO    Selected tab: Reports
+17:06:26 [Pass] Successfully loaded file: Inventory Report_2025-05-28 17.02.39.csv
+17:06:26 [Pass] Detected correct delimiter '|' in file.
+17:06:26 [Pass] Total rows read: 13 data rows  + Header as Expected
+17:06:26 [Failed] Header columns found: 49
+17:06:26 [Failed] Headers do not match expected structure.
+17:06:26 [Failed] Expected headers:
+17:06:26 [u'Customer', u'ServiceGroup', u'ConnectivityService', u'TopLevelService', u'ServiceName', u'ServiceAlternateName', u'LayerProtocol', u'SupportingNFCs', u'StartTPNE', u'EndTPNE', u'StartTPModuleWorking', u'StartTPPortWorking', u'EndTPModuleWorking', u'EndTPPortWorking', u'StartTPModuleProtected', u'StartTPPortProtected', u'EndTPModuleProtected', u'EndTPPortProtected', u'IntermModulesWorking', u'IntermModulesProtected', u'Type', u'AdminState', u'SetupMode', u'ProtectionType', u'Restoration', u'Remarks', u'Channel', u'OpticalChannel', u'ImpairmentCalculation', u'ServiceLayer', u'Reversion', u'Handover', u'NICPObject', u'RingType', u'RingId', u'VLANTag', u'InterconnectedRings', u'ESATCAStatus', u'SupervisionEntities', u'SupportedService', u'SecureState', u'StartVLANTag', u'EndVLANTag', u'StartTagControl', u'EndTagControl', u'IntermVLANIds', u'StartTermination', u'EndTermination']
+17:06:26 [Failed] Actual headers:
+17:06:26 ['Subnet', 'NE', 'ProductType', 'NEMI_SW_Version', 'ModuleName', 'ModuleType', 'OrderInfo', 'Channel', 'Protection', 'Name', 'Clock', 'InstalledAt', 'HWRevision', 'FWRevision', 'SWRevision', 'SerialNumber', 'Assignment', 'ServiceName', 'CustomField', 'CustomSubnetField', 'Location', 'Rack', 'Shelf', 'ShelfHWRevision', 'ShelfSerialNumber', 'ShelfModuleName', 'ShelfModuleType', 'ShelfName', 'ShelfInstalledAt', 'ShelfAssignment', 'ShelfOrderInfo', 'AdminState', 'OperState', 'SecondaryState', 'UserText', 'UserDescr', 'IdentificationKey', 'IdentificationValue', 'ProvisionedModuleType', 'EquippedModuleType', 'SI2_ShelfIndex', 'SI3_SlotIndex', 'SI4_SubSlotIndex', 'Alias', 'NELocation', 'CountryOfOrigin', 'VendorCode', 'CLEI_Code', 'UniqueSerialIdentifier']
+17:06:26 [Failed] Missing headers: [u'Customer', u'ServiceGroup', u'ConnectivityService', u'TopLevelService', u'ServiceAlternateName', u'LayerProtocol', u'SupportingNFCs', u'StartTPNE', u'EndTPNE', u'StartTPModuleWorking', u'StartTPPortWorking', u'EndTPModuleWorking', u'EndTPPortWorking', u'StartTPModuleProtected', u'StartTPPortProtected', u'EndTPModuleProtected', u'EndTPPortProtected', u'IntermModulesWorking', u'IntermModulesProtected', u'Type', u'SetupMode', u'ProtectionType', u'Restoration', u'Remarks', u'OpticalChannel', u'ImpairmentCalculation', u'ServiceLayer', u'Reversion', u'Handover', u'NICPObject', u'RingType', u'RingId', u'VLANTag', u'InterconnectedRings', u'ESATCAStatus', u'SupervisionEntities', u'SupportedService', u'SecureState', u'StartVLANTag', u'EndVLANTag', u'StartTagControl', u'EndTagControl', u'IntermVLANIds', u'StartTermination', u'EndTermination']
+17:06:26 [Failed] Unexpected headers: ['Subnet', 'NE', 'ProductType', 'NEMI_SW_Version', 'ModuleName', 'ModuleType', 'OrderInfo', 'Protection', 'Name', 'Clock', 'InstalledAt', 'HWRevision', 'FWRevision', 'SWRevision', 'SerialNumber', 'Assignment', 'CustomField', 'CustomSubnetField', 'Location', 'Rack', 'Shelf', 'ShelfHWRevision', 'ShelfSerialNumber', 'ShelfModuleName', 'ShelfModuleType', 'ShelfName', 'ShelfInstalledAt', 'ShelfAssignment', 'ShelfOrderInfo', 'OperState', 'SecondaryState', 'UserText', 'UserDescr', 'IdentificationKey', 'IdentificationValue', 'ProvisionedModuleType', 'EquippedModuleType', 'SI2_ShelfIndex', 'SI3_SlotIndex', 'SI4_SubSlotIndex', 'Alias', 'NELocation', 'CountryOfOrigin', 'VendorCode', 'CLEI_Code', 'UniqueSerialIdentifier']
+17:06:26 CSV format is NOT valid.
+17:06:26 [Error] while processing CSV files: [Errno 2] No such file or directory: u'C:\\Users\\svt_nms\\Desktop\\Golden\\Inventory_Report_Detailed_Report_RepComUseBySer.csv'
+17:06:26 [PASSED] Test  Check CSV Inventory Report Detailed Report RepComUseBySer result is as expected in test set
+17:06:56 
+17:06:56 [INFO] Starting test step Check PDF Inventory Report Detailed Report RepComUseBySer
+17:06:56 Updating previous step variable: ReportID wiht value: 53293
+17:06:59 INFO    Opening tab Reports
+17:07:04 INFO    Selected tab: Reports
+17:07:41 INFO    Opening tab Reports
+17:07:46 INFO    Selected tab: Reports
+17:08:27 ERROR    ComparePDF failed
+17:08:27 [ERROR] Test  Check PDF Inventory Report Detailed Report RepComUseBySer failed
+17:08:28 Collecting DB and logs due to test fault
+17:08:28 Collecting database, logs and screenshot under directory: C:/jenkins/workspace/Reports 17.1.1 Dev/QF-Test/tests/Reports/logs/log_20250528_154344/1748444908260
+17:15:58 INFO    Artefacts colleted at: C:/jenkins/workspace/Reports 17.1.1 Dev/QF-Test/tests/Reports/logs/log_20250528_154344/1748444908260
+17:16:29 
+17:16:29 [INFO] Starting test step Delete Inventory Report Detailed Report RepComUseBySer
+17:16:29 Updating previous step variable: ReportID wiht value: 53293
+17:16:32 INFO    Opening tab Reports
+17:16:37 INFO    Selected tab: Reports
+17:17:12 INFO    Opening tab Reports
+17:17:17 INFO    Selected tab: Reports
+17:17:45 INFO    Opening tab Reports
+17:17:51 INFO    Selected tab: Reports
+17:18:20 INFO    Opening tab Reports
+17:18:25 INFO    Selected tab: Reports
+17:18:47 No matching value found in any field.
+17:18:49 INFO    Opening tab Reports
+17:18:55 INFO    Selected tab: Reports
+17:19:30 INFO    Opening tab Reports
+17:19:35 INFO    Selected tab: Reports
+17:19:56 REMOVED ROW: Inventory | 53293 | Inventory Report_2025-05-28 17.02.39 | 2025-05-28 17:02:46 CEST | 4.24 KB | Network | admin
+17:19:56 [PASSED] Test  Delete Inventory Report Detailed Report RepComUseBySer result is as expected in test set
+17:20:26 
+17:20:26 [INFO] Starting test step Create Inventory Report Detailed Report RepComNotUseBySer
+17:20:33 INFO    Opening tab Reports
+17:20:39 INFO    Selected tab: Reports
+17:21:03 INFO    Opening tab Reports
+17:21:08 INFO    Selected tab: Reports
+17:21:52 INFO    Opening tab Reports
+17:21:58 INFO    Selected tab: Reports
+17:22:21 INFO    Opening tab Reports
+17:22:27 INFO    Selected tab: Reports
+17:23:09 INFO    Opening tab Reports
+17:23:14 INFO    Selected tab: Reports
+17:23:19 [PASSED] Test  Create Inventory Report Detailed Report RepComNotUseBySer result is as expected in test set
+17:23:49 
+17:23:49 [INFO] Starting test step Check CSV Inventory Report Detailed Report RepComNotUseBySer
+17:23:49 Updating previous step variable: ReportID wiht value: 53295
+17:23:51 INFO    Opening tab Reports
+17:23:56 INFO    Selected tab: Reports
+17:24:33 INFO    Opening tab Reports
+17:24:38 INFO    Selected tab: Reports
+17:25:00 [Pass] Successfully loaded file: Inventory Report_2025-05-28 17.21.13.csv
+17:25:00 [Pass] Detected correct delimiter '|' in file.
+17:25:00 [Pass] Total rows read: 131 data rows  + Header as Expected
+17:25:00 [Failed] Header columns found: 49
+17:25:00 [Failed] Headers do not match expected structure.
+17:25:00 [Failed] Expected headers:
+17:25:00 [u'Customer', u'ServiceGroup', u'ConnectivityService', u'TopLevelService', u'ServiceName', u'ServiceAlternateName', u'LayerProtocol', u'SupportingNFCs', u'StartTPNE', u'EndTPNE', u'StartTPModuleWorking', u'StartTPPortWorking', u'EndTPModuleWorking', u'EndTPPortWorking', u'StartTPModuleProtected', u'StartTPPortProtected', u'EndTPModuleProtected', u'EndTPPortProtected', u'IntermModulesWorking', u'IntermModulesProtected', u'Type', u'AdminState', u'SetupMode', u'ProtectionType', u'Restoration', u'Remarks', u'Channel', u'OpticalChannel', u'ImpairmentCalculation', u'ServiceLayer', u'Reversion', u'Handover', u'NICPObject', u'RingType', u'RingId', u'VLANTag', u'InterconnectedRings', u'ESATCAStatus', u'SupervisionEntities', u'SupportedService', u'SecureState', u'StartVLANTag', u'EndVLANTag', u'StartTagControl', u'EndTagControl', u'IntermVLANIds', u'StartTermination', u'EndTermination']
+17:25:00 [Failed] Actual headers:
+17:25:00 ['Subnet', 'NE', 'ProductType', 'NEMI_SW_Version', 'ModuleName', 'ModuleType', 'OrderInfo', 'Channel', 'Protection', 'Name', 'Clock', 'InstalledAt', 'HWRevision', 'FWRevision', 'SWRevision', 'SerialNumber', 'Assignment', 'ServiceName', 'CustomField', 'CustomSubnetField', 'Location', 'Rack', 'Shelf', 'ShelfHWRevision', 'ShelfSerialNumber', 'ShelfModuleName', 'ShelfModuleType', 'ShelfName', 'ShelfInstalledAt', 'ShelfAssignment', 'ShelfOrderInfo', 'AdminState', 'OperState', 'SecondaryState', 'UserText', 'UserDescr', 'IdentificationKey', 'IdentificationValue', 'ProvisionedModuleType', 'EquippedModuleType', 'SI2_ShelfIndex', 'SI3_SlotIndex', 'SI4_SubSlotIndex', 'Alias', 'NELocation', 'CountryOfOrigin', 'VendorCode', 'CLEI_Code', 'UniqueSerialIdentifier']
+17:25:00 [Failed] Missing headers: [u'Customer', u'ServiceGroup', u'ConnectivityService', u'TopLevelService', u'ServiceAlternateName', u'LayerProtocol', u'SupportingNFCs', u'StartTPNE', u'EndTPNE', u'StartTPModuleWorking', u'StartTPPortWorking', u'EndTPModuleWorking', u'EndTPPortWorking', u'StartTPModuleProtected', u'StartTPPortProtected', u'EndTPModuleProtected', u'EndTPPortProtected', u'IntermModulesWorking', u'IntermModulesProtected', u'Type', u'SetupMode', u'ProtectionType', u'Restoration', u'Remarks', u'OpticalChannel', u'ImpairmentCalculation', u'ServiceLayer', u'Reversion', u'Handover', u'NICPObject', u'RingType', u'RingId', u'VLANTag', u'InterconnectedRings', u'ESATCAStatus', u'SupervisionEntities', u'SupportedService', u'SecureState', u'StartVLANTag', u'EndVLANTag', u'StartTagControl', u'EndTagControl', u'IntermVLANIds', u'StartTermination', u'EndTermination']
+17:25:00 [Failed] Unexpected headers: ['Subnet', 'NE', 'ProductType', 'NEMI_SW_Version', 'ModuleName', 'ModuleType', 'OrderInfo', 'Protection', 'Name', 'Clock', 'InstalledAt', 'HWRevision', 'FWRevision', 'SWRevision', 'SerialNumber', 'Assignment', 'CustomField', 'CustomSubnetField', 'Location', 'Rack', 'Shelf', 'ShelfHWRevision', 'ShelfSerialNumber', 'ShelfModuleName', 'ShelfModuleType', 'ShelfName', 'ShelfInstalledAt', 'ShelfAssignment', 'ShelfOrderInfo', 'OperState', 'SecondaryState', 'UserText', 'UserDescr', 'IdentificationKey', 'IdentificationValue', 'ProvisionedModuleType', 'EquippedModuleType', 'SI2_ShelfIndex', 'SI3_SlotIndex', 'SI4_SubSlotIndex', 'Alias', 'NELocation', 'CountryOfOrigin', 'VendorCode', 'CLEI_Code', 'UniqueSerialIdentifier']
+17:25:00 CSV format is NOT valid.
+17:25:00 [Error] while processing CSV files: [Errno 2] No such file or directory: u'C:\\Users\\svt_nms\\Desktop\\Golden\\Inventory_Report_Detailed_Report_RepComNotUseBySer.csv'
+17:25:00 [PASSED] Test  Check CSV Inventory Report Detailed Report RepComNotUseBySer result is as expected in test set
+17:25:31 
+17:25:31 [INFO] Starting test step Check PDF Inventory Report Detailed Report RepComNotUseBySer
+17:25:31 Updating previous step variable: ReportID wiht value: 53295
+17:25:33 INFO    Opening tab Reports
+17:25:38 INFO    Selected tab: Reports
+17:26:14 INFO    Opening tab Reports
+17:26:20 INFO    Selected tab: Reports
+17:27:01 ERROR    ComparePDF failed
+17:27:01 [ERROR] Test  Check PDF Inventory Report Detailed Report RepComNotUseBySer failed
+17:27:02 Collecting DB and logs due to test fault
+17:27:02 Collecting database, logs and screenshot under directory: C:/jenkins/workspace/Reports 17.1.1 Dev/QF-Test/tests/Reports/logs/log_20250528_154344/1748446022880
+17:34:35 INFO    Artefacts colleted at: C:/jenkins/workspace/Reports 17.1.1 Dev/QF-Test/tests/Reports/logs/log_20250528_154344/1748446022880
+17:35:05 
+17:35:05 [INFO] Starting test step Delete Inventory Report Detailed Report RepComNotUseBySer
+17:35:05 Updating previous step variable: ReportID wiht value: 53295
+17:35:08 INFO    Opening tab Reports
+17:35:13 INFO    Selected tab: Reports
+17:35:48 INFO    Opening tab Reports
+17:35:54 INFO    Selected tab: Reports
+17:36:21 INFO    Opening tab Reports
+17:36:27 INFO    Selected tab: Reports
+17:36:56 INFO    Opening tab Reports
+17:37:02 INFO    Selected tab: Reports
+17:37:23 No matching value found in any field.
+17:37:26 INFO    Opening tab Reports
+17:37:31 INFO    Selected tab: Reports
+17:38:06 INFO    Opening tab Reports
+17:38:11 INFO    Selected tab: Reports
+17:38:33 REMOVED ROW: Inventory | 53295 | Inventory Report_2025-05-28 17.21.13 | 2025-05-28 17:21:20 CEST | 43.79 KB | Network | admin
+17:38:33 [PASSED] Test  Delete Inventory Report Detailed Report RepComNotUseBySer result is as expected in test set
+17:39:03 
+17:39:03 [INFO] Starting test step Create Inventory Report Detailed Report
+17:39:10 INFO    Opening tab Reports
+17:39:15 INFO    Selected tab: Reports
+17:39:39 INFO    Opening tab Reports
+17:39:44 INFO    Selected tab: Reports
+17:40:28 INFO    Opening tab Reports
+17:40:34 INFO    Selected tab: Reports
+17:40:50 Info: table_new contains only a default empty row (ID = '0').
+17:40:52 INFO    Opening tab Reports
+17:40:57 INFO    Selected tab: Reports
+17:41:39 INFO    Opening tab Reports
+17:41:45 INFO    Selected tab: Reports
+17:41:51 ERROR    Report file does not exist in /opt/adva/fsp_nm/ws/webapps/reportdb
+17:41:51 [ERROR] Test  Create Inventory Report Detailed Report failed
+17:42:22 
+17:42:22 [INFO] Starting test step Check CSV Inventory Report Detailed Report
+17:42:22 Updating previous step variable: ReportID wiht value: False
+17:42:25 INFO    Opening tab Reports
+17:42:30 INFO    Selected tab: Reports
+17:42:55 ERROR    DownloadReport failed
+17:42:58 INFO    Opening tab Reports
+17:43:03 INFO    Selected tab: Reports
+17:43:24 No matching value found in any field.
+17:43:24 [Error] while processing CSV file: [Errno 2] No such file or directory: u'C:\\Users\\svt_nms\\Desktop\\Reports\\NoExist.csv'
+17:43:24 [Error] while processing CSV files: [Errno 2] No such file or directory: u'C:\\Users\\svt_nms\\Desktop\\Reports\\NoExist.csv'
+17:43:24 [PASSED] Test  Check CSV Inventory Report Detailed Report result is as expected in test set
+17:43:55 
+17:43:55 [INFO] Starting test step Check PDF Inventory Report Detailed Report
+17:43:55 Updating previous step variable: ReportID wiht value: False
+17:43:57 INFO    Opening tab Reports
+17:44:02 INFO    Selected tab: Reports
+17:44:28 ERROR    DownloadReport failed
+17:44:30 INFO    Opening tab Reports
+17:44:35 INFO    Selected tab: Reports
+17:44:57 No matching value found in any field.
+17:44:57 ERROR    OpenPDF failed
+17:44:59 ERROR    ComparePDF failed
+17:44:59 [ERROR] Test  Check PDF Inventory Report Detailed Report failed
+17:45:00 Collecting DB and logs due to test fault
+17:45:00 Collecting database, logs and screenshot under directory: C:/jenkins/workspace/Reports 17.1.1 Dev/QF-Test/tests/Reports/logs/log_20250528_154344/1748447100625
+17:52:31 INFO    Artefacts colleted at: C:/jenkins/workspace/Reports 17.1.1 Dev/QF-Test/tests/Reports/logs/log_20250528_154344/1748447100625
+17:53:02 
+17:53:02 [INFO] Starting test step Delete Inventory Report Detailed Report
+17:53:02 Updating previous step variable: ReportID wiht value: False
+17:53:04 INFO    Opening tab Reports
+17:53:10 INFO    Selected tab: Reports
+17:53:45 INFO    Opening tab Reports
+17:53:50 INFO    Selected tab: Reports
+17:54:19 INFO    Opening tab Reports
+17:54:24 INFO    Selected tab: Reports
+17:54:49 ERROR    DeleteReport failed
+17:54:52 INFO    Opening tab Reports
+17:54:57 INFO    Selected tab: Reports
+17:55:19 No matching value found in any field.
+17:55:21 INFO    Opening tab Reports
+17:55:26 INFO    Selected tab: Reports
+17:56:01 INFO    Opening tab Reports
+17:56:07 INFO    Selected tab: Reports
+17:56:28 [ERROR] Test  Delete Inventory Report Detailed Report failed
+17:56:59 
+17:56:59 [INFO] Starting test step Create Inventory Report Summary Report (Module Types)
+17:57:06 INFO    Opening tab Reports
+17:57:12 INFO    Selected tab: Reports
+17:57:35 INFO    Opening tab Reports
+17:57:41 INFO    Selected tab: Reports
+17:58:24 INFO    Opening tab Reports
+17:58:29 INFO    Selected tab: Reports
+17:58:45 Info: table_new contains only a default empty row (ID = '0').
+17:58:48 INFO    Opening tab Reports
+17:58:53 INFO    Selected tab: Reports
+17:59:35 INFO    Opening tab Reports
+17:59:40 INFO    Selected tab: Reports
+17:59:47 ERROR    Report file does not exist in /opt/adva/fsp_nm/ws/webapps/reportdb
+17:59:47 [ERROR] Test  Create Inventory Report Summary Report (Module Types) failed
+18:00:18 
+18:00:18 [INFO] Starting test step Check CSV Inventory Report Summary Report (Module Types)
+18:00:18 Updating previous step variable: ReportID wiht value: False
+18:00:20 INFO    Opening tab Reports
+18:00:25 INFO    Selected tab: Reports
+18:00:51 ERROR    DownloadReport failed
+18:00:53 INFO    Opening tab Reports
+18:00:58 INFO    Selected tab: Reports
+18:01:20 No matching value found in any field.
+18:01:20 [Error] while processing CSV file: [Errno 2] No such file or directory: u'C:\\Users\\svt_nms\\Desktop\\Reports\\NoExist.csv'
+18:01:20 [Error] while processing CSV files: [Errno 2] No such file or directory: u'C:\\Users\\svt_nms\\Desktop\\Reports\\NoExist.csv'
+18:01:20 [PASSED] Test  Check CSV Inventory Report Summary Report (Module Types) result is as expected in test set
+18:01:50 
+18:01:50 [INFO] Starting test step Check PDF Inventory Report Summary Report (Module Types)
+18:01:50 Updating previous step variable: ReportID wiht value: False
+18:01:53 INFO    Opening tab Reports
+18:01:58 INFO    Selected tab: Reports
+18:02:23 ERROR    DownloadReport failed
+18:02:26 INFO    Opening tab Reports
+18:02:31 INFO    Selected tab: Reports
+18:02:52 No matching value found in any field.
+18:02:52 ERROR    OpenPDF failed
+18:02:55 ERROR    ComparePDF failed
+18:02:55 [ERROR] Test  Check PDF Inventory Report Summary Report (Module Types) failed
+18:02:55 Collecting DB and logs due to test fault
+18:02:55 Collecting database, logs and screenshot under directory: C:/jenkins/workspace/Reports 17.1.1 Dev/QF-Test/tests/Reports/logs/log_20250528_154344/1748448176003
+18:10:26 INFO    Artefacts colleted at: C:/jenkins/workspace/Reports 17.1.1 Dev/QF-Test/tests/Reports/logs/log_20250528_154344/1748448176003
+18:10:57 
+18:10:57 [INFO] Starting test step Delete Inventory Report Summary Report (Module Types)
+18:10:57 Updating previous step variable: ReportID wiht value: False
+18:10:59 INFO    Opening tab Reports
+18:11:05 INFO    Selected tab: Reports
+18:11:40 INFO    Opening tab Reports
+18:11:45 INFO    Selected tab: Reports
+18:12:13 INFO    Opening tab Reports
+18:12:19 INFO    Selected tab: Reports
+18:12:44 ERROR    DeleteReport failed
+18:12:46 INFO    Opening tab Reports
+18:12:52 INFO    Selected tab: Reports
+18:13:13 No matching value found in any field.
+18:13:16 INFO    Opening tab Reports
+18:13:21 INFO    Selected tab: Reports
+18:13:56 INFO    Opening tab Reports
+18:14:01 INFO    Selected tab: Reports
+18:14:23 [ERROR] Test  Delete Inventory Report Summary Report (Module Types) failed
+18:14:54 
+18:14:54 [INFO] Starting test step Create Inventory Report Summary Report (WDM Channels)
+18:15:00 INFO    Opening tab Reports
+18:15:06 INFO    Selected tab: Reports
+18:15:30 INFO    Opening tab Reports
+18:15:35 INFO    Selected tab: Reports
+18:16:18 INFO    Opening tab Reports
+18:16:24 INFO    Selected tab: Reports
+18:16:40 Info: table_new contains only a default empty row (ID = '0').
+18:16:42 INFO    Opening tab Reports
+18:16:48 INFO    Selected tab: Reports
+18:17:30 INFO    Opening tab Reports
+18:17:35 INFO    Selected tab: Reports
+18:17:42 ERROR    Report file does not exist in /opt/adva/fsp_nm/ws/webapps/reportdb
+18:17:42 [ERROR] Test  Create Inventory Report Summary Report (WDM Channels) failed
+18:18:12 
+18:18:12 [INFO] Starting test step Check CSV Inventory Report Summary Report (WDM Channels)
+18:18:13 Updating previous step variable: ReportID wiht value: False
+18:18:15 INFO    Opening tab Reports
+18:18:20 INFO    Selected tab: Reports
+18:18:45 ERROR    DownloadReport failed
+18:18:48 INFO    Opening tab Reports
+18:18:53 INFO    Selected tab: Reports
+18:19:15 No matching value found in any field.
+18:19:15 [Error] while processing CSV file: [Errno 2] No such file or directory: u'C:\\Users\\svt_nms\\Desktop\\Reports\\NoExist.csv'
+18:19:15 [Error] while processing CSV files: [Errno 2] No such file or directory: u'C:\\Users\\svt_nms\\Desktop\\Reports\\NoExist.csv'
+18:19:15 [PASSED] Test  Check CSV Inventory Report Summary Report (WDM Channels) result is as expected in test set
+18:19:45 
+18:19:45 [INFO] Starting test step Check PDF Inventory Report Summary Report (WDM Channels)
+18:19:45 Updating previous step variable: ReportID wiht value: False
+18:19:47 INFO    Opening tab Reports
+18:19:53 INFO    Selected tab: Reports
+18:20:18 ERROR    DownloadReport failed
+18:20:20 INFO    Opening tab Reports
+18:20:26 INFO    Selected tab: Reports
+18:20:47 No matching value found in any field.
+18:20:47 ERROR    OpenPDF failed
+18:20:49 ERROR    ComparePDF failed
+18:20:49 [ERROR] Test  Check PDF Inventory Report Summary Report (WDM Channels) failed
+18:20:50 Collecting DB and logs due to test fault
+18:20:50 Collecting database, logs and screenshot under directory: C:/jenkins/workspace/Reports 17.1.1 Dev/QF-Test/tests/Reports/logs/log_20250528_154344/1748449250864
+18:28:22 INFO    Artefacts colleted at: C:/jenkins/workspace/Reports 17.1.1 Dev/QF-Test/tests/Reports/logs/log_20250528_154344/1748449250864
+18:28:52 
+18:28:52 [INFO] Starting test step Delete Inventory Report Summary Report (WDM Channels)
+18:28:52 Updating previous step variable: ReportID wiht value: False
+18:28:55 INFO    Opening tab Reports
+18:29:00 INFO    Selected tab: Reports
+18:29:35 INFO    Opening tab Reports
+18:29:40 INFO    Selected tab: Reports
+18:30:08 INFO    Opening tab Reports
+18:30:14 INFO    Selected tab: Reports
+18:30:39 ERROR    DeleteReport failed
+18:30:42 INFO    Opening tab Reports
+18:30:47 INFO    Selected tab: Reports
+18:31:08 No matching value found in any field.
+18:31:11 INFO    Opening tab Reports
+18:31:16 INFO    Selected tab: Reports
+18:31:51 INFO    Opening tab Reports
+18:31:57 INFO    Selected tab: Reports
+18:32:18 [ERROR] Test  Delete Inventory Report Summary Report (WDM Channels) failed
+18:32:49 
+18:32:49 [INFO] Starting test step Create Inventory Report Service Inventory Report
+18:32:56 INFO    Opening tab Reports
+18:33:02 INFO    Selected tab: Reports
+18:33:26 INFO    Opening tab Reports
+18:33:31 INFO    Selected tab: Reports
+18:34:14 INFO    Opening tab Reports
+18:34:20 INFO    Selected tab: Reports
+18:34:36 Info: table_new contains only a default empty row (ID = '0').
+18:34:38 INFO    Opening tab Reports
+18:34:43 INFO    Selected tab: Reports
+18:35:25 INFO    Opening tab Reports
+18:35:31 INFO    Selected tab: Reports
+18:35:37 ERROR    Report file does not exist in /opt/adva/fsp_nm/ws/webapps/reportdb
+18:35:37 [ERROR] Test  Create Inventory Report Service Inventory Report failed
+18:36:08 
+18:36:08 [INFO] Starting test step Check CSV Inventory Report Service Inventory Report
+18:36:08 Updating previous step variable: ReportID wiht value: False
+18:36:11 INFO    Opening tab Reports
+18:36:16 INFO    Selected tab: Reports
+18:36:41 ERROR    DownloadReport failed
+18:36:43 INFO    Opening tab Reports
+18:36:49 INFO    Selected tab: Reports
+18:37:10 No matching value found in any field.
+18:37:10 [Error] while processing CSV file: [Errno 2] No such file or directory: u'C:\\Users\\svt_nms\\Desktop\\Reports\\NoExist.csv'
+18:37:10 [Error] while processing CSV files: [Errno 2] No such file or directory: u'C:\\Users\\svt_nms\\Desktop\\Reports\\NoExist.csv'
+18:37:10 [PASSED] Test  Check CSV Inventory Report Service Inventory Report result is as expected in test set
+18:37:40 
+18:37:40 [INFO] Starting test step Check PDF Inventory Report Service Inventory Report
+18:37:41 Updating previous step variable: ReportID wiht value: False
+18:37:43 INFO    Opening tab Reports
+18:37:48 INFO    Selected tab: Reports
+18:38:14 ERROR    DownloadReport failed
+18:38:16 INFO    Opening tab Reports
+18:38:21 INFO    Selected tab: Reports
+18:38:43 No matching value found in any field.
+18:38:43 ERROR    OpenPDF failed
+18:38:45 ERROR    ComparePDF failed
+18:38:45 [ERROR] Test  Check PDF Inventory Report Service Inventory Report failed
+18:38:46 Collecting DB and logs due to test fault
+18:38:46 Collecting database, logs and screenshot under directory: C:/jenkins/workspace/Reports 17.1.1 Dev/QF-Test/tests/Reports/logs/log_20250528_154344/1748450326417
+18:46:17 INFO    Artefacts colleted at: C:/jenkins/workspace/Reports 17.1.1 Dev/QF-Test/tests/Reports/logs/log_20250528_154344/1748450326417
+18:46:48 
+18:46:48 [INFO] Starting test step Delete Inventory Report Service Inventory Report
+18:46:48 Updating previous step variable: ReportID wiht value: False
+18:46:51 INFO    Opening tab Reports
+18:46:56 INFO    Selected tab: Reports
+18:47:31 INFO    Opening tab Reports
+18:47:36 INFO    Selected tab: Reports
+18:48:04 INFO    Opening tab Reports
+18:48:10 INFO    Selected tab: Reports
+18:48:35 ERROR    DeleteReport failed
+18:48:38 INFO    Opening tab Reports
+18:48:43 INFO    Selected tab: Reports
+18:49:04 No matching value found in any field.
+18:49:07 INFO    Opening tab Reports
+18:49:12 INFO    Selected tab: Reports
+18:49:47 INFO    Opening tab Reports
+18:49:52 INFO    Selected tab: Reports
+18:50:14 [ERROR] Test  Delete Inventory Report Service Inventory Report failed
+18:50:45 
+18:50:45 [INFO] Starting test step Create Inventory Report Custom Report
+18:50:52 INFO    Opening tab Reports
+18:50:58 INFO    Selected tab: Reports
+18:51:22 INFO    Opening tab Reports
+18:51:27 INFO    Selected tab: Reports
+18:52:10 INFO    Opening tab Reports
+18:52:15 INFO    Selected tab: Reports
+18:52:31 Info: table_new contains only a default empty row (ID = '0').
+18:52:34 INFO    Opening tab Reports
+18:52:39 INFO    Selected tab: Reports
+18:53:21 INFO    Opening tab Reports
+18:53:26 INFO    Selected tab: Reports
+18:53:33 ERROR    Report file does not exist in /opt/adva/fsp_nm/ws/webapps/reportdb
+18:53:33 [ERROR] Test  Create Inventory Report Custom Report failed
+18:54:04 
+18:54:04 [INFO] Starting test step Check CSV Inventory Report Custom Report
+18:54:04 Updating previous step variable: ReportID wiht value: False
+18:54:06 INFO    Opening tab Reports
+18:54:11 INFO    Selected tab: Reports
+18:54:37 ERROR    DownloadReport failed
+18:54:39 INFO    Opening tab Reports
+18:54:44 INFO    Selected tab: Reports
+18:55:06 No matching value found in any field.
+18:55:06 [Error] while processing CSV file: [Errno 2] No such file or directory: u'C:\\Users\\svt_nms\\Desktop\\Reports\\NoExist.csv'
+18:55:06 [Error] while processing CSV files: [Errno 2] No such file or directory: u'C:\\Users\\svt_nms\\Desktop\\Reports\\NoExist.csv'
+18:55:06 [PASSED] Test  Check CSV Inventory Report Custom Report result is as expected in test set
+18:55:36 
+18:55:36 [INFO] Starting test step Check PDF Inventory Report Custom Report
+18:55:36 Updating previous step variable: ReportID wiht value: False
+18:55:38 INFO    Opening tab Reports
+18:55:44 INFO    Selected tab: Reports
+18:56:09 ERROR    DownloadReport failed
+18:56:11 INFO    Opening tab Reports
+18:56:17 INFO    Selected tab: Reports
+18:56:38 No matching value found in any field.
+18:56:39 ERROR    OpenPDF failed
+18:56:41 ERROR    ComparePDF failed
+18:56:41 [ERROR] Test  Check PDF Inventory Report Custom Report failed
+18:56:41 Collecting DB and logs due to test fault
+18:56:41 Collecting database, logs and screenshot under directory: C:/jenkins/workspace/Reports 17.1.1 Dev/QF-Test/tests/Reports/logs/log_20250528_154344/1748451402076
+19:04:07 INFO    Artefacts colleted at: C:/jenkins/workspace/Reports 17.1.1 Dev/QF-Test/tests/Reports/logs/log_20250528_154344/1748451402076
+19:04:37 
+19:04:37 [INFO] Starting test step Delete Inventory Report Custom Report
+19:04:37 Updating previous step variable: ReportID wiht value: False
+19:04:40 INFO    Opening tab Reports
+19:04:45 INFO    Selected tab: Reports
+19:05:20 INFO    Opening tab Reports
+19:05:26 INFO    Selected tab: Reports
+19:05:54 INFO    Opening tab Reports
+19:05:59 INFO    Selected tab: Reports
+19:06:24 ERROR    DeleteReport failed
+19:06:27 INFO    Opening tab Reports
+19:06:32 INFO    Selected tab: Reports
+19:06:54 No matching value found in any field.
+19:06:56 INFO    Opening tab Reports
+19:07:02 INFO    Selected tab: Reports
+19:07:36 INFO    Opening tab Reports
+19:07:42 INFO    Selected tab: Reports
+19:08:03 [ERROR] Test  Delete Inventory Report Custom Report failed
+19:08:34 
+19:08:34 [INFO] Starting test step Create Inventory Report Summary Report (Network Elements)
+19:08:41 INFO    Opening tab Reports
+19:08:47 INFO    Selected tab: Reports
+19:09:10 INFO    Opening tab Reports
+19:09:16 INFO    Selected tab: Reports
+19:09:59 INFO    Opening tab Reports
+19:10:04 INFO    Selected tab: Reports
+19:10:20 Info: table_new contains only a default empty row (ID = '0').
+19:10:23 INFO    Opening tab Reports
+19:10:28 INFO    Selected tab: Reports
+19:11:10 INFO    Opening tab Reports
+19:11:15 INFO    Selected tab: Reports
+19:11:22 ERROR    Report file does not exist in /opt/adva/fsp_nm/ws/webapps/reportdb
+19:11:22 [ERROR] Test  Create Inventory Report Summary Report (Network Elements) failed
+19:11:53 
+19:11:53 [INFO] Starting test step Check CSV Inventory Report Summary Report (Network Elements)
+19:11:53 Updating previous step variable: ReportID wiht value: False
+19:11:55 INFO    Opening tab Reports
+19:12:01 INFO    Selected tab: Reports
+19:12:26 ERROR    DownloadReport failed
+19:12:28 INFO    Opening tab Reports
+19:12:33 INFO    Selected tab: Reports
+19:12:55 No matching value found in any field.
+19:12:55 [Error] while processing CSV file: [Errno 2] No such file or directory: u'C:\\Users\\svt_nms\\Desktop\\Reports\\NoExist.csv'
+19:12:55 [Error] while processing CSV files: [Errno 2] No such file or directory: u'C:\\Users\\svt_nms\\Desktop\\Reports\\NoExist.csv'
+19:12:55 [PASSED] Test  Check CSV Inventory Report Summary Report (Network Elements) result is as expected in test set
+19:13:25 
+19:13:25 [INFO] Starting test step Check PDF Inventory Report Summary Report (Network Elements)
+19:13:25 Updating previous step variable: ReportID wiht value: False
+19:13:28 INFO    Opening tab Reports
+19:13:33 INFO    Selected tab: Reports
+19:13:58 ERROR    DownloadReport failed
+19:14:00 INFO    Opening tab Reports
+19:14:06 INFO    Selected tab: Reports
+19:14:27 No matching value found in any field.
+19:14:27 ERROR    OpenPDF failed
+19:14:30 ERROR    ComparePDF failed
+19:14:30 [ERROR] Test  Check PDF Inventory Report Summary Report (Network Elements) failed
+19:14:30 Collecting DB and logs due to test fault
+19:14:30 Collecting database, logs and screenshot under directory: C:/jenkins/workspace/Reports 17.1.1 Dev/QF-Test/tests/Reports/logs/log_20250528_154344/1748452470994
+19:22:03 INFO    Artefacts colleted at: C:/jenkins/workspace/Reports 17.1.1 Dev/QF-Test/tests/Reports/logs/log_20250528_154344/1748452470994
+19:22:34 
+19:22:34 [INFO] Starting test step Delete Inventory Report Summary Report (Network Elements)
+19:22:34 Updating previous step variable: ReportID wiht value: False
+19:22:36 INFO    Opening tab Reports
+19:22:42 INFO    Selected tab: Reports
+19:23:17 INFO    Opening tab Reports
+19:23:22 INFO    Selected tab: Reports
+19:23:50 INFO    Opening tab Reports
+19:23:56 INFO    Selected tab: Reports
+19:24:21 ERROR    DeleteReport failed
+19:24:24 INFO    Opening tab Reports
+19:24:29 INFO    Selected tab: Reports
+19:24:51 No matching value found in any field.
+19:24:53 INFO    Opening tab Reports
+19:24:58 INFO    Selected tab: Reports
+19:25:33 INFO    Opening tab Reports
+19:25:39 INFO    Selected tab: Reports
+19:26:00 [ERROR] Test  Delete Inventory Report Summary Report (Network Elements) failed
+19:26:31 
+19:26:31 [INFO] Starting test step Create Recuring Inventory Report
+19:26:31 Tab name: Network
+19:26:38 INFO    Opening tab Reports
+19:26:44 INFO    Selected tab: Reports
+19:27:16 INFO    Opened window: Recurring Actions
+19:27:51 INFO    Recurring actions window opened , try to Enable selected option
+19:27:59 INFO    Recurring actions, Save configuration and waiting for Confirmation dialog to appear
+19:30:20 INFO    Opening tab Reports
+19:30:25 INFO    Selected tab: Reports
+19:30:49 INFO    Opening tab Reports
+19:30:54 INFO    Selected tab: Reports
+19:32:08 INFO    Opening tab Reports
+19:32:14 INFO    Selected tab: Reports
+19:32:35 ERROR    OpenPDF failed
+19:32:38 ERROR    ComparePDF failed
+19:32:38 [Error] while processing CSV file: [Errno 2] No such file or directory: u'C:\\Users\\svt_nms\\Desktop\\Reports\\Network_2025-05-28 19.29.55.csv'
+19:32:38 [Error] while processing CSV files: [Errno 2] No such file or directory: u'C:\\Users\\svt_nms\\Desktop\\Reports\\Network_2025-05-28 19.29.55.csv'
+19:32:38 [ERROR] Procedure Reports.TestRecuringActions error occured
+19:32:39 Collecting database, logs and screenshot under directory: C:/jenkins/workspace/Reports 17.1.1 Dev/QF-Test/tests/Reports/logs/log_20250528_154344/1748453559229
+19:40:16 INFO    Artefacts colleted at: C:/jenkins/workspace/Reports 17.1.1 Dev/QF-Test/tests/Reports/logs/log_20250528_154344/1748453559229
+19:40:16 Procedure 'reports.testReportFormat' not found
+19:40:46 
+19:40:46 [INFO] Starting test step Getting information about unprotected 9TCE-PCN-CFC
+19:42:01 INFO    CfC service object detected in tree
+19:42:45 INFO    Service was created service name: DS(ETH-10G-FSR): N213/CH-2-6-C3 --- N211/CH-2-6-C3
+19:42:58 INFO    Service should be in ML Model.
+19:42:58 [PASSED] Test  Getting information about unprotected 9TCE-PCN-CFC result is as expected in test set
+19:43:28 
+19:43:28 [INFO] Starting test step Delete service 9TCE-PCN-CFC
+19:43:28 Updating previous step variable: service_name wiht value: DS(ETH-10G-FSR): N213/CH-2-6-C3 --- N211/CH-2-6-C3
+19:43:28 Updating previous step variable: service_object_name wiht value: 9TCE-PCN-CFC
+19:43:29 INFO    Removing service completly started
+19:44:28 INFO    Delete... confirmed in dialog
+19:44:28 INFO    Delete completly start checking label: Delete Service 9TCE-PCN-CFC
+19:49:32 INFO    Checking if service is visible in tree after deletion.
+19:49:32 INFO    Searching service in tree loop 0 of 5
+19:50:08 INFO    Service not visible in tree anymore
+19:50:08 [PASSED] Test  Delete service 9TCE-PCN-CFC result is as expected in test set
+19:50:39 
+19:50:39 [INFO] Starting test step Getting information about unprotected 9TCE-PCN-NFC
+19:51:39 INFO    CfC service object detected in tree
+19:52:22 INFO    Service was created service name: OTN(ODU2E): N213/CH-2-6-N3 --- N211/CH-2-6-N3
+19:52:36 INFO    Service should be in ML Model.
+19:52:36 [PASSED] Test  Getting information about unprotected 9TCE-PCN-NFC result is as expected in test set
+19:53:06 
+19:53:06 [INFO] Starting test step Delete service 9TCE-PCN-CNFC
+19:53:06 Updating previous step variable: service_name wiht value: OTN(ODU2E): N213/CH-2-6-N3 --- N211/CH-2-6-N3
+19:53:06 Updating previous step variable: service_object_name wiht value: 9TCE-PCN-NFC
+19:53:06 INFO    Removing service completly started
+19:54:06 INFO    Delete... confirmed in dialog
+19:54:06 INFO    Delete completly start checking label: Delete Service 9TCE-PCN-NFC
+19:59:09 INFO    Checking if service is visible in tree after deletion.
+19:59:09 INFO    Searching service in tree loop 0 of 5
+19:59:46 INFO    Service not visible in tree anymore
+19:59:46 [PASSED] Test  Delete service 9TCE-PCN-CNFC result is as expected in test set
+20:00:30 QF-Test result: 2
+20:00:30 Batch result: 0
+20:00:30 New run name is '17459'
+20:00:31 Archiving artifacts
+20:00:31 [htmlpublisher] Archiving HTML reports...
+20:00:31 [htmlpublisher] Archiving at BUILD level C:\jenkins\workspace\Reports 17.1.1 Dev\runlog to /var/lib/jenkins/jobs/Reports 17.1.1 Dev/builds/21/htmlreports/HTML_20Report
+20:00:35 Recording test results
+20:00:35 [Checks API] No suitable checks publisher found.
+20:00:35 Build step 'Publish JUnit test result report' changed build result to UNSTABLE
+20:00:35 [description-setter] Description set: ENC: 17.1.1 build 17459 NE software: 23.5.2
+20:00:36 Finished: UNSTABLE
+REST API
+Jenkins 2.332.2
