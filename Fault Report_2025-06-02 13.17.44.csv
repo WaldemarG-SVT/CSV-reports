@@ -1,0 +1,57 @@
+NE|Ack|Source|Severity|RaisedTime|ClearedTime|ServiceImpairment|TroubleCauseCorrelation|Description|Duration|AID
+//Network/N220-N228/N220|false|N220 (10.12.17.220)|Critical|2025-06-02 12:58:26 CEST|alarm still active|SA|PRM|Equipment Removed|19m 23s|MOD-3-2
+//Network/N220-N228/N220|false|N220 (10.12.17.220)|Critical|2025-06-02 12:58:26 CEST|alarm still active|SA|PRM|Equipment Removed|19m 23s|MOD-3-6
+//Network/N220-N228/N220|false|N220 (10.12.17.220)|Warning|2025-06-02 12:55:27 CEST|alarm still active|NSA|PRM|FWP-Mismatch (SA)|22m 22s|MOD-3-21
+//Network/N220-N228/N220|false|N220 (10.12.17.220)|Warning|2025-06-02 12:55:26 CEST|alarm still active|NSA|PRM|FWP-Mismatch (SA)|22m 23s|FCU-3
+//Network/N220-N228/N220|false|N220 (10.12.17.220)|Warning|2025-06-02 12:49:23 CEST|alarm still active|NSA|PRM|OOS State Transition|28m 26s|TNL-WDM: Service 1 of 123
+//Network/N220-N228/N220|false|N220 (10.12.17.220)|Minor|2025-05-28 17:52:38 CEST|2025-06-02 12:49:12 CEST|NSA|PRM|NTP-Setup Required|4d 18h 56m 33s|NE
+//Network/N220-N228/N220|false|N220 (10.12.17.220)|Major|2025-05-28 17:52:38 CEST|2025-06-02 12:49:12 CEST|NSA|PRM|NTP-No Synchronization|4d 18h 56m 34s|NTPSRV-NTP-1339
+//Network/N220-N228/N220|false|N220 (10.12.17.220)|Critical|2025-05-28 17:52:10 CEST|2025-06-02 12:55:25 CEST|SA|PRM|Equipment Removed|4d 19h 3m 15s|SHELF-3
+//Network/N220-N228/N221|false|N221 (10.12.17.221)|Critical|2025-06-02 12:58:41 CEST|alarm still active|SA|PRM|Equipment Removed|19m 8s|MOD-2-1
+//Network/N220-N228/N221|false|N221 (10.12.17.221)|Minor|2018-01-01 01:02:43 CET|2025-06-02 12:49:26 CEST|NSA|PRM|NTP-Setup Required|90m 1w 2d 10h 46m 42s|NE
+//Network/N220-N228/N221|false|N221 (10.12.17.221)|Major|2018-01-01 01:02:43 CET|2025-06-02 12:49:26 CEST|NSA|PRM|NTP-No Synchronization|90m 1w 2d 10h 46m 43s|NTPSRV-NTP-1339
+//Network/N220-N228/N221|false|N221 (10.12.17.221)|Major|2018-01-01 01:02:21 CET|alarm still active|SA|PRM|Loss of Signal|28m 45s|SC-1-18-N-OSC
+//Network/N220-N228/N221|false|N221 (10.12.17.221)|Critical|2018-01-01 01:02:16 CET|2025-06-02 12:55:40 CEST|SA|PRM|Equipment Removed|90m 1w 2d 10h 53m 24s|SHELF-2
+//Network/N220-N228/N223|false|N223 (10.12.17.223)|Warning|2025-06-02 12:56:00 CEST|alarm still active|NSA|PRM|FWP-Mismatch (SA)|21m 49s|MOD-3-21
+//Network/N220-N228/N223|false|N223 (10.12.17.223)|Warning|2025-06-02 12:55:59 CEST|alarm still active|NSA|PRM|FWP-Mismatch (SA)|21m 50s|FCU-3
+//Network/N220-N228/N223|false|N223 (10.12.17.223)|Major|2025-06-02 12:49:42 CEST|alarm still active|NSA|PRM|Validity Date Invalid|28m 7s|PKI_CERT-14
+//Network/N220-N228/N223|false|N223 (10.12.17.223)|Minor|2018-01-01 01:03:32 CET|2025-06-02 12:50:27 CEST|NSA|PRM|NTP-Setup Required|90m 1w 2d 10h 46m 54s|NE
+//Network/N220-N228/N223|false|N223 (10.12.17.223)|Major|2018-01-01 01:03:31 CET|2025-06-02 12:50:27 CEST|NSA|PRM|NTP-No Synchronization|90m 1w 2d 10h 46m 55s|NTPSRV-NTP-1339
+//Network/N220-N228/N223|false|N223 (10.12.17.223)|Major|2018-01-01 01:03:30 CET|alarm still active|NSA|PRM|Issuer Invalid|27m 34s|PKI_CERT-14
+//Network/N220-N228/N223|false|N223 (10.12.17.223)|Major|2018-01-01 01:03:01 CET|alarm still active|NSA|PRM|External Link Fail|27m 34s|SC-1-4-NE
+//Network/N220-N228/N223|false|N223 (10.12.17.223)|Critical|2018-01-01 01:02:55 CET|2025-06-02 12:55:58 CEST|SA|PRM|Equipment Removed|90m 1w 2d 10h 53m 3s|SHELF-3
+//Network/N220-N228/N224|false|N224 (10.12.17.224)|Minor|2018-01-01 01:03:19 CET|2025-06-02 12:50:23 CEST|NSA|PRM|NTP-Setup Required|90m 1w 2d 10h 47m 4s|NE
+//Network/N220-N228/N224|false|N224 (10.12.17.224)|Major|2018-01-01 01:03:19 CET|2025-06-02 12:50:23 CEST|NSA|PRM|NTP-No Synchronization|90m 1w 2d 10h 47m 4s|NTPSRV-NTP-1339
+//Network/N220-N228/N224|false|N224 (10.12.17.224)|Critical|2018-01-01 01:02:55 CET|alarm still active|SA|PRM|Loss of Signal|27m 51s|OM-2-5-C4
+//Network/N220-N228/N224|false|N224 (10.12.17.224)|Critical|2018-01-01 01:02:55 CET|alarm still active|SA|PRM|Loss of Signal|27m 51s|OM-2-5-C1
+//Network/N220-N228/N224|false|N224 (10.12.17.224)|Critical|2018-01-01 01:02:55 CET|alarm still active|SA|PRM|Loss of Signal|27m 51s|OM-2-5-N
+//Network/N220-N228/N224|false|N224 (10.12.17.224)|Critical|2018-01-01 01:02:55 CET|alarm still active|SA|PRM|Loss of Signal|27m 51s|OM-2-5-C2
+//Network/N220-N228/N224|false|N224 (10.12.17.224)|Critical|2018-01-01 01:02:55 CET|alarm still active|SA|PRM|Loss of Signal|27m 51s|OM-2-5-C3
+//Network/N220-N228/N224|false|N224 (10.12.17.224)|Major|2018-01-01 01:02:53 CET|alarm still active|NSA|PRM|External Link Fail|27m 51s|SC-1-3-NW
+//Network/N220-N228/N225|false|N225 (10.12.17.225)|Minor|2025-06-02 12:53:36 CEST|alarm still active|NSA|PRM|Optical Power Tx Low|24m 3s|OM-1-16-C2
+//Network/N220-N228/N225|false|N225 (10.12.17.225)|Minor|2025-06-02 12:53:36 CEST|alarm still active|NSA|PRM|Optical Power Tx Low|24m 3s|OM-1-16-C1
+//Network/N220-N228/N225|false|N225 (10.12.17.225)|Minor|2025-06-02 12:53:36 CEST|alarm still active|NSA|PRM|Optical Power Tx Low|24m 3s|OM-1-16-C3
+//Network/N220-N228/N225|false|N225 (10.12.17.225)|Minor|2025-06-02 12:53:36 CEST|alarm still active|NSA|PRM|Optical Power Rx Low|24m 4s|OM-1-5-C2
+//Network/N220-N228/N225|false|N225 (10.12.17.225)|Minor|2025-06-02 12:53:35 CEST|alarm still active|NSA|PRM|Optical Power Rx Low|24m 4s|OM-1-13-C2
+//Network/N220-N228/N225|false|N225 (10.12.17.225)|Minor|2025-06-02 12:53:35 CEST|alarm still active|NSA|PRM|Optical Power Rx Low|24m 4s|OM-1-16-N
+//Network/N220-N228/N225|false|N225 (10.12.17.225)|Minor|2025-06-02 12:53:35 CEST|alarm still active|NSA|PRM|Optical Power Rx Low|24m 5s|OM-1-10-C2
+//Network/N220-N228/N225|false|N225 (10.12.17.225)|Major|2025-06-02 12:53:34 CEST|2025-06-02 12:53:36 CEST|SA|PRM|Gain/Tilt Abnormal|2s|OM-1-18-1
+//Network/N220-N228/N225|false|N225 (10.12.17.225)|Minor|2025-06-02 12:53:31 CEST|alarm still active|NSA|PRM|Optical Power Rx Low|24m 8s|OM-1-18-1
+//Network/N220-N228/N225|false|N225 (10.12.17.225)|Warning|2025-06-02 12:49:15 CEST|2025-06-02 12:49:45 CEST|NSA|PRM|FEND Info Mismatch|29s|LIF_CP-3
+//Network/N220-N228/N225|false|N225 (10.12.17.225)|Major|2025-06-02 12:48:46 CEST|2025-06-02 12:48:49 CEST|NSA|PRM|Network element does not respond to SNMP requests|2s|
+//Network/N220-N228/N225|false|N225 (10.12.17.225)|Critical|2025-06-02 12:46:13 CEST|alarm still active|SA|PRM|OPT Signal Fail|24m 5s|OM-1-10-N
+//Network/N220-N228/N225|false|N225 (10.12.17.225)|Minor|2018-01-01 01:02:48 CET|2025-06-02 12:49:57 CEST|NSA|PRM|NTP-Setup Required|90m 1w 2d 10h 47m 8s|NE
+//Network/N220-N228/N225|false|N225 (10.12.17.225)|Major|2018-01-01 01:02:48 CET|2025-06-02 12:49:57 CEST|NSA|PRM|NTP-No Synchronization|90m 1w 2d 10h 47m 8s|NTPSRV-NTP-1339
+//Network/N220-N228/N226|false|N226 (10.12.17.226)|Major|2025-06-02 12:48:33 CEST|alarm still active|NSA|PRM|Issuer Invalid|28m 10s|PKI_CERT-15
+//Network/N220-N228/N226|false|N226 (10.12.17.226)|Major|2025-06-02 12:48:33 CEST|alarm still active|NSA|PRM|Validity Date Invalid|28m 10s|PKI_CERT-15
+//Network/N220-N228/N226|false|N226 (10.12.17.226)|Minor|2018-01-01 01:02:33 CET|2025-06-02 12:49:47 CEST|NSA|PRM|NTP-Setup Required|90m 1w 2d 10h 47m 13s|NE
+//Network/N220-N228/N226|false|N226 (10.12.17.226)|Major|2018-01-01 01:02:33 CET|2025-06-02 12:49:47 CEST|NSA|PRM|NTP-No Synchronization|90m 1w 2d 10h 47m 13s|NTPSRV-NTP-1339
+//Network/N220-N228/N227|false|N227 (10.12.17.227)|Minor|2018-01-01 01:03:30 CET|2025-06-02 12:50:49 CEST|NSA|PRM|NTP-Setup Required|90m 1w 2d 10h 47m 18s|NE
+//Network/N220-N228/N227|false|N227 (10.12.17.227)|Major|2018-01-01 01:03:30 CET|2025-06-02 12:50:49 CEST|NSA|PRM|NTP-No Synchronization|90m 1w 2d 10h 47m 19s|NTPSRV-NTP-1339
+//Network/N220-N228/N228|false|N228 (10.12.17.228)|Minor|2025-06-02 12:51:21 CEST|2025-06-02 12:51:45 CEST|NSA|PRM|Optical Power Rx Low|24s|OM-1-10-C2
+//Network/N220-N228/N228|false|N228 (10.12.17.228)|Minor|2025-06-02 12:51:21 CEST|alarm still active|NSA|PRM|Optical Power Rx Low|26m 19s|OM-1-17-1
+//Network/N220-N228/N228|false|N228 (10.12.17.228)|Major|2025-06-02 12:49:56 CEST|2025-06-02 12:50:03 CEST|NSA|PRM|Network element does not respond to SNMP requests|6s|
+//Network/N220-N228/N228|false|N228 (10.12.17.228)|Major|2025-06-02 12:49:53 CEST|alarm still active|NSA|PRM|Validity Date Invalid|27m 16s|PKI_CERT-8
+//Network/N220-N228/N228|false|N228 (10.12.17.228)|Critical|2025-06-02 12:46:49 CEST|alarm still active|SA|PRM|OPT Signal Fail|26m 17s|OM-1-5-N
+//Network/N220-N228/N228|false|N228 (10.12.17.228)|Minor|2018-01-01 01:03:30 CET|2025-06-02 12:50:59 CEST|NSA|PRM|NTP-Setup Required|90m 1w 2d 10h 47m 29s|NE
+//Network/N220-N228/N228|false|N228 (10.12.17.228)|Major|2018-01-01 01:03:30 CET|2025-06-02 12:50:59 CEST|NSA|PRM|NTP-No Synchronization|90m 1w 2d 10h 47m 29s|NTPSRV-NTP-1339
