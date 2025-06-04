@@ -2,53 +2,121 @@ Step Name;Step Report Name;Step Data;Data Object id;Previous Step Passed;Step Re
 utils.PrintUseCase;Starting testing Reports;test_cases_reports.json;message_reports;FALSE;TRUE;FALSE;
 sm.CreateProvisionNFC;Create service 9TCE-PCN-NFC;test_cases_encryption.json;createNFC;FALSE;TRUE;FALSE;
 sm.CreateProvisionODS;Create service 9TCE-PCN-CFC;test_cases_encryption.json;createCFC;FALSE;TRUE;FALSE;
-sm.CreateProvisionNFC;Create 4WCC NFC service;test_cases_restoration.json;createNFC;FALSE;TRUE;FALSE;
-sm.CreateProvisionODS;Create unprotected CFC ETH-10G on 4WCC;test_cases_restoration.json;createCFC;FALSE;TRUE;FALSE;
-sm.CreateProvisionNFC;Create 16TCC NFC service on port NE;test_cases.json;Create_16TCC_NFC;FALSE;TRUE;FALSE;
-sm.CreateProvisionNFC;Create 16TCC NFC service on port NW;test_cases.json;Create_16TCC_NFC_NW;FALSE;TRUE;FALSE;
-sm.CreateProvisionODS;Create protected CFC ETH-10G on 16TCC;test_cases.json;Create_16TCC_CFC_protected;FALSE;TRUE;FALSE;
 Reports.PrepareFolder;Preparing a folder on desktop to download reports;;;FALSE;TRUE;FALSE;
-Reports.TestGenerateReport;Create Service Inventory Short;test_cases_reports.json;Service Inventory Report Short;FALSE;TRUE;FALSE;
-Reports.TestShortInventoryContent;Compare Service Inventory Short with Connections tab;test_cases_reports.json;Service Inventory Report Short;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
-Reports.TestDeleteReport;Delete Service Inventory Short;test_cases_reports.json;Service Inventory Report Short;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
-Reports.TestGenerateReport;Create Inventory Report Detailed Report RepComUseBySer RepComNotUseBySer;test_cases_reports.json;Inventory Report Detailed Report RepComUseBySer RepComNotUseBySer;FALSE;TRUE;FALSE;
-Reports.TestReportFormat;Check Inventory Report Detailed Report RepComUseBySer RepComNotUseBySer;test_cases_reports.json;Inventory Report Detailed Report RepComUseBySer RepComNotUseBySer;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
-Reports.TestDeleteReport;Delete Inventory Report Detailed Report RepComUseBySer RepComNotUseBySer;test_cases_reports.json;Inventory Report Detailed Report RepComUseBySer RepComNotUseBySer;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
-Reports.TestGenerateReport;Create Inventory Report Detailed Report RepComUseBySer;test_cases_reports.json;Inventory Report Detailed Report RepComUseBySer;FALSE;TRUE;FALSE;
-Reports.TestReportFormat;Check Inventory Report Detailed Report RepComUseBySer;test_cases_reports.json;Inventory Report Detailed Report RepComUseBySer;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
-Reports.TestDeleteReport;Delete Inventory Report Detailed Report RepComUseBySer;test_cases_reports.json;Inventory Report Detailed Report RepComUseBySer;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
-Reports.TestGenerateReport;Create Inventory Report Detailed Report RepComNotUseBySer;test_cases_reports.json;Inventory Report Detailed Report RepComNotUseBySer;FALSE;TRUE;FALSE;
-Reports.TestReportFormat;Check Inventory Report Detailed Report RepComNotUseBySer;test_cases_reports.json;Inventory Report Detailed Report RepComNotUseBySer;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
-Reports.TestDeleteReport;Delete Inventory Report Detailed Report RepComNotUseBySer;test_cases_reports.json;Inventory Report Detailed Report RepComNotUseBySer;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
-Reports.TestGenerateReport;Create Inventory Report Detailed Report;test_cases_reports.json;Inventory Report Detailed Report;FALSE;TRUE;FALSE;
-Reports.TestReportFormat;Check Inventory Report Detailed Report;test_cases_reports.json;Inventory Report Detailed Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
-Reports.TestDeleteReport;Delete Inventory Report Detailed Report;test_cases_reports.json;Inventory Report Detailed Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
-Reports.TestGenerateReport;Create Inventory Report Summary Report (Module Types);test_cases_reports.json;Inventory Report Summary Report (Module Types);FALSE;TRUE;FALSE;
-Reports.TestReportFormat;Check Inventory Report Summary Report (Module Types);test_cases_reports.json;Inventory Report Summary Report (Module Types);FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
-Reports.TestDeleteReport;Delete Inventory Report Summary Report (Module Types);test_cases_reports.json;Inventory Report Summary Report (Module Types);FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
-Reports.TestGenerateReport;Create Inventory Report Summary Report (WDM Channels);test_cases_reports.json;Inventory Report Summary Report (WDM Channels);FALSE;TRUE;FALSE;
-Reports.TestReportFormat;Check Inventory Report Summary Report (WDM Channels);test_cases_reports.json;Inventory Report Summary Report (WDM Channels);FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
-Reports.TestDeleteReport;Delete Inventory Report Summary Report (WDM Channels);test_cases_reports.json;Inventory Report Summary Report (WDM Channels);FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
-Reports.TestGenerateReport;Create Inventory Report Service Inventory Report;test_cases_reports.json;Inventory Report Service Inventory Report;FALSE;TRUE;FALSE;
-Reports.TestReportFormat;Check Inventory Report Service Inventory Report;test_cases_reports.json;Inventory Report Service Inventory Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
-Reports.TestDeleteReport;Delete Inventory Report Service Inventory Report;test_cases_reports.json;Inventory Report Service Inventory Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
-Reports.TestGenerateReport;Create Inventory Report Custom Report;test_cases_reports.json;Inventory Report Custom Report;FALSE;TRUE;FALSE;
-Reports.TestReportFormat;Check Inventory Report Custom Report;test_cases_reports.json;Inventory Report Custom Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
-Reports.TestDeleteReport;Delete Inventory Report Custom Report;test_cases_reports.json;Inventory Report Custom Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
-Reports.TestGenerateReport;Create Inventory Report Summary Report (Network Elements);test_cases_reports.json;Inventory Report Summary Report (Network Elements);FALSE;TRUE;FALSE;
-Reports.TestReportFormat;Check Inventory Report Summary Report (Network Elements);test_cases_reports.json;Inventory Report Summary Report (Network Elements);FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
-Reports.TestDeleteReport;Delete Inventory Report Summary Report (Network Elements);test_cases_reports.json;Inventory Report Summary Report (Network Elements);FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestGenerateReport;Create Service Inventory Short;test_cases_reports.json;Service_Inventory_Report_Short;FALSE;TRUE;FALSE;
+Reports.TestShortInventoryContent;Compare Service Inventory Short with Connections tab;test_cases_reports.json;Service_Inventory_Report_Short;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestReportPDF;Check PDF Service Inventory Report Short;test_cases_reports.json;Service_Inventory_Report_Short;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestDeleteReport;Delete Service Inventory Short;test_cases_reports.json;Service_Inventory_Report_Short;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestGenerateReport;Create Inventory Report Detailed Report RepComUseBySer RepComNotUseBySer;test_cases_reports.json;Inventory_Report_Detailed_Report_RepComUseBySer_RepComNotUseBySer;FALSE;TRUE;FALSE;
+Reports.TestReportCSV;Check CSV Inventory Report Detailed Report RepComUseBySer RepComNotUseBySer;test_cases_reports.json;Inventory_Report_Detailed_Report_RepComUseBySer_RepComNotUseBySer;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestReportPDF;Check PDF Inventory Report Detailed Report RepComUseBySer RepComNotUseBySer;test_cases_reports.json;Inventory_Report_Detailed_Report_RepComUseBySer_RepComNotUseBySer;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestDeleteReport;Delete Inventory Report Detailed Report RepComUseBySer RepComNotUseBySer;test_cases_reports.json;Inventory_Report_Detailed_Report_RepComUseBySer_RepComNotUseBySer;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+sm.SetAdmin;Set fibercut1;test_cases_reports.json;set_fibercut1;FALSE;TRUE;FALSE;
+sm.SetAdmin;Set fibercut2;test_cases_reports.json;set_fibercut2;FALSE;TRUE;FALSE;
+Reports.TestGenerateReport;Create Compact Fault ;test_cases_reports.json;Compact_Fault;FALSE;TRUE;FALSE;
+Reports.TestCompactFaultContent;Compare Compact Fault with Alarms tab;test_cases_reports.json;Compact_Fault;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestReportPDF;Check PDF Compact Fault;test_cases_reports.json;Compact_Fault;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestDeleteReport;Delete Compact Fault;test_cases_reports.json;Compact_Fault;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+sm.SetAdmin;Clear fibercut1;test_cases_reports.json;clear_fibercut1;FALSE;TRUE;FALSE;
+sm.SetAdmin;Clear fibercut2;test_cases_reports.json;clear_fibercut2;FALSE;TRUE;FALSE;
+Reports.TestGenerateReport;Create Inventory Report Detailed Report RepComUseBySer;test_cases_reports.json;Inventory_Report_Detailed_Report_RepComUseBySer;FALSE;TRUE;FALSE;
+Reports.TestReportCSV;Check CSV Inventory Report Detailed Report RepComUseBySer;test_cases_reports.json;Inventory_Report_Detailed_Report_RepComUseBySer;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestReportPDF;Check PDF Inventory Report Detailed Report RepComUseBySer;test_cases_reports.json;Inventory_Report_Detailed_Report_RepComUseBySer;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestDeleteReport;Delete Inventory Report Detailed Report RepComUseBySer;test_cases_reports.json;Inventory_Report_Detailed_Report_RepComUseBySer;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestGenerateReport;Create Inventory Report Detailed Report RepComNotUseBySer;test_cases_reports.json;Inventory_Report_Detailed_Report_RepComNotUseBySer;FALSE;TRUE;FALSE;
+Reports.TestReportCSV;Check CSV Inventory Report Detailed Report RepComNotUseBySer;test_cases_reports.json;Inventory_Report_Detailed_Report_RepComNotUseBySer;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestReportPDF;Check PDF Inventory Report Detailed Report RepComNotUseBySer;test_cases_reports.json;Inventory_Report_Detailed_Report_RepComNotUseBySer;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestDeleteReport;Delete Inventory Report Detailed Report RepComNotUseBySer;test_cases_reports.json;Inventory_Report_Detailed_Report_RepComNotUseBySer;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestGenerateReport;Create Inventory Report Summary Report (Module Types);test_cases_reports.json;Inventory_Report_Summary_Report_(Module_Types);FALSE;TRUE;FALSE;
+Reports.TestReportCSV;Check CSV Inventory Report Summary Report (Module Types);test_cases_reports.json;Inventory_Report_Summary_Report_(Module_Types);FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestReportPDF;Check PDF Inventory Report Summary Report (Module Types);test_cases_reports.json;Inventory_Report_Summary_Report_(Module_Types);FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestDeleteReport;Delete Inventory Report Summary Report (Module Types);test_cases_reports.json;Inventory_Report_Summary_Report_(Module_Types);FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestGenerateReport;Create Inventory Report Summary Report (WDM Channels);test_cases_reports.json;Inventory_Report_Summary_Report_(WDM_Channels);FALSE;TRUE;FALSE;
+Reports.TestReportCSV;Check CSV Inventory Report Summary Report (WDM Channels);test_cases_reports.json;Inventory_Report_Summary_Report_(WDM_Channels);FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestReportPDF;Check PDF Inventory Report Summary Report (WDM Channels);test_cases_reports.json;Inventory_Report_Summary_Report_(WDM_Channels);FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestDeleteReport;Delete Inventory Report Summary Report (WDM Channels);test_cases_reports.json;Inventory_Report_Summary_Report_(WDM_Channels);FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestGenerateReport;Create Inventory Report Service Inventory Report;test_cases_reports.json;Inventory_Report_Service_Inventory_Report;FALSE;TRUE;FALSE;
+Reports.TestReportCSV;Check CSV Inventory Report Service Inventory Report;test_cases_reports.json;Inventory_Report_Service_Inventory_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestReportPDF;Check PDF Inventory Report Service Inventory Report;test_cases_reports.json;Inventory_Report_Service_Inventory_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestDeleteReport;Delete Inventory Report Service Inventory Report;test_cases_reports.json;Inventory_Report_Service_Inventory_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestGenerateReport;Create Inventory Report Custom Report;test_cases_reports.json;Inventory_Report_Custom_Report;FALSE;TRUE;FALSE;
+Reports.TestReportCSV;Check CSV Inventory Report Custom Report;test_cases_reports.json;Inventory_Report_Custom_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestDeleteReport;Delete Inventory Report Custom Report;test_cases_reports.json;Inventory_Report_Custom_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestGenerateReport;Create Inventory Report Summary Report (Network Elements);test_cases_reports.json;Inventory_Report_Summary_Report_(Network_Elements);FALSE;TRUE;FALSE;
+Reports.TestReportCSV;Check CSV Inventory Report Summary Report (Network Elements);test_cases_reports.json;Inventory_Report_Summary_Report_(Network_Elements);FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestReportPDF;Check PDF Inventory Report Summary Report (Network Elements);test_cases_reports.json;Inventory_Report_Summary_Report_(Network_Elements);FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestDeleteReport;Delete Inventory Report Summary Report (Network Elements);test_cases_reports.json;Inventory_Report_Summary_Report_(Network_Elements);FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestGenerateReport;Create Inventory Fault Report Full Report Overview Critical Major;test_cases_reports.json;Fault_Report_Full_Overview_Crit_Maj;FALSE;TRUE;FALSE;
+Reports.TestReportCSV;Check CSV Inventory Fault Report Full Report Overview Critical Major;test_cases_reports.json;Fault_Report_Full_Overview_Crit_Maj;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestReportPDF;Check PDF Inventory Fault Report Full Report Overview Critical Major;test_cases_reports.json;Fault_Report_Full_Overview_Crit_Maj;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestDeleteReport;Delete Inventory Fault Report Full Report Overview Critical Major;test_cases_reports.json;Fault_Report_Full_Overview_Crit_Maj;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestGenerateReport;Create Performance_Report;test_cases_reports.json;Performance_Report;FALSE;TRUE;FALSE;
+Reports.TestReportCSV;Check CSV Performance_Report;test_cases_reports.json;Performance_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestReportPDF;Check PDF Performance_Report;test_cases_reports.json;Performance_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestDeleteReport;Delete Performance_Report;test_cases_reports.json;Performance_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestGenerateReport;Create Security Report Minor Warning;test_cases_reports.json;Security_Report_Min_War;FALSE;TRUE;FALSE;
+Reports.TestReportCSV;Check CSV Security Report Minor Warning;test_cases_reports.json;Security_Report_Min_War;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestReportPDF;Check PDF Security Report Minor Warning;test_cases_reports.json;Security_Report_Min_War;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestDeleteReport;Delete Security Report Minor Warning;test_cases_reports.json;Security_Report_Min_War;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestGenerateReport;Create    Link Loss Report;test_cases_reports.json;Link_Loss_Report;FALSE;TRUE;FALSE;
+Reports.TestReportCSV;Check CSV Link Loss Report;test_cases_reports.json;Link_Loss_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestReportPDF;Check PDF Link Loss Report;test_cases_reports.json;Link_Loss_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestDeleteReport;Delete    Link Loss Report;test_cases_reports.json;Link_Loss_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestGenerateReport;Create    PTP Remote Slaves Report;test_cases_reports.json;PTP_Remote_Slaves_Report;FALSE;TRUE;FALSE;
+Reports.TestReportCSV;Check CSV PTP Remote Slaves Report;test_cases_reports.json;PTP_Remote_Slaves_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestReportPDF;Check PDF PTP Remote Slaves Report;test_cases_reports.json;PTP_Remote_Slaves_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestDeleteReport;Delete    PTP Remote Slaves Report;test_cases_reports.json;PTP_Remote_Slaves_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestGenerateReport;Create    Bandwidth Utilization Report For 12.5GHz;test_cases_reports.json;Bandwidth_Utilization_Report_12.5;FALSE;TRUE;FALSE;
+Reports.TestReportCSV;Check CSV Bandwidth Utilization Report For 12.5GHz;test_cases_reports.json;Bandwidth_Utilization_Report_12.5;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestDeleteReport;Delete    Bandwidth Utilization Report For 12.5GHz;test_cases_reports.json;Bandwidth_Utilization_Report_12.5;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestGenerateReport;Create    NE Backup Report;test_cases_reports.json;NE_Backup_Report;FALSE;TRUE;FALSE;
+Reports.TestReportCSV;Check CSV NE Backup Report;test_cases_reports.json;NE_Backup_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestReportPDF;Check PDF NE Backup Report;test_cases_reports.json;NE_Backup_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestDeleteReport;Delete    NE Backup Report;test_cases_reports.json;NE_Backup_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestGenerateReport;Create    Topology Report;test_cases_reports.json;Topology_Report;FALSE;TRUE;FALSE;
+Reports.TestReportCSV;Check CSV Topology Report;test_cases_reports.json;Topology_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestReportPDF;Check PDF Topology Report;test_cases_reports.json;Topology_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestDeleteReport;Delete    Topology Report;test_cases_reports.json;Topology_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestGenerateReport;Create    Fiber Assurance Performance Summary Report;test_cases_reports.json;Fiber_Assurance_Performance_Summary_Report;FALSE;TRUE;FALSE;
+Reports.TestReportCSV;Check CSV Fiber Assurance Performance Summary Report;test_cases_reports.json;Fiber_Assurance_Performance_Summary_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestReportPDF;Check PDF Fiber Assurance Performance Summary Report;test_cases_reports.json;Fiber_Assurance_Performance_Summary_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestDeleteReport;Delete    Fiber Assurance Performance Summary Report;test_cases_reports.json;Fiber_Assurance_Performance_Summary_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestGenerateReport;Create    Service Fault Report Full Critical Major Minor Service Affecting;test_cases_reports.json;Service_Fault_Report_Full_Crit_Maj_Min_SA;FALSE;TRUE;FALSE;
+Reports.TestReportCSV;Check CSV Service Fault Report Full Critical Major Minor Service Affecting;test_cases_reports.json;Service_Fault_Report_Full_Crit_Maj_Min_SA;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestReportPDF;Check PDF Service Fault Report Full Critical Major Minor Service Affecting;test_cases_reports.json;Service_Fault_Report_Full_Crit_Maj_Min_SA;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestDeleteReport;Delete    Service Fault Report Full Critical Major Minor Service Affecting;test_cases_reports.json;Service_Fault_Report_Full_Crit_Maj_Min_SA;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestGenerateReport;Create    Service Service Performance Report;test_cases_reports.json;Service_Performance_Report;FALSE;TRUE;FALSE;
+Reports.TestReportCSV;Check CSV Service Service Performance Report;test_cases_reports.json;Service_Performance_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestReportPDF;Check PDF Service Service Performance Report;test_cases_reports.json;Service_Performance_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestDeleteReport;Delete    Service Service Performance Report;test_cases_reports.json;Service_Performance_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestRecuringActions;Create Recuring Bandwidth Utilization Report;test_cases_reports.json;Recuring_Bandwidth_Utilization_Report;FALSE;TRUE;FALSE;
+Reports.TestReportCSV;Check CSV Recuring Bandwidth Utilization Report;test_cases_reports.json;Recuring_Bandwidth_Utilization_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestReportPDF;Check PDF Recuring Bandwidth Utilization Report;test_cases_reports.json;Recuring_Bandwidth_Utilization_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""}"
+Reports.TestRecuringActions;Create Recuring Inventory Report ;test_cases_reports.json;Recuring_Inventory_Report;FALSE;TRUE;FALSE;
+Reports.TestReportCSV;Check CSV Recuring Inventory Report;test_cases_reports.json;Recuring_Inventory_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""""tab_name"":""tab_name""}"
+Reports.TestReportPDF;Check PDF Recuring Inventory Report;test_cases_reports.json;Recuring_Inventory_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""""tab_name"":""tab_name""}"
+Reports.TestRecuringActions;Create Recuring Service Inventory Report ;test_cases_reports.json;Recuring_Service_Inventory_Report;FALSE;TRUE;FALSE;
+Reports.TestReportCSV;Check CSV Recuring Service Inventory Report;test_cases_reports.json;Recuring_Service_Inventory_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""""tab_name"":""tab_name""}"
+Reports.TestReportPDF;Check PDF Recuring Service Inventory Report;test_cases_reports.json;Recuring_Service_Inventory_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""""tab_name"":""tab_name""}"
+Reports.TestRecuringActions;Create Recuring Link Loss Report;test_cases_reports.json;Recuring_Link_Loss_Report;FALSE;TRUE;FALSE;
+Reports.TestReportCSV;Check CSV Recuring Link Loss Report;test_cases_reports.json;Recuring_Link_Loss_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""""tab_name"":""tab_name""}"
+Reports.TestReportPDF;Check PDF Recuring Link Loss Report;test_cases_reports.json;Recuring_Link_Loss_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""""tab_name"":""tab_name""}"
+Reports.TestRecuringActions;Create Recuring NE Backup Report;test_cases_reports.json;Recuring_NE_Backup_Report;FALSE;TRUE;FALSE;
+Reports.TestReportCSV;Check CSV Recuring NE Backup Report;test_cases_reports.json;Recuring_NE_Backup_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""""tab_name"":""tab_name""}"
+Reports.TestReportPDF;Check PDF Recuring NE Backup Report;test_cases_reports.json;Recuring_NE_Backup_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""""tab_name"":""tab_name""}"
+Reports.TestRecuringActions;Create Recuring Power Consumption Report;test_cases_reports.json;Recuring_Power_Consumption_Report;FALSE;TRUE;FALSE;
+Reports.TestReportCSV;Check CSV Recuring Power Consumption Report;test_cases_reports.json;Recuring_Power_Consumption_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""""tab_name"":""tab_name""}"
+Reports.TestReportPDF;Check PDF Recuring Power Consumption Report;test_cases_reports.json;Recuring_Power_Consumption_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""""tab_name"":""tab_name""}"
+Reports.TestRecuringActions;Create Recuring Recuring_Resource_Report;test_cases_reports.json;Recuring_Resource_Report;FALSE;TRUE;FALSE;
+Reports.TestReportCSV;Check CSV Recuring Recuring_Resource_Report;test_cases_reports.json;Recuring_Resource_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""""tab_name"":""tab_name""}"
+Reports.TestReportPDF;Check PDF Recuring Recuring_Resource_Report;test_cases_reports.json;Recuring_Resource_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""""tab_name"":""tab_name""}"
+Reports.TestRecuringActions;Create Recuring Recuring_Security_Report;test_cases_reports.json;Recuring_Security_Report;FALSE;TRUE;FALSE;
+Reports.TestReportCSV;Check CSV Recuring Recuring_Security_Report;test_cases_reports.json;Recuring_Security_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""""tab_name"":""tab_name""}"
+Reports.TestReportPDF;Check PDF Recuring Recuring_Security_Report;test_cases_reports.json;Recuring_Security_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""""tab_name"":""tab_name""}"
+Reports.TestRecuringActions;Create Recuring Recuring_Topology_Report;test_cases_reports.json;Recuring_Topology_Report;FALSE;TRUE;FALSE;
+Reports.TestReportCSV;Check CSV Recuring Recuring_Topology_Report;test_cases_reports.json;Recuring_Topology_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""""tab_name"":""tab_name""}"
+Reports.TestReportPDF;Check PDF Recuring Recuring_Topology_Report;test_cases_reports.json;Recuring_Topology_Report;FALSE;TRUE;FALSE;"{""ReportID"":""ReportID""""tab_name"":""tab_name""}"
 TAPI.GetCfCServiceAfterCreationENC;Getting information about unprotected 9TCE-PCN-CFC;test_cases_encryption.json;createCFC;FALSE;TRUE;FALSE;
 sm.DeleteCfCCompletely;Delete service 9TCE-PCN-CFC;test_cases_encryption.json;createCFC;FALSE;TRUE;FALSE;"{""service_name"":""created_service_name"",""service_object_name"":""created_service_object_name""}"
 TAPI.GetCfCServiceAfterCreationENC;Getting information about unprotected 9TCE-PCN-NFC;test_cases_encryption.json;createNFC;FALSE;TRUE;FALSE;
 sm.DeleteCfCCompletely;Delete service 9TCE-PCN-CNFC;test_cases_encryption.json;createNFC;FALSE;TRUE;FALSE;"{""service_name"":""created_service_name"",""service_object_name"":""created_service_object_name""}"
-TAPI.GetCfCServiceAfterCreationENC;Getting information about unprotected CFC 4WCC;test_cases_restoration.json;createCFC;FALSE;TRUE;FALSE;
-sm.DeleteCfCCompletely;Delete CFC 4WCC service;test_cases_restoration.json;createCFC;FALSE;TRUE;FALSE;"{""service_name"":""created_service_name"",""service_object_name"":""created_service_object_name""}"
-TAPI.GetCfCServiceAfterCreationENC;Getting information about unprotected NFC ETH-10G on 4WCC;test_cases_restoration.json;createNFC;FALSE;TRUE;FALSE;
-sm.DeleteCfCCompletely;Delete  NFC 4WCC service;test_cases_restoration.json;createNFC;FALSE;TRUE;FALSE;"{""service_name"":""created_service_name"",""service_object_name"":""created_service_object_name""}"
-TAPI.GetCfCServiceAfterCreationENC;Getting information about unprotected CFC 16TCC;test_cases.json;Create_16TCC_CFC_protected;FALSE;TRUE;FALSE;
-sm.DeleteCfCCompletely;Delete CFC 16TCC service;test_cases.json;Create_16TCC_CFC_protected;FALSE;TRUE;FALSE;"{""service_name"":""created_service_name"",""service_object_name"":""created_service_object_name""}"
-TAPI.GetCfCServiceAfterCreationENC;Getting information about unprotected NFC on 16TCC, port NW;test_cases.json;Create_16TCC_NFC_NW;FALSE;TRUE;FALSE;
-sm.DeleteCfCCompletely;Delete  NFC 16TCC service, port NW;test_cases.json;Create_16TCC_NFC_NW;FALSE;TRUE;FALSE;"{""service_name"":""created_service_name"",""service_object_name"":""created_service_object_name""}"
-TAPI.GetCfCServiceAfterCreationENC;Getting information about unprotected NFC on 16TCC, port NE;test_cases.json;Create_16TCC_NFC;FALSE;TRUE;FALSE;
-sm.DeleteCfCCompletely;Delete  NFC 16TCC service, port NE;test_cases.json;Create_16TCC_NFC;FALSE;TRUE;FALSE;"{""service_name"":""created_service_name"",""service_object_name"":""created_service_object_name""}"
